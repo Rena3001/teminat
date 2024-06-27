@@ -49,7 +49,6 @@ class DatabaseSeeder extends Seeder
                 'home_about_title' => 'Home About Title',
                 'home_about_subtitle' => 'Home About SubTitle',
                 'home_about_desc' => 'Home About Description',
-                'time_line_title' => 'Time Line Title',
                 'footer_title' => 'Footer Title',
                 'address' => '#',
                 'phone' => '#',
@@ -61,13 +60,8 @@ class DatabaseSeeder extends Seeder
                 'about_iframe' => '#',
                 'contact_title' => 'Contact Title',
                 'contact_image' => '#',
-                'casting_desc' => 'Casting Description',
                 'welding_title' => 'Welding Title',
                 'welding_image' => '#',
-                'casting_title' => 'Casting Title',
-                'casting_image' => '#',
-                'valve_title' => 'Valve Title',
-                'valve_image' => '#',
             ]);
         }
     }
