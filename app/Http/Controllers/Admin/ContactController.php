@@ -1,20 +1,29 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
+use App\Services\DataService;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    public function index(){
+    protected $dataService;
 
-        $contacts=Contact::all();
-        return view('admin.contacts.index');
+    public function __construct(DataService $dataService)
+    {
+        $this->dataService = $dataService;
     }
 
-    public function show(Contact $contact){
+    public function index()
+    {
+        $contacts = Contact::all();
+
+        return view('admin.contacts.index', compact('contacts'));
+    }
+
+    public function show(Contact $contact)
+    {
         if (!empty($contact)) {
             $contact['fullname'] = $contact->getTranslations('fullname');
             $contact['email'] = $contact->getTranslations('email');
@@ -25,8 +34,10 @@ class ContactController extends Controller
             abort(404);
         }
     }
-    public function destroy(Contact $contact)
+
+    public function destroy($id)
     {
+        $contact = Contact::findOrFail($id);
         if (!empty($contact)) {
             $contact->delete();
             return redirect()->route('admin.contacts.index')

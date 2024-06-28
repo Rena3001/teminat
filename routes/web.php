@@ -56,6 +56,8 @@ Route::group(['middleware' => 'auth', 'prefix' => LaravelLocalization::setLocale
 
     // Others
     Route::get('contacts', [ContactController::class, 'index'])->name('contacts.index');
+    Route::get('contacts/show', [ContactController::class, 'show'])->name('contacts.show');
+    Route::delete('contacts/destroy/{id}', [ContactController::class, 'destroy'])->name('contacts.destroy');
     Route::get('/settings', [SettingController::class, 'index'])->name('settings');
     Route::get('/settings/edit', [SettingController::class, 'edit'])->name('settings.edit');
     Route::patch('/settings/update', [SettingController::class, 'update'])->name('settings.update');
