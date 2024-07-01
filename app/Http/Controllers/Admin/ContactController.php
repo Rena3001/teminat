@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -25,24 +26,26 @@ class ContactController extends Controller
     public function show(Contact $contact)
     {
         if (!empty($contact)) {
-            $contact['fullname'] = $contact->getTranslations('fullname');
-            $contact['email'] = $contact->getTranslations('email');
-            $contact['phone'] = $contact->getTranslations('phone');
-            $contact['message'] = $contact->getTranslations('message');
             return view('admin.contacts.show', compact('contact'));
         } else {
             abort(404);
         }
     }
 
-    public function destroy($id)
+    public function destroy(Contact $contact)
     {
-        $contact = Contact::findOrFail($id);
         if (!empty($contact)) {
-            $contact->delete();
-            return redirect()->route('admin.contacts.index')
-                ->with('type', 'success')
-                ->with('message', 'Məhsul uğurla silindi.');
+            $deleted = $contact->delete();
+
+            if ($deleted) {
+                return redirect()->route('admin.valve_categories.index')
+                    ->with('type', 'success')
+                    ->with('message', 'Əlaqə uğurla silindi.');
+            } else {
+                return redirect()->back()
+                    ->with('type', 'danger')
+                    ->with('message', 'Əlaqəni silmək mümkün olmadı!');
+            }
         } else {
             abort(404);
         }

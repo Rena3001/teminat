@@ -33,7 +33,7 @@
     width: 20px;
 }
 
-#tableExample3 .dropdown-menu {
+.table .dropdown-menu {
     min-width: fit-content;
 }
 
