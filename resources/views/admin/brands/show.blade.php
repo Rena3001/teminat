@@ -1,17 +1,17 @@
 @extends('admin.layout.master')
 
 @push('page_title')
-Bloqun Məlumatları
+Valve Kateqoriyanın Məlumatları
 @endpush
 @push('section_title')
-Bloq Ətraflı Məlumatları
+Valve Kateqoriyanın Ətraflı Məlumatları
 @endpush
 
 @section('content')
 <div class="card card-primary  mb-3">
     <div class="card-header">
         <h3 class="card-title d-flex justify-content-between align-items-center">Ətraflı <a
-                href="{{route('admin.blog.index')}}" class="btn btn-warning">Geri qayıt</a></h3>
+                href="{{route('admin.valve_categories.index')}}" class="btn btn-warning">Geri qayıt</a></h3>
 
     </div>
     <div class="card-body">

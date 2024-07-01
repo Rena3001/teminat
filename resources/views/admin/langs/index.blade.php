@@ -27,7 +27,7 @@ Dil Siyahısı
                     <table class="table table-striped table-sm fs-9 mb-0">
                         <thead>
                             <tr>
-                                <th class="sort border-top border-translucent ps-3" data-sort="id">Id</th>
+                                <th class="sort border-top ps-3" data-sort="id">Id</th>
                                 <th class="sort border-top" data-sort="code">Dilin kodu</th>
                                 <th class="sort border-top" data-sort="language">Dil</th>
                                 <th class="sort border-top w-auto">Şəkil</th>

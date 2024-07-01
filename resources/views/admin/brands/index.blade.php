@@ -1,21 +1,21 @@
 @extends('admin.layout.master')
 
 @push('page_title')
-Bloqlar
+Brendlər
 @endpush
 @push('section_title')
-Bloq Siyahısı
+Brendlərin Siyahısı
 @endpush
 
 @section('content')
 <div class="card mb-3">
     <div class="card-header p-4 border-bottom bg-body">
-        <a class="btn btn-sm btn-phoenix-success" href="{{ route('admin.blogs.create') }}" role="button"
+        <a class="btn btn-sm btn-phoenix-success" href="{{route('admin.brands.create')}}" role="button"
             aria-controls="basic-example-code"> Yenisini əlavə edin</a>
     </div>
     <div class="card-body">
         <div class="p-4 code-to-copy">
-            <div id="tableExample3" data-list='{"valueNames":["id"],"page":5,"pagination":true}'>
+            <div id="tableExample3" data-list='{"valueNames":["id","title"],"page":5,"pagination":true}'>
                 <div class="search-box mb-3 mx-auto">
                     <form class="position-relative">
                         <input class="form-control search-input search form-control-sm" type="search"
@@ -27,32 +27,17 @@ Bloq Siyahısı
                     <table class="table table-striped table-sm fs-9 mb-0">
                         <thead>
                             <tr>
-                                <th class="sort border-top border-translucent ps-3" data-sort="id">Id</th>
-                                <th class="sort border-top w-auto">Şəkil</th>
-                                <th class="sort border-top w-auto">Title</th>
+                                <th class="sort border-top ps-3" data-sort="id">Id</th>
+                                <th class="sort border-top w-auto" data-sort="title">Başlıq</th>
                                 <th class="sort text-end align-middle pe-0 border-top" scope="col">Fəaliyyətlər</th>
                             </tr>
                         </thead>
                         <tbody class="list">
-                            @foreach ($blogs as $blog)
+                            @foreach ($models as $model)
                             <tr>
-                                <td class="align-middle ps-3 id">{{ $blog->id }}</td>
-                                <td class="align-middle" style="width: 170px">
-                                    @if ($blog->image)
-                                    <div class="image">
-                                        <img src="{{ $blog->image }}" alt="{{ $blog->title }}"
-                                            class="img-fluid">
-                                    </div>
-                                    @endif
-                                </td>
-                                <td class="m-0">
-                                    @if (is_array($blog->title))
-                                    @foreach ($blog->title as $lang => $title)
-                                    <div><strong>{{ strtoupper($lang) }}:</strong> {{ $title }}</div>
-                                    @endforeach
-                                    @else
-                                    {{ $blog->title }}
-                                    @endif
+                                <td class="align-middle ps-3 id">{{ $model->id }}</td>
+                                <td class="align-middle title">
+                                    <p class="m-0">{{ $model->title }}</p>
                                 </td>
                                 <td class="align-middle white-space-nowrap text-end pe-0">
                                     <div class="btn-reveal-trigger position-static">
@@ -64,14 +49,14 @@ Bloq Siyahısı
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-end py-2">
                                             <a class="dropdown-item"
-                                                href="{{ route('admin.blogs.show', $blog->id) }}"><span
+                                                href="{{ route('admin.brands.show', $model->id) }}"><span
                                                     data-feather="info"></span></a>
                                             <a class="dropdown-item"
-                                                href="{{ route('admin.blogs.edit', $blog->id) }}"><span
+                                                href="{{ route('admin.brands.edit', $model->id) }}"><span
                                                     data-feather="edit"></span></a>
                                             <div class="dropdown-divider"></div>
-                                            <form action="{{ route('admin.blogs.destroy', $blog->id) }}"
-                                                onclick="return confirm('Əminsiniz?')" method="post">
+                                            <form action="{{ route('admin.brands.destroy', $model->id) }}"
+                                                onclick="return confirm('Əminsiniz?','Beli','Xeyir')" method="post">
                                                 @method('delete')
                                                 @csrf
                                                 <button type="submit" style="width: fit-content;"
