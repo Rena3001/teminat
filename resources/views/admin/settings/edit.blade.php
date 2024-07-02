@@ -230,65 +230,6 @@ Saytın Ümumi Məlumatlarını Redaktə Etmə
                     </div>
                 </div>
             </div>
-
-
-            <div class="col-lg-4 col-md-6">
-                <div class="form-group d-block">
-                    <label for="welding_image">Welding Ana səhifədəki Şəkli</label>
-                    <input type="file" name="welding_image"
-                        class="custom-file-image form-control @error('welding_image') is-invalid @enderror"
-                        id="welding_image" value="{{ old('welding_image') }}">
-                    @error('welding_image')
-                    <span class="error invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div class="image-box">
-                            <img src="{{$settings->welding_image != '#' ? $settings->welding_image : asset('admin/assets/img/elektrod_logo.svg')}}"
-                                alt="" class="img-fluid welding_image">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="form-group d-block">
-                    <label for="casting_image">Casting Ana səhifədəki Şəkli</label>
-                    <input type="file" name="casting_image"
-                        class="custom-file-image form-control @error('casting_image') is-invalid @enderror"
-                        id="casting_image" value="{{ old('casting_image') }}">
-                    @error('casting_image')
-                    <span class="error invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div class="image-box">
-                            <img src="{{$settings->casting_image != '#' ? $settings->casting_image : asset('admin/assets/img/elektrod_logo.svg')}}"
-                                alt="" class="img-fluid casting_image">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="form-group d-block">
-                    <label for="valve_image">Valve Ana səhifədəki Şəkli</label>
-                    <input type="file" name="valve_image"
-                        class="custom-file-image form-control @error('valve_image') is-invalid @enderror"
-                        id="valve_image" value="{{ old('valve_image') }}">
-                    @error('valve_image')
-                    <span class="error invalid-feedback">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div class="image-box">
-                            <img src="{{$settings->valve_image != '#' ? $settings->valve_image : asset('admin/assets/img/elektrod_logo.svg')}}"
-                                alt="" class="img-fluid valve_image">
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div class="card-header">Tərcümə olunan sahələr</div>
@@ -418,49 +359,6 @@ Saytın Ümumi Məlumatlarını Redaktə Etmə
                 </div>
             </div>
 
-
-            <div class="col-md-4 col-12">
-                <div class="card card-primary card-outline card-outline-tabs">
-                    <div class="card-header p-3 py-2">
-                        <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
-                            @foreach ($langs as $key => $lang)
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link {{ $key === 0 ? 'active' : '' }} @error('time_line_title.' . $lang->code)text-danger @enderror"
-                                    id="{{ $lang->code . 'time_line_title' }}" data-bs-toggle="tab"
-                                    href="#{{ 'time_line_title' . $lang->code }}" role="tab"
-                                    aria-controls="{{ 'time_line_title' . $lang->code }}"
-                                    aria-selected="{{ $key === 0 ? 'true' : 'false' }}">{{ '[' . strtoupper($lang->code) . ']' }}</a>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="tab-content" id="custom-tabs-four-tabContent">
-                            @foreach ($langs as $key => $lang)
-                            <div class="tab-pane fade {{ $key === 0 ? 'show active' : '' }}"
-                                id="{{ 'time_line_title' . $lang->code }}" role="tabpanel"
-                                aria-labelledby="custom-tabs-four-home-tab">
-                                <div class="card-body">
-                                    <div class="form-group d-block">
-                                        <label for="time_line_title.{{ $lang->code }}">Zaman Xətti Başlıq</label>
-                                        <input type="text"
-                                            class="form-control @error('time_line_title.' . $lang->code)is-invalid @enderror"
-                                            id="time_line_title.{{ $lang->code }}"
-                                            name="time_line_title[{{ $lang->code }}]"
-                                            value="{{ old('time_line_title' . '.' . $lang->code, isset($settings->time_line_titles[$lang->code]) ? $settings->time_line_titles[$lang->code] : '') }}">
-                                        @error('time_line_title.' . $lang->code)
-                                        <span class="error invalid-feedback">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
             <div class="col-md-4 col-12">
                 <div class="card card-primary card-outline card-outline-tabs">
                     <div class="card-header p-3 py-2">
@@ -587,10 +485,10 @@ Saytın Ümumi Məlumatlarını Redaktə Etmə
                         <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
                             @foreach ($langs as $key => $lang)
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link {{ $key === 0 ? 'active' : '' }} @error('welding_title.' . $lang->code)text-danger @enderror"
-                                    id="{{ $lang->code . 'welding_title' }}" data-bs-toggle="tab"
-                                    href="#{{ 'welding_title' . $lang->code }}" role="tab"
-                                    aria-controls="{{ 'welding_title' . $lang->code }}"
+                                <a class="nav-link {{ $key === 0 ? 'active' : '' }} @error('categories_title.' . $lang->code)text-danger @enderror"
+                                    id="{{ $lang->code . 'categories_title' }}" data-bs-toggle="tab"
+                                    href="#{{ 'categories_title' . $lang->code }}" role="tab"
+                                    aria-controls="{{ 'categories_title' . $lang->code }}"
                                     aria-selected="{{ $key === 0 ? 'true' : 'false' }}">{{ '[' . strtoupper($lang->code) . ']' }}</a>
                             </li>
                             @endforeach
@@ -600,96 +498,17 @@ Saytın Ümumi Məlumatlarını Redaktə Etmə
                         <div class="tab-content" id="custom-tabs-four-tabContent">
                             @foreach ($langs as $key => $lang)
                             <div class="tab-pane fade {{ $key === 0 ? 'show active' : '' }}"
-                                id="{{ 'welding_title' . $lang->code }}" role="tabpanel"
+                                id="{{ 'categories_title' . $lang->code }}" role="tabpanel"
                                 aria-labelledby="custom-tabs-four-home-tab">
                                 <div class="card-body">
                                     <div class="form-group d-block">
-                                        <label for="welding_title.{{ $lang->code }}">Welding Başlıq</label>
+                                        <label for="categories_title.{{ $lang->code }}">Welding Başlıq</label>
                                         <input type="text"
-                                            class="form-control @error('welding_title.' . $lang->code)is-invalid @enderror"
-                                            id="welding_title.{{ $lang->code }}" name="welding_title[{{ $lang->code }}]"
-                                            value="{{ old('welding_title' . '.' . $lang->code, isset($settings->welding_titles[$lang->code]) ? $settings->welding_titles[$lang->code] : '') }}">
-                                        @error('welding_title.' . $lang->code)
-                                        <span class="error invalid-feedback">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-12">
-                <div class="card card-primary card-outline card-outline-tabs">
-                    <div class="card-header p-3 py-2">
-                        <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
-                            @foreach ($langs as $key => $lang)
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link {{ $key === 0 ? 'active' : '' }} @error('casting_title.' . $lang->code)text-danger @enderror"
-                                    id="{{ $lang->code . 'casting_title' }}" data-bs-toggle="tab"
-                                    href="#{{ 'casting_title' . $lang->code }}" role="tab"
-                                    aria-controls="{{ 'casting_title' . $lang->code }}"
-                                    aria-selected="{{ $key === 0 ? 'true' : 'false' }}">{{ '[' . strtoupper($lang->code) . ']' }}</a>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="tab-content" id="custom-tabs-four-tabContent">
-                            @foreach ($langs as $key => $lang)
-                            <div class="tab-pane fade {{ $key === 0 ? 'show active' : '' }}"
-                                id="{{ 'casting_title' . $lang->code }}" role="tabpanel"
-                                aria-labelledby="custom-tabs-four-home-tab">
-                                <div class="card-body">
-                                    <div class="form-group d-block">
-                                        <label for="casting_title.{{ $lang->code }}">Casting Başlıq</label>
-                                        <input type="text"
-                                            class="form-control @error('casting_title.' . $lang->code)is-invalid @enderror"
-                                            id="casting_title.{{ $lang->code }}" name="casting_title[{{ $lang->code }}]"
-                                            value="{{ old('casting_title' . '.' . $lang->code, isset($settings->casting_titles[$lang->code]) ? $settings->casting_titles[$lang->code] : '') }}">
-                                        @error('casting_title.' . $lang->code)
-                                        <span class="error invalid-feedback">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-12">
-                <div class="card card-primary card-outline card-outline-tabs">
-                    <div class="card-header p-3 py-2">
-                        <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
-                            @foreach ($langs as $key => $lang)
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link {{ $key === 0 ? 'active' : '' }} @error('valve_title.' . $lang->code)text-danger @enderror"
-                                    id="{{ $lang->code . 'valve_title' }}" data-bs-toggle="tab"
-                                    href="#{{ 'valve_title' . $lang->code }}" role="tab"
-                                    aria-controls="{{ 'valve_title' . $lang->code }}"
-                                    aria-selected="{{ $key === 0 ? 'true' : 'false' }}">{{ '[' . strtoupper($lang->code) . ']' }}</a>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="tab-content" id="custom-tabs-four-tabContent">
-                            @foreach ($langs as $key => $lang)
-                            <div class="tab-pane fade {{ $key === 0 ? 'show active' : '' }}"
-                                id="{{ 'valve_title' . $lang->code }}" role="tabpanel"
-                                aria-labelledby="custom-tabs-four-home-tab">
-                                <div class="card-body">
-                                    <div class="form-group d-block">
-                                        <label for="valve_title.{{ $lang->code }}">Valve Başlıq</label>
-                                        <input type="text"
-                                            class="form-control @error('valve_title.' . $lang->code)is-invalid @enderror"
-                                            id="valve_title.{{ $lang->code }}" name="valve_title[{{ $lang->code }}]"
-                                            value="{{ old('valve_title' . '.' . $lang->code, isset($settings->valve_titles[$lang->code]) ? $settings->valve_titles[$lang->code] : '') }}">
-                                        @error('valve_title.' . $lang->code)
+                                            class="form-control @error('categories_title.' . $lang->code)is-invalid @enderror"
+                                            id="categories_title.{{ $lang->code }}"
+                                            name="categories_title[{{ $lang->code }}]"
+                                            value="{{ old('categories_title' . '.' . $lang->code, isset($settings->categories_titles[$lang->code]) ? $settings->categories_titles[$lang->code] : '') }}">
+                                        @error('categories_title.' . $lang->code)
                                         <span class="error invalid-feedback">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -740,48 +559,6 @@ Saytın Ümumi Məlumatlarını Redaktə Etmə
                     </div>
                 </div>
             </div>
-
-
-            <div class="col-12">
-                <div class="card card-primary card-outline card-outline-tabs">
-                    <div class="card-header p-3 py-2">
-                        <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
-                            @foreach ($langs as $key => $lang)
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link {{ $key === 0 ? 'active' : '' }} @error('casting_desc.' . $lang->code)text-danger @enderror"
-                                    id="{{ $lang->code . 'casting_desc' }}" data-bs-toggle="tab"
-                                    href="#{{ 'casting_desc' . $lang->code }}" role="tab"
-                                    aria-controls="{{ 'casting_desc' . $lang->code }}"
-                                    aria-selected="{{ $key === 0 ? 'true' : 'false' }}">{{ '[' . strtoupper($lang->code) . ']' }}</a>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="tab-content" id="custom-tabs-four-tabContent">
-                            @foreach ($langs as $key => $lang)
-                            <div class="tab-pane fade {{ $key === 0 ? 'show active' : '' }}"
-                                id="{{ 'casting_desc' . $lang->code }}" role="tabpanel"
-                                aria-labelledby="custom-tabs-four-home-tab">
-                                <div class="card-body">
-                                    <div class="form-group d-block">
-                                        <label for="casting_desc.{{ $lang->code }}">Casting Tesvir</label>
-                                        <textarea type="text"
-                                            class="form-control @error('casting_desc.' . $lang->code)is-invalid @enderror"
-                                            name="casting_desc[{{ $lang->code }}]"
-                                            id="casting_desc.{{ $lang->code }}">{{ old('casting_desc' . '.' . $lang->code, isset($settings->casting_descs[$lang->code]) ? $settings->casting_descs[$lang->code] : '') }}</textarea>
-                                        @error('casting_desc.' . $lang->code)
-                                        <span class="error invalid-feedback">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
 </div>
 @endsection

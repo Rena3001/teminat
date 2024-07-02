@@ -20,9 +20,9 @@
                         </a>
                     </div>
                     <div class="nav-item-wrapper">
-                        <a class="nav-link dropdown-indicator label-1 @if (!Route::is('admin.language_line*', 'admin.langs*', 'admin.sliders*')) collapsed @else active @endif"
+                        <a class="nav-link dropdown-indicator label-1 @if (!Route::is('admin.language_line*', 'admin.langs*', 'admin.sliders*','admin.brands*')) collapsed @else active @endif"
                             href="#nv-home " role="button" data-bs-toggle="collapse"
-                            aria-expanded="{{Route::is('admin.language_line*' , 'admin.langs*', 'admin.sliders*')?'true':'false'}}"
+                            aria-expanded="{{Route::is('admin.language_line*' , 'admin.langs*', 'admin.sliders*','admin.brands*')?'true':'false'}}"
                             aria-controls="nv-home">
                             <div class="d-flex align-items-center">
                                 <div class="dropdown-indicator-icon"><span class="fas fa-caret-right"></span>
@@ -31,7 +31,7 @@
                             </div>
                         </a>
                         <div class="parent-wrapper label-1">
-                            <ul class="nav collapse parent @if (Route::is('admin.language_line*' , 'admin.langs*', 'admin.sliders*')) show @endif"
+                            <ul class="nav collapse parent @if (Route::is('admin.language_line*' , 'admin.langs*', 'admin.sliders*','admin.brands*')) show @endif"
                                 data-bs-parent="#navbarVerticalCollapse" id="nv-home">
                                 <li class="nav-item">
                                     <a class="nav-link dropdown-indicator label-1 @if (Route::is('admin.language_line*')) active @endif"
@@ -94,25 +94,12 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link dropdown-indicator label-1 @if (Route::is('admin.welding_categories*')) active @endif"
-                                        href="{{ route('admin.welding_categories.index') }}">
+                                    <a class="nav-link dropdown-indicator label-1 @if (Route::is('admin.categories*')) active @endif"
+                                        href="{{ route('admin.categories.index') }}">
                                         <div class="d-flex align-items-center">
                                             <span class="nav-link-icon me-0"><span data-feather="folder"></span>
                                             </span>
-                                            <span class="nav-link-text ps-2">Welding Kateqorilər</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link dropdown-indicator label-1 @if (Route::is('admin.welding_groups*')) active @endif"
-                                        href="{{ route('admin.welding_groups.index') }}">
-                                        <div class="d-flex align-items-center">
-                                            <span class="nav-link-icon me-0">
-                                                <span data-feather="hexagon"></span>
-                                            </span>
-                                            <span class="nav-link-text ps-2">
-                                                Welding Qrupları
-                                            </span>
+                                            <span class="nav-link-text ps-2">Kateqorilər</span>
                                         </div>
                                     </a>
                                 </li>

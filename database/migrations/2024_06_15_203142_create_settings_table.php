@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('about_title');
             $table->string('about_iframe');
             $table->string('contact_title');
-            $table->string('welding_title');
+            $table->string('categories_title');
 
             $table->text('home_about_desc');
             $table->text('about_desc');
@@ -38,7 +38,6 @@ return new class extends Migration
             $table->string('image_logo_dark');
             $table->string('about_banner');
             $table->string('contact_image');
-            $table->string('welding_image');
 
             $table->timestamps();
         });

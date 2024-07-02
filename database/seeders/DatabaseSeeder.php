@@ -60,8 +60,7 @@ class DatabaseSeeder extends Seeder
                 'about_iframe' => '#',
                 'contact_title' => 'Contact Title',
                 'contact_image' => '#',
-                'welding_title' => 'Welding Title',
-                'welding_image' => '#',
+                'categories_title' => 'Categories Title',
             ]);
         }
     }
