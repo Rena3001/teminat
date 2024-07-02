@@ -3,15 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Spatie\Translatable\HasTranslations;
 
 class Brand extends BaseModel
 {
-    use HasFactory, HasTranslations;
+    use HasFactory;
 
     protected $fillable = [
         'title',
     ];
-
-    protected $translatable = ['title'];
 }

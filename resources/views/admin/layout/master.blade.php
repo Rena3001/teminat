@@ -9,6 +9,11 @@
     </title>
 
     @stack('css')
+
+    <link href="{{ asset('admin/assets/css/theme.min.css') }}" type="text/css" rel="stylesheet" id="style-default">
+    <link href="{{ asset('admin/assets/css/user.min.css') }}" type="text/css" rel="stylesheet" id="user-style-default">
+
+    <link href="{{ asset('admin/assets/css/custom.css') }}" type="text/css" rel="stylesheet" id="user-style-default">
 </head>
 
 <body>
@@ -240,6 +245,8 @@
 
     @include('admin.layout.includes.foot')
     @stack('js')
+
+    <script src="{{asset('admin/assets/js/custom.js')}}"></script>
 </body>
 
 </html>

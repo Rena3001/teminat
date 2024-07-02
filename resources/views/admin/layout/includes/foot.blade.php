@@ -14,4 +14,3 @@
 <script src="{{asset('admin/assets/js/phoenix.js')}}"></script>
 <script src="{{asset('admin/assets/vendors/echarts/echarts.min.js')}}"></script>
 <script src="{{asset('admin/assets/js/ecommerce-dashboard.js')}}"></script>
-<script src="{{asset('admin/assets/js/custom.js')}}"></script>

@@ -164,39 +164,6 @@ Saytin Statik Ümumi Məlumatları
                     </div>
                 </div>
             </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="card">
-                    <img class="card-img-top border-bottom py-2"
-                        src="{{$settings->welding_image != '#' ? $settings->welding_image : asset('admin/assets/img/elektrod_logo.svg')}}"
-                        alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Welding Ana səhifədəki Şəkli</h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="card">
-                    <img class="card-img-top border-bottom py-2"
-                        src="{{$settings->casting_image != '#' ? $settings->casting_image : asset('admin/assets/img/elektrod_logo.svg')}}"
-                        alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Casting Ana səhifədəki Şəkli</h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="card">
-                    <img class="card-img-top border-bottom py-2"
-                        src="{{$settings->valve_image != '#' ? $settings->valve_image : asset('admin/assets/img/elektrod_logo.svg')}}"
-                        alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Valve Ana səhifədəki Şəkli</h5>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <div class="card-header">
@@ -209,7 +176,8 @@ Saytin Statik Ümumi Məlumatları
                     <div class="card-body">
                         <h4 class="card-title text-warning">Ana sehifədəki Haqqımızda Başlıq</h4>
                         @foreach ($settings->home_about_titles as $lang=>$value)
-                        <p class="card-text"><strong class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
+                        <p class="card-text border-top pt-2"><strong
+                                class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
                         </p>
                         @endforeach
                     </div>
@@ -238,7 +206,7 @@ Saytin Statik Ümumi Məlumatları
                         <p class="card-text border-top pt-2" style="clear: both;"><strong
                                 class="me-3 text-info">{{strtoupper($lang)}}</strong>
                         </p>
-                        <div>
+                        <div class="pb-2">
                             {!!$value!!}
                         </div>
                         @endforeach
@@ -249,20 +217,10 @@ Saytin Statik Ümumi Məlumatları
             <div class="col-md-4 col-12">
                 <div class="card border border-success">
                     <div class="card-body">
-                        <h4 class="card-title text-warning">Zaman Xətti Başlıq</h4>
-                        @foreach ($settings->time_line_titles as $lang=>$value)
-                        <p class="card-text"><strong class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
-                        </p>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-12">
-                <div class="card border border-success">
-                    <div class="card-body">
                         <h4 class="card-title text-warning">Alt hissə Başlıq</h4>
                         @foreach ($settings->footer_titles as $lang=>$value)
-                        <p class="card-text"><strong class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
+                        <p class="card-text border-top pt-2"><strong
+                                class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
                         </p>
                         @endforeach
                     </div>
@@ -273,7 +231,8 @@ Saytin Statik Ümumi Məlumatları
                     <div class="card-body">
                         <h4 class="card-title text-warning">Haqqımızda Başlıq</h4>
                         @foreach ($settings->about_titles as $lang=>$value)
-                        <p class="card-text"><strong class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
+                        <p class="card-text border-top pt-2"><strong
+                                class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
                         </p>
                         @endforeach
                     </div>
@@ -286,7 +245,8 @@ Saytin Statik Ümumi Məlumatları
                     <div class="card-body">
                         <h4 class="card-title text-warning">Əlaqə Başlıq</h4>
                         @foreach ($settings->contact_titles as $lang=>$value)
-                        <p class="card-text"><strong class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
+                        <p class="card-text border-top pt-2"><strong
+                                class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
                         </p>
                         @endforeach
                     </div>
@@ -296,31 +256,10 @@ Saytin Statik Ümumi Məlumatları
             <div class="col-md-6 col-12">
                 <div class="card border border-success ">
                     <div class="card-body">
-                        <h4 class="card-title text-warning">Welding Başlıq</h4>
-                        @foreach ($settings->welding_titles as $lang=>$value)
-                        <p class="card-text"><strong class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
-                        </p>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-12">
-                <div class="card border border-success ">
-                    <div class="card-body">
-                        <h4 class="card-title text-warning">Casting Başlıq</h4>
-                        @foreach ($settings->casting_titles as $lang=>$value)
-                        <p class="card-text"><strong class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
-                        </p>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-12">
-                <div class="card border border-success ">
-                    <div class="card-body">
-                        <h4 class="card-title text-warning">Valve Başlıq</h4>
-                        @foreach ($settings->valve_titles as $lang=>$value)
-                        <p class="card-text"><strong class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
+                        <h4 class="card-title text-warning">Kateqoriyalar Başlıq</h4>
+                        @foreach ($settings->categories_titles as $lang=>$value)
+                        <p class="card-text border-top pt-2"><strong
+                                class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
                         </p>
                         @endforeach
                     </div>
@@ -332,23 +271,12 @@ Saytin Statik Ümumi Məlumatları
                     <div class="card-body">
                         <h4 class="card-title text-warning">Haqqımızda Təsvir</h4>
                         @foreach ($settings->about_descs as $lang=>$value)
-                        <p class="card-text" style="clear: both;"><strong
+                        <p class="card-text border-top pt-2" style="clear: both;"><strong
                                 class="me-3 text-info">{{strtoupper($lang)}}</strong>
                         </p>
-                        <div>
+                        <div class="pb-2">
                             {!!$value!!}
                         </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="card border border-success ">
-                    <div class="card-body">
-                        <h4 class="card-title text-warning">Casting Tesvir</h4>
-                        @foreach ($settings->casting_descs as $lang=>$value)
-                        <p class="card-text"><strong class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
-                        </p>
                         @endforeach
                     </div>
                 </div>

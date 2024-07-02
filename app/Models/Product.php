@@ -15,7 +15,6 @@ class Product extends BaseModel
         'image',
         'pdf_file',
         'brand_id',
-        'group_id',
         'category_id',
     ];
 
@@ -23,11 +22,11 @@ class Product extends BaseModel
 
     public function category()
     {
-        return $this->belongsTo(ValveCategory::class, 'category_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
-    public function group()
+    public function brand()
     {
-        return $this->belongsTo(WeldingGroup::class, 'group_id');
+        return $this->belongsTo(Brand::class, 'brand_id');
     }
 }

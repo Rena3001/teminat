@@ -27,15 +27,11 @@ class SettingController extends Controller
         $settings['home_about_titles'] = $settings->getTranslations('home_about_title');
         $settings['home_about_subtitles'] = $settings->getTranslations('home_about_subtitle');
         $settings['home_about_descs'] = $settings->getTranslations('home_about_desc');
-        $settings['time_line_titles'] = $settings->getTranslations('time_line_title');
         $settings['footer_titles'] = $settings->getTranslations('footer_title');
         $settings['about_titles'] = $settings->getTranslations('about_title');
         $settings['about_descs'] = $settings->getTranslations('about_desc');
         $settings['contact_titles'] = $settings->getTranslations('contact_title');
-        $settings['casting_descs'] = $settings->getTranslations('casting_desc');
-        $settings['welding_titles'] = $settings->getTranslations('welding_title');
-        $settings['casting_titles'] = $settings->getTranslations('casting_title');
-        $settings['valve_titles'] = $settings->getTranslations('valve_title');
+        $settings['categories_titles'] = $settings->getTranslations('categories_title');
 
         return view('admin.settings.index', compact('langs', 'settings'));
     }
@@ -48,25 +44,17 @@ class SettingController extends Controller
         $settings['home_about_titles'] = $settings->getTranslations('home_about_title');
         $settings['home_about_subtitles'] = $settings->getTranslations('home_about_subtitle');
         $settings['home_about_descs'] = $settings->getTranslations('home_about_desc');
-        $settings['time_line_titles'] = $settings->getTranslations('time_line_title');
         $settings['footer_titles'] = $settings->getTranslations('footer_title');
         $settings['about_titles'] = $settings->getTranslations('about_title');
         $settings['about_descs'] = $settings->getTranslations('about_desc');
         $settings['contact_titles'] = $settings->getTranslations('contact_title');
-        $settings['casting_descs'] = $settings->getTranslations('casting_desc');
-        $settings['welding_titles'] = $settings->getTranslations('welding_title');
-        $settings['casting_titles'] = $settings->getTranslations('casting_title');
-        $settings['valve_titles'] = $settings->getTranslations('valve_title');
-
+        $settings['categories_titles'] = $settings->getTranslations('categories_title');
 
         $settings['images'] = [
             'image_logo_light' => $settings->image_logo_light,
             'image_logo_dark' => $settings->image_logo_dark,
             'about_banner' => $settings->about_banner,
             'contact_image' => $settings->contact_image,
-            'welding_image' => $settings->welding_image,
-            'casting_image' => $settings->casting_image,
-            'valve_image' => $settings->valve_image,
         ];
         return view('admin.settings.edit', compact('langs', 'settings'));
     }
@@ -88,14 +76,11 @@ class SettingController extends Controller
 
             'home_about_title',
             'home_about_subtitle',
-            'time_line_title',
             'footer_title',
             'about_title',
             'about_iframe',
             'contact_title',
-            'welding_title',
-            'casting_title',
-            'valve_title',
+            'categories_title',
         );
 
         // Descriptions
@@ -127,8 +112,6 @@ class SettingController extends Controller
 
         $data['home_about_desc'] = $home_about_desc;
 
-
-
         $about_desc = $request->get('about_desc');
 
         $this->deleteUnusedImages('uploads/admin/settings', 'about_desc', $about_desc);
@@ -157,30 +140,6 @@ class SettingController extends Controller
         $data['about_desc'] = $about_desc;
 
         $this->deleteUnusedImages('uploads/admin/settings', 'about_desc', $about_desc);
-
-        $casting_desc = $request->get('casting_desc');
-        if (is_array($casting_desc) && count($casting_desc) > 0) {
-
-            foreach ($casting_desc as $lang => $value) {
-                if ($value) {
-                    $decoded = $this->extractBase64Info($value);
-                    if ($decoded) {
-
-                        foreach ($decoded as $match) {
-                            $image = base64_decode($match['base64Data']);
-                            $imgName = 'casting_desc_' . $lang . '_' . $this->dataService->getNowDateStr() . '.' . $match['extension'];
-                            $imgPath = 'uploads/admin/settings/' . $imgName;
-                            Storage::disk('public')->put($imgPath, $image);
-                            $imgDbPath = '/storage/' . $imgPath;
-
-                            $casting_desc[$lang] = str_replace($match['fullMatch'], 'src="' . $imgDbPath . '"', $casting_desc[$lang]);
-                        }
-                    }
-                }
-            }
-        }
-
-        $data['casting_desc'] = $casting_desc;
 
         // Pictures
 
@@ -230,42 +189,6 @@ class SettingController extends Controller
             $imgName = 'contact_image_' . $this->dataService->getNowDateStr() . '.' . $fileExtension;
             $imgPath = $request->file('contact_image')->storeAs('uploads/admin/settings', $imgName, 'public');
             $data['contact_image'] = '/storage/' . $imgPath;
-        }
-
-        $welding_image = $settings->welding_image;
-
-        if ($request->file('welding_image')) {
-            if ($welding_image && file_exists(public_path($welding_image))) {
-                unlink(public_path($welding_image));
-            }
-            $fileExtension = $request->welding_image->extension();
-            $imgName = 'welding_image_' . $this->dataService->getNowDateStr() . '.' . $fileExtension;
-            $imgPath = $request->file('welding_image')->storeAs('uploads/admin/settings', $imgName, 'public');
-            $data['welding_image'] = '/storage/' . $imgPath;
-        }
-
-        $casting_image = $settings->casting_image;
-
-        if ($request->file('casting_image')) {
-            if ($casting_image && file_exists(public_path($casting_image))) {
-                unlink(public_path($casting_image));
-            }
-            $fileExtension = $request->casting_image->extension();
-            $imgName = 'casting_image_' . $this->dataService->getNowDateStr() . '.' . $fileExtension;
-            $imgPath = $request->file('casting_image')->storeAs('uploads/admin/settings', $imgName, 'public');
-            $data['casting_image'] = '/storage/' . $imgPath;
-        }
-
-        $valve_image = $settings->valve_image;
-
-        if ($request->file('valve_image')) {
-            if ($valve_image && file_exists(public_path($valve_image))) {
-                unlink(public_path($valve_image));
-            }
-            $fileExtension = $request->valve_image->extension();
-            $imgName = 'valve_image_' . $this->dataService->getNowDateStr() . '.' . $fileExtension;
-            $imgPath = $request->file('valve_image')->storeAs('uploads/admin/settings', $imgName, 'public');
-            $data['valve_image'] = '/storage/' . $imgPath;
         }
 
         $updated = $settings->update($data);

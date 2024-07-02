@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('welding_groups', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('parent_id')->default(0);
             $table->string('title');
             $table->string('slug');
-            $table->string('image');
+            $table->unsignedBigInteger('parent_id')->default(0);
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('welding_groups');
+        Schema::dropIfExists('categories');
     }
 };
