@@ -54,16 +54,6 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link dropdown-indicator label-1 @if (Route::is('admin.valve_categories*')) active @endif"
-                                        href="{{ route('admin.valve_categories.index') }}">
-                                        <div class="d-flex align-items-center">
-                                            <span class="nav-link-icon me-0"><span data-feather="folder"></span>
-                                            </span>
-                                            <span class="nav-link-text ps-2">Valve Kategoriyalar</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link dropdown-indicator label-1 @if (Route::is('admin.sliders*')) active @endif"
                                         href="{{ route('admin.sliders.index') }}">
                                         <div class="d-flex align-items-center">
@@ -84,22 +74,22 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link dropdown-indicator label-1 @if (Route::is('admin.products*')) active @endif"
-                                        href="{{ route('admin.products.index') }}">
-                                        <div class="d-flex align-items-center">
-                                            <span class="nav-link-icon me-0"><span data-feather="target"></span>
-                                            </span>
-                                            <span class="nav-link-text ps-2">Məhsullar</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link dropdown-indicator label-1 @if (Route::is('admin.categories*')) active @endif"
                                         href="{{ route('admin.categories.index') }}">
                                         <div class="d-flex align-items-center">
                                             <span class="nav-link-icon me-0"><span data-feather="folder"></span>
                                             </span>
                                             <span class="nav-link-text ps-2">Kateqorilər</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link dropdown-indicator label-1 @if (Route::is('admin.products*')) active @endif"
+                                        href="{{ route('admin.products.index') }}">
+                                        <div class="d-flex align-items-center">
+                                            <span class="nav-link-icon me-0"><span data-feather="target"></span>
+                                            </span>
+                                            <span class="nav-link-text ps-2">Məhsullar</span>
                                         </div>
                                     </a>
                                 </li>
