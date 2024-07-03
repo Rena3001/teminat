@@ -27,7 +27,7 @@ Slayd Siyahısı
                     <table class="table table-striped table-sm fs-9 mb-0">
                         <thead>
                             <tr>
-                                <th class="sort border-top border-translucent ps-3" data-sort="id">Id</th>
+                                <th class="sort border-top ps-3" data-sort="id">Id</th>
                                 <th class="sort border-top w-auto">Şəkil</th>
                                 <th class="sort text-end align-middle pe-0 border-top" scope="col">Fəaliyyətlər</th>
                             </tr>

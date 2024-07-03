@@ -27,7 +27,7 @@ Statik Tərcümələrin siyahısı
                     <table class="table table-striped table-sm fs-9 mb-0">
                         <thead>
                             <tr>
-                                <th class="sort border-top border-translucent ps-3" data-sort="id">Id</th>
+                                <th class="sort border-top ps-3" data-sort="id">Id</th>
                                 <th class="sort border-top" data-sort="group">Qrup</th>
                                 <th class="sort border-top" data-sort="key">Açar soz</th>
                                 <th class="sort border-top w-auto" data-sort="text">Mətn</th>
