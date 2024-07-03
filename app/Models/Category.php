@@ -20,6 +20,9 @@ class Category extends BaseModel
 
     protected $translatable = ['title', 'slug'];
 
+    protected $attributes = [
+        'parent_id' => null,
+    ];
 
 
     public function parentCategory(): BelongsTo

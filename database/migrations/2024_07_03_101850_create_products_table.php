@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('slug');
             $table->string('pdf_file');
             $table->unsignedBigInteger('brand_id')->nullable();
-            $table->unsignedBigInteger('group_id')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
             $table->timestamps();
         });
     }

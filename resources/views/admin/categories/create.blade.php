@@ -78,7 +78,7 @@ window.addEventListener('load', function() {
                     <label class="m-0 mb-2" for="parent_id">Valideyn Kateqoriyasını seçin:</label>
                     <select class="form-select" id="parent_id" name="parent_id" value="{{old('parent_id')}}"
                         data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}'>
-                        <option selected="0">Valideyn</option>
+                        <option value="0" selected>Valideyn</option>
                         @foreach ($select_items as $item)
                         <option @selected((int)old('parent_id')===$item->id)
                             value="{{$item->id}}"
@@ -117,6 +117,5 @@ window.addEventListener('load', function() {
         </div>
     </div>
 </form>
-
 
 @endsection
