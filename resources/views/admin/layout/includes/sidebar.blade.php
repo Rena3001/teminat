@@ -20,9 +20,9 @@
                         </a>
                     </div>
                     <div class="nav-item-wrapper">
-                        <a class="nav-link dropdown-indicator label-1 @if (!Route::is('admin.language_line*', 'admin.langs*', 'admin.sliders*','admin.brands*')) collapsed @else active @endif"
+                        <a class="nav-link dropdown-indicator label-1 @if (!Route::is('admin.language_line*', 'admin.langs*', 'admin.sliders*','admin.brands*','admin.categories*','admin.products*')) collapsed @else active @endif"
                             href="#nv-home " role="button" data-bs-toggle="collapse"
-                            aria-expanded="{{Route::is('admin.language_line*' , 'admin.langs*', 'admin.sliders*','admin.brands*')?'true':'false'}}"
+                            aria-expanded="{{Route::is('admin.language_line*' , 'admin.langs*', 'admin.sliders*','admin.brands*','admin.categories*','admin.products*')?'true':'false'}}"
                             aria-controls="nv-home">
                             <div class="d-flex align-items-center">
                                 <div class="dropdown-indicator-icon"><span class="fas fa-caret-right"></span>
@@ -31,7 +31,7 @@
                             </div>
                         </a>
                         <div class="parent-wrapper label-1">
-                            <ul class="nav collapse parent @if (Route::is('admin.language_line*' , 'admin.langs*', 'admin.sliders*','admin.brands*')) show @endif"
+                            <ul class="nav collapse parent @if (Route::is('admin.language_line*' , 'admin.langs*', 'admin.sliders*','admin.brands*','admin.categories*','admin.products*')) show @endif"
                                 data-bs-parent="#navbarVerticalCollapse" id="nv-home">
                                 <li class="nav-item">
                                     <a class="nav-link dropdown-indicator label-1 @if (Route::is('admin.language_line*')) active @endif"

@@ -18,7 +18,6 @@ Kateqoriyanın Ətraflı Məlumatları
         <div class="row mb-3" style="gap: 20px;">
             <div class="col-lg-8">
                 <div class="d-flex" style="gap: 20px;">
-
                     <div class="card border border-success w-fit">
                         <div class="card-body">
                             <h4 class="card-title text-warning">Başlıq</h4>

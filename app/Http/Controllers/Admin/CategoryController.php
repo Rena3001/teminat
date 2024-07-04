@@ -18,9 +18,8 @@ class CategoryController extends Controller
     }
     public function index()
     {
-        $langs = Lang::all();
         $models = Category::all();
-        return view('admin.categories.index', compact('models', 'langs'));
+        return view('admin.categories.index', compact('models'));
     }
 
     public function create()
