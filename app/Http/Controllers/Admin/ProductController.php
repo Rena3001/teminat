@@ -10,7 +10,6 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Services\DataService;
 use App\Models\Lang;
-use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -87,10 +86,12 @@ class ProductController extends Controller
     {
         if (!empty($product)) {
             $product['json_field'] = $product->getTranslations('title');
-            $langs = Lang::all();
-            $categories = Category::get();
 
-            return view('admin.products.edit', compact('product', 'langs', 'categories'));
+            $categories = Category::where('parent_id', '!=', null)->get();
+            $brands = Brand::get();
+            $langs = Lang::all();
+
+            return view('admin.products.edit', compact('product', 'langs', 'categories', 'brands'));
         } else {
             abort(404);
         }
@@ -99,19 +100,38 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         if (!empty($product)) {
-            $data = $request->only('title');
-            if ($request->hasFile('pdf_file')) {
-                $data['pdf_file'] = $request->file('pdf_file')->store('pdf_files');
-            }
-
-            if ($request->hasFile('image')) {
-                $data['image'] = $request->file('image')->store('images');
-            }
+            $data = $request->only('title', 'category_id', 'brand_id');
             $data['slug'] = $this->dataService->sluggableArray($data, 'title');
+
+            $image = $product->image;
+            $pdf_file = $product->pdf_file;
 
             $update = $product->update($data);
 
             if ($update) {
+                if ($request->hasFile('image')) {
+
+                    if ($image && file_exists(public_path($image))) {
+                        unlink(public_path($image));
+                    }
+                    $fileExtension = $request->image->extension();
+                    $imgName = 'product_' . $product->id . '_' . $this->dataService->getNowDateStr() . '.' . $fileExtension;
+                    $imgPath = $request->file('image')->storeAs('uploads/admin/products/images', $imgName, 'public');
+                    $product->image = '/storage/' . $imgPath;
+                    $product->save();
+                }
+
+                if ($request->hasFile('pdf_file')) {
+
+                    if ($pdf_file && file_exists(public_path($pdf_file))) {
+                        unlink(public_path($pdf_file));
+                    }
+                    $fileExtension = $request->pdf_file->extension();
+                    $imgName = 'product_' . $product->id . '_' . $this->dataService->getNowDateStr() . '.' . $fileExtension;
+                    $imgPath = $request->file('pdf_file')->storeAs('uploads/admin/products/pdfs', $imgName, 'public');
+                    $product->pdf_file = '/storage/' . $imgPath;
+                    $product->save();
+                }
                 return redirect()->route('admin.products.index')
                     ->with('type', 'success')
                     ->with('message', 'Məhsul uğurla yeniləndi.');
@@ -129,10 +149,24 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         if (!empty($product)) {
-            $product->delete();
-            return redirect()->route('admin.products.index')
-                ->with('type', 'success')
-                ->with('message', 'Məhsul uğurla silindi.');
+            if ($product->image && file_exists(public_path($product->image))) {
+                unlink(public_path($product->image));
+            }
+            if ($product->pdf_file && file_exists(public_path($product->pdf_file))) {
+                unlink(public_path($product->pdf_file));
+            }
+            $deleted = $product->delete();
+
+            if ($deleted) {
+
+                return redirect()->route('admin.products.index')
+                    ->with('type', 'success')
+                    ->with('message', 'Məhsul uğurla silindi.');
+            } else {
+                return redirect()->back()
+                    ->with('type', 'danger')
+                    ->with('message', 'Məhsulu silmək mümükün olmadı!');
+            }
         } else {
             abort(404);
         }

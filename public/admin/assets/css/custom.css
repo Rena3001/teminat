@@ -61,3 +61,7 @@
     border-radius: 1rem;
     overflow: hidden;
 }
+
+.choices .choices__list--single .choices__button {
+    background-color: #77777777 !important;
+}
