@@ -1,6 +1,10 @@
 @extends('admin.layout.master')
 
+@push('css')
+<link href="{{asset('admin/assets/vendors/choices/choices.min.css')}}" rel="stylesheet">
+@endpush
 @push('js')
+<script src="{{asset('admin/assets/vendors/choices/choices.min.js')}}"></script>
 <script>
 window.addEventListener('load', function() {
     const boxImage = document.querySelector('.image-box');
@@ -87,7 +91,7 @@ Mehsul Əlavə Etmə
                 <div class="form-group">
                     <label for="pdf_file">Pdf faylı</label>
                     <input type="file" class="custom-file-pdf form-control " id="pdf_file" name="pdf_file"
-                        value="{{ old('pdf_file') }}">
+                        value="{{ old('pdf_file') }}" accept="application/pdf,application/vnd.ms-excel">
                     @error('pdf_file' )
                     <span class="error invalid-feedback">{{ $message }}</span>
                     @enderror
@@ -97,15 +101,16 @@ Mehsul Əlavə Etmə
                     <label for="image">Şəkil</label>
                     <input type="file" name="image"
                         class="custom-file-image form-control @error('image') is-invalid @enderror" id="image"
-                        value="{{ old('image') }}">
+                        value="{{ old('image') }}" accept="image/*">
                     @error('image')
                     <span class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="form-group">
+                <div class="form-group d-block">
                     <label for="category_id">Kateqoriya seçin:</label>
-                    <select class="custom-select form-control-border" id="category_id" name="category_id" value="">
-                        <option value="">Kateqoriyalar</option>
+                    <select class="form-select" id="category_id" name="category_id" value="{{old('category_id')}}"
+                        data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}'>
+                        <option value="0">Kateqoriyalar</option>
                         @foreach ($categories as $category)
                         <option @selected((int)old('category_id')===$category->id)
                             value="{{$category->id}}"
@@ -116,10 +121,11 @@ Mehsul Əlavə Etmə
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group">
+                <div class="form-group d-block">
                     <label for="brand_id">Brend seçin:</label>
-                    <select class="custom-select form-control-border" id="brand_id" name="brand_id" value="">
-                        <option value="">Brendlər</option>
+                    <select class="form-select" id="brand_id" name="brand_id" value="{{old('brand_id')}}"
+                        data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}'>
+                        <option value="0">Brendlər</option>
                         @foreach ($brands as $brand)
                         <option @selected((int)old('brand_id')===$brand->id)
                             value="{{$brand->id}}"
