@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CategoryRequest;
 use App\Models\Category;
 use App\Models\Lang;
 use App\Services\DataService;
@@ -29,7 +30,7 @@ class CategoryController extends Controller
         return view('admin.categories.create', compact('langs', 'select_items'));
     }
 
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         $data = $request->only('title', 'image', 'parent_id');
         $data['slug'] = $this->dataService->sluggableArray($data, 'title');
@@ -73,14 +74,18 @@ class CategoryController extends Controller
             $model = $category;
             $model['json_field'] = $model->getTranslations('title');
             $langs = Lang::all();
-            $select_items = Category::where('parent_id', null)->get();
+            $select_items =null;
+            if(empty($category->childrenCategories->count())){
+                $select_items = Category::where('parent_id', null)->where('id', '!=', $category->id)->get();
+            }
+      
             return view('admin.categories.edit', compact('model', 'langs', 'select_items'));
         } else {
             abort(404);
         }
     }
 
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
         if (!empty($category)) {
             $model = $category;
