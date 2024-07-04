@@ -3,26 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\Admin\AuthController;
-use App\Http\Controllers\Admin\BlogController;
-use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\BrandController;
-use App\Http\Controllers\Admin\CastingController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\ContactCardController;
 use App\Http\Controllers\Admin\ContactController;
-use App\Http\Controllers\Admin\DirectorController;
 use App\Http\Controllers\Admin\LangController;
 use App\Http\Controllers\Admin\LanguageLineController;
-use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
-use App\Http\Controllers\Admin\TimeLineController;
-use App\Http\Controllers\Admin\ValveCategoryController;
-use App\Http\Controllers\Admin\ValveSliderController;
-use App\Http\Controllers\Admin\WeldingCategoryController;
-use App\Http\Controllers\Admin\WeldingGroupController;
-use App\Http\Controllers\Admin\WeldingSliderController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 // Front
@@ -42,7 +30,6 @@ Route::group(['middleware' => 'auth', 'prefix' => LaravelLocalization::setLocale
     Route::resource('brands', BrandController::class);
     Route::resource('products', ProductController::class);
     Route::resource('categories', CategoryController::class);
-    Route::resource('valve_categories', ValveCategoryController::class);
 
     // Others
 

@@ -15,7 +15,8 @@ Məhsulların Siyahısı
     </div>
     <div class="card-body">
         <div class="p-4 code-to-copy">
-            <div id="tableExample3" data-list='{"valueNames":["id"],"page":5,"pagination":true}'>
+            <div id="tableExample3"
+                data-list='{"valueNames":["id","title","category","brand"],"page":5,"pagination":true}'>
                 <div class="search-box mb-3 mx-auto">
                     <form class="position-relative">
                         <input class="form-control search-input search form-control-sm" type="search"
@@ -27,9 +28,11 @@ Məhsulların Siyahısı
                     <table class="table table-striped table-sm fs-9 mb-0">
                         <thead>
                             <tr>
-                                <th class="sort border-top border-translucent ps-3" data-sort="id">Id</th>
-                                <th class="sort border-top w-auto">Title</th>
-                                <th class="sort border-top w-auto">Category</th>
+                                <th class="sort border-top ps-3" data-sort="id">İd</th>
+                                <th class="sort border-top w-auto" data-sort="title">Başlıq</th>
+                                <th class="sort border-top w-auto" data-sort="category">Kateqoriya</th>
+                                <th class="sort border-top w-auto" data-sort="brand">Brend</th>
+                                <th class="sort border-top w-auto">Şəkil</th>
                                 <th class="sort text-end align-middle pe-0 border-top" scope="col">Fəaliyyətlər</th>
                             </tr>
                         </thead>
@@ -37,16 +40,18 @@ Məhsulların Siyahısı
                             @foreach ($products as $product)
                             <tr>
                                 <td class="align-middle ps-3 id">{{ $product->id }}</td>
-                                <td class="m-0">
-                                    @if (is_array($product->title))
-                                    @foreach ($product->title as $lang => $title)
-                                    <div><strong>{{ strtoupper($lang) }}:</strong> {{ $title }}</div>
-                                    @endforeach
-                                    @else
+                                <td class="align-middle ps-3 title">
                                     {{ $product->title }}
+                                </td>
+                                <td class="align-middle ps-3 category">{{$product->category?->title}}</td>
+                                <td class="align-middle ps-3 brand">{{$product->brand?->title}}</td>
+                                <td class="align-middle title">
+                                    @if ($product->image)
+                                    <div class="image">
+                                        <img src="{{ $product->image }}" alt="{{$product->title}}" class="img-fluid">
+                                    </div>
                                     @endif
                                 </td>
-                                <td>{{$product->category?->title}}</td>
 
                                 <td class="align-middle white-space-nowrap text-end pe-0">
                                     <div class="btn-reveal-trigger position-static">

@@ -6,9 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\ProductRequest;
+use App\Models\Brand;
+use App\Models\Category;
 use App\Services\DataService;
 use App\Models\Lang;
-use App\Models\ValveCategory;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -22,33 +23,41 @@ class ProductController extends Controller
 
     public function index()
     {
-
         $products = Product::all();
         return view('admin.products.index', compact('products'));
     }
 
     public function create()
     {
-        $categories = ValveCategory::get();
+        $categories = Category::where('parent_id', '!=', null)->get();
+        $brands = Brand::get();
         $langs = Lang::all();
-        return view('admin.products.create', compact('langs','categories'));
+        return view('admin.products.create', compact('langs', 'categories', 'brands'));
     }
 
     public function store(ProductRequest $request)
     {
-        $data = $request->only('title','category_id');
-        if ($request->hasFile('pdf_file')) {
-    $data['pdf_file'] = $request->file('pdf_file')->store('pdf_files');
-}
-
-if ($request->hasFile('image')) {
-    $data['image'] = $request->file('image')->store('images');
-}
+        $data = $request->only('title', 'category_id', 'brand_id');
         $data['slug'] = $this->dataService->sluggableArray($data, 'title');
 
         $created = Product::create($data);
 
         if ($created) {
+            if ($request->hasFile('image')) {
+                $fileExtension = $request->image->extension();
+                $imgName = 'product_' . $created->id . '_' . $this->dataService->getNowDateStr() . '.' . $fileExtension;
+                $imgPath = $request->file('image')->storeAs('uploads/admin/products/images', $imgName, 'public');
+                $created->image = '/storage/' . $imgPath;
+                $created->save();
+            }
+
+            if ($request->hasFile('pdf_file')) {
+                $fileExtension = $request->pdf_file->extension();
+                $imgName = 'product_' . $created->id . '_' . $this->dataService->getNowDateStr() . '.' . $fileExtension;
+                $imgPath = $request->file('pdf_file')->storeAs('uploads/admin/products/pdfs', $imgName, 'public');
+                $created->pdf_file = '/storage/' . $imgPath;
+                $created->save();
+            }
             return redirect()->route('admin.products.index')
                 ->with('type', 'success')
                 ->with('message', 'Məhsul uğurla əlavə edildi.');
@@ -65,8 +74,9 @@ if ($request->hasFile('image')) {
         if (!empty($product)) {
             $product['slugs'] = $product->getTranslations('slug');
             $product['titles'] = $product->getTranslations('title');
-            $category = ValveCategory::where('id', $product->category_id)->first();
-            return view('admin.products.show', compact('product', 'category'));
+            $category = Category::where('id', $product->category_id)->first()->getTranslations('title');
+            $brand = Brand::where('id', $product->brand_id)->first();
+            return view('admin.products.show', compact('product', 'category', 'brand'));
         } else {
             abort(404);
         }
@@ -78,7 +88,7 @@ if ($request->hasFile('image')) {
         if (!empty($product)) {
             $product['json_field'] = $product->getTranslations('title');
             $langs = Lang::all();
-            $categories = ValveCategory::get();
+            $categories = Category::get();
 
             return view('admin.products.edit', compact('product', 'langs', 'categories'));
         } else {
