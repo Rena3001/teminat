@@ -77,6 +77,7 @@ window.addEventListener('load', function() {
         </div>
     </div>
     <div class="col-lg-6">
+        @if($select_items!=null)
         <div class="card mb-2">
             <div class="card-body">
                 <div class="form-group d-block">
@@ -97,6 +98,7 @@ window.addEventListener('load', function() {
                 </div>
             </div>
         </div>
+        @endif
         <div class="card">
             <div class="card-body">
                 <div class="form-group d-flex">
