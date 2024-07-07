@@ -2,30 +2,39 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class CategoryRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
+        $modelId = $this->route('category')?->id;
+        $isUpdate = !is_null($modelId);
         return [
             'title' => ['required', 'array'],
-            'title.*' => ['max:255', function ($attribute, $value, $fail) {
+            'title.*' => ['max:255', function ($attribute, $value, $fail) use ($modelId) {
+                $slug = Str::slug($value);
+                $keyValue = Str::of($attribute)->afterLast('.');
+                $existingTitles = Category::where('id', '!=', $modelId)->whereJsonContains('slug->' . $keyValue, $slug)->exists();
+                if ($existingTitles) {
+                    $fail('Başlıq '. strtoupper(Str::replace('title.', ' ', $attribute)) . ' unikal olmalıdır');
+                }
                 if (!trim($value)) {
-                    $fail('Xana boş buraxıla bilməz!');
+                    $fail('Başlıq '. strtoupper(Str::replace('title.', ' ', $attribute)) . ' boş buraxıla bilməz!');
                 }
             }],
-            'image' => 'nullable|image|mimes:jpg,png,gif,jpeg,svg,webp|max:2024',
+            'image' => $isUpdate ? 'nullable|image|mimes:jpg,png,gif,jpeg,svg,webp|max:2024' : 'required|image|mimes:jpg,png,gif,jpeg,svg,webp|max:2024',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'image.required' => 'Şəkil seçilməlidir',
+            'image' => 'Ancaq jpg, png, gif, jpeg, svg, webp formatlarda şəkil yükləyə bilərsiz',
+            'image.max' => 'Maksimum ölçüsü 2 Mb ola bilər',
         ];
     }
 }
