@@ -2,7 +2,7 @@
 <html data-navigation-type="default" data-navbar-horizontal-shape="default" lang="en-US" dir="ltr">
 
 <head>
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
     @include('admin.layout.includes.head')
     <title>
         EAP - @stack('page_title','Elektrod Admin Panel')
@@ -244,6 +244,33 @@
     <!-- ===============================================-->
 
     @include('admin.layout.includes.foot')
+    <script>
+        function getCsrfToken() {
+            return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        }
+
+        // Check if it's the user's first visit by checking sessionStorage
+        if (!sessionStorage.getItem('timezoneSet')) {
+            document.addEventListener("DOMContentLoaded", function() {
+                var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                fetch('/set-timezone', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': getCsrfToken()
+                    },
+                    body: JSON.stringify({ timezone: timezone })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'Timezone set') {
+                        // Mark that the timezone has been set
+                        sessionStorage.setItem('timezoneSet', 'true');
+                    }
+                });
+            });
+        }
+    </script>
     @stack('js')
 
     <script src="{{asset('admin/assets/js/custom.js')}}"></script>

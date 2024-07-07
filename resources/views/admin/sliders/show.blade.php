@@ -12,7 +12,10 @@ Slaydın Ətraflı Məlumatları
     <div class="card-header">
         <h3 class="card-title d-flex justify-content-between align-items-center">
             Ətraflı
-            <a href="{{route('admin.sliders.index')}}" class="btn btn-warning">Geri qayıt</a>
+            <div class="btn-box">
+                <a href="{{route('admin.sliders.edit', $model->id)}}" class="btn btn-info">Yenilə</a>
+                <a href="{{route('admin.sliders.index')}}" class="btn btn-warning">Geri qayıt</a>
+            </div>
         </h3>
     </div>
     <div class="card-body">

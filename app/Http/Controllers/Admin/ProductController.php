@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
-use Illuminate\Http\Request;
 use App\Http\Requests\Admin\ProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
@@ -97,7 +96,7 @@ class ProductController extends Controller
         }
     }
 
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
         if (!empty($product)) {
             $data = $request->only('title', 'category_id', 'brand_id');

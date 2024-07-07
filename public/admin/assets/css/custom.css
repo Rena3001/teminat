@@ -52,6 +52,9 @@
 
 .image {
     width: 200px;
+    border: 1px solid;
+    border-radius: 0.5rem;
+    overflow: hidden;
 }
 .box_item {
     display: flex;
@@ -64,4 +67,13 @@
 
 .choices .choices__list--single .choices__button {
     background-color: #77777777 !important;
+}
+
+.image-box{
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+span.text-danger+.choices .choices__inner{
+    border-color: #fa3b1d;
 }

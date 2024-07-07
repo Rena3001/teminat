@@ -19,12 +19,13 @@ class LangRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'code.required' => 'Kod hissəsi boş buraxıla bilməz!',
+            'code.required' => 'Kod hissəsi boş buraxıla bilməz',
             'code.unique' => 'Kod unikal olmalıdır',
-            'language.required' => 'Dil hissəsi boş buraxıla bilməz!',
+            'code.max' => 'Maksimum 3 xarakter ola bilər',
+            'language.required' => 'Dil hissəsi boş buraxıla bilməz',
             'language.unique' => 'Dil unikal olmalıdır',
+            'image.max' => 'Maksimum ölçüsü 2 Mb ola bilər',
             'image' => 'Ancaq jpg, png, gif, jpeg, svg, webp formatlarda şəkil yükləyə bilərsiz',
-            'image.uploaded' => 'Maksimum ölçüsü 2 Mb ola bilər',
         ];
     }
 }
