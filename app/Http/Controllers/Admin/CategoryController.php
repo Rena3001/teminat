@@ -7,7 +7,6 @@ use App\Http\Requests\Admin\CategoryRequest;
 use App\Models\Category;
 use App\Models\Lang;
 use App\Services\DataService;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
