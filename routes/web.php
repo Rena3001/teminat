@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\LanguageLineController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\TimezoneController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 // Front
@@ -19,6 +20,7 @@ Route::get('/', function () {
 });
 
 // Admin
+Route::post('/set-timezone', [TimezoneController::class, 'setTimezone']);
 Route::group(['middleware' => 'auth', 'prefix' => LaravelLocalization::setLocale() . '/control', 'as' => 'admin.'], function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

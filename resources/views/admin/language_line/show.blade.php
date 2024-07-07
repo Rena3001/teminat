@@ -10,8 +10,12 @@ Statik Tərcümənin Ətraflı Məlumatları
 @section('content')
 <div class="card card-primary  mb-3">
     <div class="card-header">
-        <h3 class="card-title d-flex justify-content-between align-items-center">Ətraflı <a
-                href="{{route('admin.language_line.index')}}" class="btn btn-warning">Geri qayıt</a></h3>
+        <h3 class="card-title d-flex justify-content-between align-items-center">Ətraflı
+            <div class="btn-box">
+                <a href="{{route('admin.language_line.edit', $model->id)}}" class="btn btn-info">Yenilə</a>
+                <a href="{{route('admin.language_line.index')}}" class="btn btn-warning">Geri qayıt</a>
+            </div>
+        </h3>
 
     </div>
     <div class="card-body">
