@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\LanguageLineRequest;
+use App\Models\Category;
 use App\Models\Lang;
 use App\Models\LanguageLine;
+use Illuminate\Http\Request;
 
 class LanguageLineController extends Controller
 {
@@ -102,5 +104,15 @@ class LanguageLineController extends Controller
         } else {
             abort(404);
         }
+    }
+    public function delete_selected_language_line(Request $request)
+    {
+        $ids = $request->input('selected_ids');
+        if ($ids && is_array($ids)) {
+            LanguageLine::whereIn('id', $ids)->delete();
+            return redirect()->route('admin.language_line.index')->with('success', 'Selected language_line deleted successfully.');
+        }
+
+        return redirect()->route('admin.language_line.index')->with('error', 'No language_line selected for deletion.');
     }
 }
