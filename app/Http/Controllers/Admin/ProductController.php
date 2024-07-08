@@ -182,4 +182,15 @@ class ProductController extends Controller
 
         return redirect()->route('admin.products.index')->with('error', 'No products selected for deletion.');
     }
+
+
+    public function changeOrder(Request $request)
+    {
+        $products = $request->input('products');
+        foreach ($products as $product) {
+            Product::where('id', $product['id'])->update(['order' => $product['order']]);
+        }
+
+        return response()->json(['success' => true]);
+    }
 }

@@ -57,7 +57,7 @@ Məhsulların Siyahısı
                             <tr>
                                 <td class="fs-9 align-middle">
                                     <div class="form-check mb-0 fs-8">
-                                        <input class="form-check-input" type="checkbox" name="selected_ids[]" value="{{ $model->id }}">
+                                        <input class="form-check-input" type="checkbox" name="selected_ids[]" value="{{ $product->id }}">
                                     </div>
                                 </td>
                                 <td class="align-middle ps-3 id">{{ $product->id }}</td>
@@ -146,5 +146,40 @@ Məhsulların Siyahısı
             checkbox.checked = this.checked;
         }
     });
+
+
+
+
+    const tbody = document.querySelector('tbody');
+
+Sortable.create(tbody, {
+    animation: 150,
+    onEnd: function(evt) {
+        const items = evt.from.children;
+        const products = [];
+
+        for (let i = 0; i < items.length; i++) {
+            const dataId = items[i].querySelector('.id').innerText;
+            products.push({ id: dataId, order: i + 1 });
+        }
+
+        fetch(`{{ url('/api/admin/products/changeOrder') }}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify(products)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => console.error('Error:', error));
+    }
+});
+
+
+
 </script>
 @endsection
