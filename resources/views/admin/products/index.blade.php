@@ -44,6 +44,7 @@ Məhsulların Siyahısı
                                         <input class="form-check-input" id="bulk-select-all" type="checkbox">
                                     </div>
                                 </th>
+                                <th class="sort border-top ps-3" data-sort="order">Order</th>
                                 <th class="sort border-top ps-3" data-sort="id">İd</th>
                                 <th class="sort border-top w-auto" data-sort="title">Başlıq</th>
                                 <th class="sort border-top w-auto" data-sort="category">Kateqoriya</th>
@@ -55,6 +56,7 @@ Məhsulların Siyahısı
                         <tbody class="list">
                             @foreach ($products as $product)
                             <tr>
+                                <td class="align-middle ps-3 order">{{ $product->order }}</td>
                                 <td class="fs-9 align-middle">
                                     <div class="form-check mb-0 fs-8">
                                         <input class="form-check-input" type="checkbox" name="selected_ids[]" value="{{ $product->id }}">
@@ -125,61 +127,77 @@ Məhsulların Siyahısı
     </div>
 </div>
 
+@endsection
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+
 
 
 <script>
-    document.getElementById('apply-bulk-action').addEventListener('click', function() {
-        var selectedAction = document.getElementById('bulk-action-select').value;
-        if (selectedAction === 'delete') {
-            var selectedIds = document.querySelectorAll('input[name="selected_ids[]"]:checked');
-            if (selectedIds.length > 0) {
-                document.getElementById('bulk-delete-form').submit();
-            } else {
-                alert('Please select at least one category to delete.');
+document.addEventListener('DOMContentLoaded', function() {
+    const applyBulkActionBtn = document.getElementById('apply-bulk-action');
+    const bulkSelectAllCheckbox = document.getElementById('bulk-select-all');
+
+    if (applyBulkActionBtn) {
+        applyBulkActionBtn.addEventListener('click', function() {
+            var selectedAction = document.getElementById('bulk-action-select').value;
+            if (selectedAction === 'delete') {
+                var selectedIds = document.querySelectorAll('input[name="selected_ids[]"]:checked');
+                if (selectedIds.length > 0) {
+                    document.getElementById('bulk-delete-form').submit();
+                } else {
+                    alert('Please select at least one brand to delete.');
+                }
             }
-        }
-    });
+        });
+    }
 
-    document.getElementById('bulk-select-all').addEventListener('change', function() {
-        var checkboxes = document.querySelectorAll('input[name="selected_ids[]"]');
-        for (var checkbox of checkboxes) {
-            checkbox.checked = this.checked;
-        }
-    });
-
-
-
+    if (bulkSelectAllCheckbox) {
+        bulkSelectAllCheckbox.addEventListener('change', function() {
+            var checkboxes = document.querySelectorAll('input[name="selected_ids[]"]');
+            for (var checkbox of checkboxes) {
+                checkbox.checked = this.checked;
+            }
+        });
+    }
 
     const tbody = document.querySelector('tbody');
+    if (tbody) {
+        Sortable.create(tbody, {
+            animation: 150,
+            onEnd: function(evt) {
+                const items = evt.from.children;
+                const brands = [];
 
-Sortable.create(tbody, {
-    animation: 150,
-    onEnd: function(evt) {
-        const items = evt.from.children;
-        const products = [];
+                for (let i = 0; i < items.length; i++) {
+                    const dataId = items[i].querySelector('.id').innerText.trim();
+                    brands.push({ id: dataId, order: i + 1 });
+                }
 
-        for (let i = 0; i < items.length; i++) {
-            const dataId = items[i].querySelector('.id').innerText;
-            products.push({ id: dataId, order: i + 1 });
-        }
-
-        fetch(`{{ url('/api/admin/products/changeOrder') }}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: JSON.stringify(products)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-        })
-        .catch(error => console.error('Error:', error));
+                fetch(`{{ url('api/brands/changeOrder') }}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify(brands)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log('Order updated successfully.');
+                    } else {
+                        console.error('Error updating order:', data.message);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        });
     }
 });
 
 
 
 </script>
-@endsection
