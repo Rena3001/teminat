@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\CategoryRequest;
 use App\Models\Category;
 use App\Models\Lang;
 use App\Services\DataService;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -77,7 +78,7 @@ class CategoryController extends Controller
             if(empty($category->childrenCategories->count())){
                 $select_items = Category::where('parent_id', null)->where('id', '!=', $category->id)->get();
             }
-      
+
             return view('admin.categories.edit', compact('model', 'langs', 'select_items'));
         } else {
             abort(404);
@@ -147,5 +148,15 @@ class CategoryController extends Controller
         } else {
             abort(404);
         }
+    }
+    public function delete_selected_categories(Request $request)
+    {
+        $ids = $request->input('selected_ids');
+        if ($ids && is_array($ids)) {
+            Category::whereIn('id', $ids)->delete();
+            return redirect()->route('admin.categories.index')->with('success', 'Selected categories deleted successfully.');
+        }
+
+        return redirect()->route('admin.categories.index')->with('error', 'No categories selected for deletion.');
     }
 }

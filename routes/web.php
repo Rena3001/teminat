@@ -27,11 +27,13 @@ Route::group(['middleware' => 'auth', 'prefix' => LaravelLocalization::setLocale
 
     // Resource
     Route::resource('language_line', LanguageLineController::class);
+    Route::delete('api/language_line/bulk-delete', [LanguageLineController::class, 'delete_selected_language_line'])->name('language_line.bulk-delete');
     Route::resource('langs', LangController::class);
     Route::resource('sliders', SliderController::class);
     Route::resource('brands', BrandController::class);
     Route::delete('api/brands/bulk-delete', [BrandController::class, 'delete_selected_brands'])->name('brands.bulk-delete');
     Route::resource('products', ProductController::class);
+    Route::delete('api/products/bulk-delete', [ProductController::class, 'delete_selected_products'])->name('products.bulk-delete');
     Route::resource('categories', CategoryController::class);
     Route::delete('api/categories/bulk-delete', [CategoryController::class, 'delete_selected_categories'])->name('categories.bulk-delete');
 

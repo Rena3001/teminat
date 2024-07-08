@@ -9,9 +9,17 @@ Məhsulların Siyahısı
 
 @section('content')
 <div class="card mb-3">
-    <div class="card-header p-4 border-bottom bg-body">
+    <div class="card-header p-4 border-bottom bg-body d-flex align-items-center justify-content-between my-3">
         <a class="btn btn-sm btn-phoenix-success" href="{{ route('admin.products.create') }}" role="button"
             aria-controls="basic-example-code"> Yenisini əlavə edin</a>
+            <div class="ms-3" id="bulk-select-actions">
+                <div class="d-flex">
+                    <select class="form-select form-select-sm" aria-label="Bulk actions" id="bulk-action-select">
+                        <option value="delete">Delete</option>
+                    </select>
+                    <button class="btn btn-phoenix-danger btn-sm ms-2" type="button" id="apply-bulk-action">Apply</button>
+                </div>
+            </div>
     </div>
     <div class="card-body">
         <div class="p-4 code-to-copy">
@@ -25,9 +33,17 @@ Məhsulların Siyahısı
                     </form>
                 </div>
                 <div class="table-responsive">
+                    <form id="bulk-delete-form" method="post" action="{{ route('admin.products.bulk-delete') }}">
+                        @csrf
+                        @method('delete')
                     <table class="table table-striped table-sm fs-9 mb-0">
                         <thead>
                             <tr>
+                                <th class="white-space-nowrap fs-9 align-middle ps-0" style="max-width:20px; width:18px;">
+                                    <div class="form-check mb-0 fs-8">
+                                        <input class="form-check-input" id="bulk-select-all" type="checkbox">
+                                    </div>
+                                </th>
                                 <th class="sort border-top ps-3" data-sort="id">İd</th>
                                 <th class="sort border-top w-auto" data-sort="title">Başlıq</th>
                                 <th class="sort border-top w-auto" data-sort="category">Kateqoriya</th>
@@ -39,6 +55,11 @@ Məhsulların Siyahısı
                         <tbody class="list">
                             @foreach ($products as $product)
                             <tr>
+                                <td class="fs-9 align-middle">
+                                    <div class="form-check mb-0 fs-8">
+                                        <input class="form-check-input" type="checkbox" name="selected_ids[]" value="{{ $model->id }}">
+                                    </div>
+                                </td>
                                 <td class="align-middle ps-3 id">{{ $product->id }}</td>
                                 <td class="align-middle ps-3 title">
                                     {{ $product->title }}
@@ -85,6 +106,7 @@ Məhsulların Siyahısı
                             @endforeach
                         </tbody>
                     </table>
+                </form>
                 </div>
                 <div class="d-flex justify-content-between mt-3">
                     <span class="d-none d-sm-inline-block" data-list-info="data-list-info"></span>
@@ -102,4 +124,27 @@ Məhsulların Siyahısı
         </div>
     </div>
 </div>
+
+
+
+<script>
+    document.getElementById('apply-bulk-action').addEventListener('click', function() {
+        var selectedAction = document.getElementById('bulk-action-select').value;
+        if (selectedAction === 'delete') {
+            var selectedIds = document.querySelectorAll('input[name="selected_ids[]"]:checked');
+            if (selectedIds.length > 0) {
+                document.getElementById('bulk-delete-form').submit();
+            } else {
+                alert('Please select at least one category to delete.');
+            }
+        }
+    });
+
+    document.getElementById('bulk-select-all').addEventListener('change', function() {
+        var checkboxes = document.querySelectorAll('input[name="selected_ids[]"]');
+        for (var checkbox of checkboxes) {
+            checkbox.checked = this.checked;
+        }
+    });
+</script>
 @endsection

@@ -9,6 +9,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Services\DataService;
 use App\Models\Lang;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -169,5 +170,16 @@ class ProductController extends Controller
         } else {
             abort(404);
         }
+    }
+
+    public function delete_selected_products(Request $request)
+    {
+        $ids = $request->input('selected_ids');
+        if ($ids && is_array($ids)) {
+            Category::whereIn('id', $ids)->delete();
+            return redirect()->route('admin.products.index')->with('success', 'Selected products deleted successfully.');
+        }
+
+        return redirect()->route('admin.products.index')->with('error', 'No products selected for deletion.');
     }
 }
