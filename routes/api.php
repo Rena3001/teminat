@@ -8,8 +8,9 @@ use App\Http\Controllers\Admin\LanguageLineController;
 
 Route::middleware('auth:sanctum')->group(function () {
     // Resource
-    Route::resource('brands', BrandController::class)->except(['create', 'edit']);
+    // Route::resource('brands', BrandController::class)->except(['create', 'edit']);
     Route::delete('brands/delete_selected_brands', [BrandController::class, 'delete_selected_brands'])->name('brands.delete_selected_brands');
+
 
     Route::resource('categories', CategoryController::class)->except(['create', 'edit']);
     Route::delete('categories/delete_selected_categories', [CategoryController::class, 'delete_selected_categories'])->name('categories.delete_selected_categories');
@@ -22,3 +23,4 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 });
+Route::post('brands/changeOrder', [BrandController::class, 'changeOrder'])->name('brands.changeOrder');

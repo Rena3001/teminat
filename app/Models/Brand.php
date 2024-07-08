@@ -10,5 +10,14 @@ class Brand extends BaseModel
 
     protected $fillable = [
         'title',
+        'order',
     ];
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->order = Brand::max('order') + 1;
+        });
+    }
 }

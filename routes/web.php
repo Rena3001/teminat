@@ -31,9 +31,11 @@ Route::group(['middleware' => 'auth', 'prefix' => LaravelLocalization::setLocale
     Route::resource('langs', LangController::class);
     Route::resource('sliders', SliderController::class);
     Route::resource('brands', BrandController::class);
+    // Route::post('brands/changeOrder', [BrandController::class, 'changeOrder'])->name('brands.changeOrder');
     Route::delete('api/brands/bulk-delete', [BrandController::class, 'delete_selected_brands'])->name('brands.bulk-delete');
     Route::resource('products', ProductController::class);
     Route::delete('api/products/bulk-delete', [ProductController::class, 'delete_selected_products'])->name('products.bulk-delete');
+    // Route::post('products/changeOrder', [ProductController::class, 'changeOrder'])->name('products.changeOrder');
     Route::resource('categories', CategoryController::class);
     Route::delete('api/categories/bulk-delete', [CategoryController::class, 'delete_selected_categories'])->name('categories.bulk-delete');
 

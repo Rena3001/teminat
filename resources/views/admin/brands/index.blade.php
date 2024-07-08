@@ -42,6 +42,7 @@ Brendlərin Siyahısı
                                     <th class="white-space-nowrap fs-9 align-middle ps-0" style="max-width:20px; width:18px;">
                                         <div class="form-check mb-0 fs-8"><input class="form-check-input" id="bulk-select-all" type="checkbox"></div>
                                     </th>
+                                    <th class="sort border-top ps-3" data-sort="order">Order</th>
                                     <th class="sort border-top ps-3" data-sort="id">Id</th>
                                     <th class="sort border-top w-auto" data-sort="title">Başlıq</th>
                                     <th class="sort text-end align-middle pe-0 border-top" scope="col">Fəaliyyətlər</th>
@@ -53,6 +54,7 @@ Brendlərin Siyahısı
                                     <td class="fs-9 align-middle">
                                         <div class="form-check mb-0 fs-8"><input class="form-check-input" type="checkbox" name="selected_ids[]" value="{{ $model->id }}"></div>
                                     </td>
+                                    <td class="align-middle ps-3 order">{{ $model->order }}</td>
                                     <td class="align-middle ps-3 id">{{ $model->id }}</td>
                                     <td class="align-middle title">
                                         <p class="m-0">{{ $model->title }}</p>
@@ -97,6 +99,12 @@ Brendlərin Siyahısı
     </div>
 </div>
 
+@endsection
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+
 <script>
     document.getElementById('apply-bulk-action').addEventListener('click', function() {
         var selectedAction = document.getElementById('bulk-action-select').value;
@@ -116,5 +124,38 @@ Brendlərin Siyahısı
             checkbox.checked = this.checked;
         }
     });
+
+    const tbody = document.querySelector('tbody');
+
+    Sortable.create(tbody, {
+        animation: 150,
+        onEnd: function(evt) {
+            const items = evt.from.children;
+            const brands = [];
+
+            for (let i = 0; i < items.length; i++) {
+                const dataId = items[i].querySelector('.id').innerText.trim();
+                brands.push({ id: dataId, order: i + 1 });
+            }
+
+            fetch(`{{ url('api/brands/changeOrder') }}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify(brands)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('Order updated successfully.');
+                } else {
+                    console.error('Error updating order:', data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    });
 </script>
-@endsection
+@endpush

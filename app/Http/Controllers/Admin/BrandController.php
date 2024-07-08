@@ -11,7 +11,7 @@ class BrandController extends Controller
 {
     public function index()
     {
-        $models = Brand::all();
+        $models = Brand::orderBy('order')->get();
         return view('admin.brands.index', compact('models'));
     }
 
@@ -108,4 +108,14 @@ class BrandController extends Controller
 
         return redirect()->route('admin.brands.index')->with('error', 'No brands selected for deletion.');
     }
+
+    public function changeOrder(Request $request)
+    {
+        foreach ($request->all() as $brand) {
+            Brand::where('id', $brand['id'])->update(['order' => $brand['order']]);
+        }
+
+        return response()->json(['success' => true, 'message' => 'Order updated successfully.']);
+    }
+
 }
