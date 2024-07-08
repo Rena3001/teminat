@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\BrandRequest;
 use App\Models\Brand;
+use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
@@ -19,7 +19,7 @@ class BrandController extends Controller
         return view('admin.brands.create');
     }
 
-    public function store(BrandRequest $request)
+    public function store(Request $request)
     {
         $data = $request->only('title');
         $created = Brand::create($data);
@@ -56,7 +56,7 @@ class BrandController extends Controller
         }
     }
 
-    public function update(BrandRequest $request, Brand $brand)
+    public function update(Request $request, Brand $brand)
     {
         if (!empty($brand)) {
 
@@ -96,5 +96,15 @@ class BrandController extends Controller
         } else {
             abort(404);
         }
+    }
+    public function delete_selected_brands(Request $request)
+    {
+        $ids = $request->input('selected_ids');
+        if ($ids && is_array($ids)) {
+            Brand::whereIn('id', $ids)->delete();
+            return redirect()->route('admin.brands.index')->with('success', 'Selected brands deleted successfully.');
+        }
+
+        return redirect()->route('admin.brands.index')->with('error', 'No brands selected for deletion.');
     }
 }
