@@ -33,7 +33,7 @@ window.addEventListener('load', function() {
     @csrf
     <div class="col-lg-8 mb-2">
         <div class="card card-primary card-outline card-outline-tabs">
-            <div class="card-header border-bottom-0">
+            <div class="card-header border-bottom-0 pb-0">
                 <ul class="nav nav-underline fs-9" id="myTab" role="tablist">
                     @foreach ($langs as $key => $lang)
                     <li class="nav-item" role="presentation">
@@ -52,19 +52,17 @@ window.addEventListener('load', function() {
                     <div class="tab-pane fade {{ $key === 0 ? 'active show' : '' }}"
                         id="{{ 'categories' . $lang->code }}" role="tabpanel"
                         aria-labelledby="{{ $lang->code . 'categories' }}">
-                        <div class="card-body">
-                            <div class="form-group">
+                        <div class="form-group m-0">
                                 <label class="m-0" for="title_{{ $lang->code }}">Başlıq
                                     {{ strtoupper($lang->code) }}</label>
                                 <input type="text"
-                                    class="form-control @error('title.' . $lang->code)is-invalid @enderror"
+                                    class="form-control m-0 @error('title.' . $lang->code)is-invalid @enderror"
                                     id="title_{{ $lang->code }}" name="title[{{ $lang->code }}]"
                                     value="{{ old('title.' . $lang->code) }}">
                                 @error('title.' . $lang->code)
                                 <span class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
-                        </div>
                     </div>
                     @endforeach
                 </div>

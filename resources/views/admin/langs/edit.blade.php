@@ -3,15 +3,19 @@
 @push('js')
 <script>
     window.addEventListener('load', function() {
+        const boxImage = document.querySelector('.image-box');
         const imgSrc = document.querySelector('.image-box img').getAttribute("src");
         document.querySelector('.custom-file-image').addEventListener('change', function(event) {
-
             if (event.target.files[0]) {
                 var tmppath = URL.createObjectURL(event.target.files[0]);
                 document.querySelector('.image-box img').setAttribute("src",
                     URL.createObjectURL(event.target.files[0]));
+                    boxImage.classList.remove('d-none');
             } else {
                 document.querySelector('.image-box img').setAttribute("src", imgSrc);
+                if (!imgSrc) {
+                    boxImage.classList.add('d-none');
+                }
             }
         })
     });
@@ -62,7 +66,7 @@ Dil Redaktə Etmə
         </div>
     </div>
     <div class="col-lg-5">
-        <div class="image-box">
+        <div class="image-box @if (!$model->image)d-none @endif">
             <img src="{{$model->image??''}}" alt="" class="img-fluid">
         </div>
     </div>

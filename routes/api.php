@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\LanguageLineController;
+use App\Http\Controllers\Admin\ProductController;
 
 Route::middleware('auth:sanctum')->group(function () {
     // Resource
@@ -23,4 +24,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 });
+
 Route::post('brands/changeOrder', [BrandController::class, 'changeOrder'])->name('brands.changeOrder');
+
+Route::post('products/changeOrder', [ProductController::class, 'changeOrder'])->name('admin.products.changeOrder');

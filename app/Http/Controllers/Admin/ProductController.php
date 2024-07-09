@@ -186,8 +186,7 @@ class ProductController extends Controller
 
     public function changeOrder(Request $request)
     {
-        $products = $request->input('products');
-        foreach ($products as $product) {
+        foreach ($request->all()  as $product) {
             Product::where('id', $product['id'])->update(['order' => $product['order']]);
         }
 

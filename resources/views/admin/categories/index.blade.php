@@ -66,7 +66,7 @@ Kateqoriya Siyahısı
                                     </td>
                                     <td class="align-middle parent">
                                         <p class="m-0">
-                                            {{ $model->parentCategory ? $model->parentCategory->title : 'Valideyn' }}
+                                            {{ $model->parentCategory?->count() > 0 ? $model->parentCategory->title : 'Valideyn' }}
                                         </p>
                                     </td>
                                     <td class="align-middle title">
