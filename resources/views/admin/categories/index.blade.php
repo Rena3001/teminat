@@ -38,7 +38,7 @@ Kateqoriya Siyahısı
                         <table class="table table-striped table-sm fs-9 mb-0">
                             <thead>
                                 <tr>
-                                    <th class="white-space-nowrap fs-9 align-middle ps-0" style="max-width:20px; width:18px;">
+                                    <th class="white-space-nowrap border-top fs-9 align-middle ps-0" style="max-width:20px; width:18px;">
                                         <div class="form-check mb-0 fs-8">
                                             <input class="form-check-input" id="bulk-select-all" type="checkbox">
                                         </div>
