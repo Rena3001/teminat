@@ -12,7 +12,7 @@ Tərcümə Əlavə Etmə
     @csrf
     <div class="col-lg-7">
         <div class="card card-primary card-outline card-outline-tabs">
-            <div class="card-header border-bottom-0">
+            <div class="card-header border-bottom-0 pb-0">
                 <ul class="nav nav-underline fs-9" id="myTab" role="tablist">
                     @foreach ($langs as $key => $lang)
                     <li class="nav-item" role="presentation">
@@ -26,16 +26,16 @@ Tərcümə Əlavə Etmə
                 </ul>
             </div>
             <div class="card-body">
-                <div class="tab-content mt-3" id="myTabContent">
+                <div class="tab-content" id="myTabContent">
                     @foreach ($langs as $key => $lang)
                     <div class="tab-pane fade {{ $key === 0 ? 'active show' : '' }}"
                         id="{{ 'language_line' . $lang->code }}" role="tabpanel"
                         aria-labelledby="{{ $lang->code . 'language_line' }}">
                         <div class="card-body p-0">
-                            <div class="form-group">
-                                <label for="text_{{ $lang->code }}">Mətn {{ strtoupper($lang->code) }}</label>
+                            <div class="form-group m-0">
+                                <label for="text_{{ $lang->code }}" class="m-0">Mətn {{ strtoupper($lang->code) }}</label>
                                 <input type="text"
-                                    class="form-control @error('text.' . $lang->code) is-invalid @enderror"
+                                    class="form-control m-0 @error('text.' . $lang->code) is-invalid @enderror"
                                     id="text_{{ $lang->code }}" name="text[{{ $lang->code }}]"
                                     value="{{ old('text.' . $lang->code) }}">
                                 @error('text.' . $lang->code)

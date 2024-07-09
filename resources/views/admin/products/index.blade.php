@@ -24,7 +24,7 @@ Məhsulların Siyahısı
     <div class="card-body">
         <div class="p-4 code-to-copy">
             <div id="tableExample3"
-                data-list='{"valueNames":["id","title","category","brand"],"page":5,"pagination":true}'>
+                data-list='{"valueNames":["order","id","title","category","brand"],"page":5,"pagination":true}'>
                 <div class="search-box mb-3 mx-auto">
                     <form class="position-relative">
                         <input class="form-control search-input search form-control-sm" type="search"
@@ -56,12 +56,13 @@ Məhsulların Siyahısı
                         <tbody class="list">
                             @foreach ($products as $product)
                             <tr>
-                                <td class="align-middle ps-3 order">{{ $product->order }}</td>
                                 <td class="fs-9 align-middle">
                                     <div class="form-check mb-0 fs-8">
                                         <input class="form-check-input" type="checkbox" name="selected_ids[]" value="{{ $product->id }}">
                                     </div>
                                 </td>
+                                <td class="align-middle ps-3 order">{{ $product->order }}</td>
+                                <td class="align-middle ps-3 order">{{ $product->order }}</td>
                                 <td class="align-middle ps-3 id">{{ $product->id }}</td>
                                 <td class="align-middle ps-3 title">
                                     {{ $product->title }}
@@ -169,20 +170,20 @@ document.addEventListener('DOMContentLoaded', function() {
             animation: 150,
             onEnd: function(evt) {
                 const items = evt.from.children;
-                const brands = [];
+                const products = [];
 
                 for (let i = 0; i < items.length; i++) {
                     const dataId = items[i].querySelector('.id').innerText.trim();
-                    brands.push({ id: dataId, order: i + 1 });
+                    products.push({ id: dataId, order: i + 1 });
                 }
 
-                fetch(`{{ url('api/brands/changeOrder') }}`, {
+                fetch(`{{ url(route('admin.products.changeOrder')) }}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
-                    body: JSON.stringify(brands)
+                    body: JSON.stringify(products)
                 })
                 .then(response => response.json())
                 .then(data => {

@@ -73,6 +73,9 @@
     border-radius: 0.5rem;
     overflow: hidden;
     background-color: #959aaa36;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 span.text-danger+.choices .choices__inner{

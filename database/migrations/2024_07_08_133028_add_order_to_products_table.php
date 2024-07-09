@@ -14,7 +14,7 @@ class AddOrderToProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->integer('order')->default(0)->after('id'); // Adjust the position as needed
+            $table->integer('order')->default(0)->after('id')->change(); // Adjust the position as needed
         });
     }
 
