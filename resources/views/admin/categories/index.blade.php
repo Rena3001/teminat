@@ -23,7 +23,7 @@ Kateqoriya Siyahısı
     </div>
     <div class="card-body">
         <div class="p-4 code-to-copy">
-            <div id="tableExample3" data-list='{"valueNames":["id","slug","title","parent"],"page":5,"pagination":true}'>
+            <div id="tableExample3" data-list='{"valueNames":["order","id","slug","title","parent"],"page":5,"pagination":true}'>
                 <div class="search-box mb-3 mx-auto">
                     <form class="position-relative">
                         <input class="form-control search-input search form-control-sm" type="search"
@@ -43,8 +43,9 @@ Kateqoriya Siyahısı
                                             <input class="form-check-input" id="bulk-select-all" type="checkbox">
                                         </div>
                                     </th>
-                                    <th class="sort border-top ps-3" data-sort="id">Id</th>
-                                    <th class="sort border-top" data-sort="slug">Slug</th>
+                                    <th class="sort border-top ps-3" data-sort="order">Order</th>
+                                    <th class="sort border-top ps-3" data-sort="id">İd</th>
+                                    <th class="sort border-top" data-sort="slug">Slag</th>
                                     <th class="sort border-top w-auto" data-sort="title">Başlıq</th>
                                     <th class="sort border-top w-auto" data-sort="parent">Valideyn</th>
                                     <th class="sort border-top w-auto">Şəkil</th>
@@ -59,6 +60,7 @@ Kateqoriya Siyahısı
                                             <input class="form-check-input" type="checkbox" name="selected_ids[]" value="{{ $model->id }}">
                                         </div>
                                     </td>
+                                    <td class="align-middle ps-3 order">{{ $model->order }}</td>
                                     <td class="align-middle ps-3 id">{{ $model->id }}</td>
                                     <td class="align-middle slug">{{ $model->slug }}</td>
                                     <td class="align-middle title">
@@ -116,24 +118,72 @@ Kateqoriya Siyahısı
     </div>
 </div>
 
-<script>
-    document.getElementById('apply-bulk-action').addEventListener('click', function() {
-        var selectedAction = document.getElementById('bulk-action-select').value;
-        if (selectedAction === 'delete') {
-            var selectedIds = document.querySelectorAll('input[name="selected_ids[]"]:checked');
-            if (selectedIds.length > 0) {
-                document.getElementById('bulk-delete-form').submit();
-            } else {
-                alert('Please select at least one category to delete.');
-            }
-        }
-    });
-
-    document.getElementById('bulk-select-all').addEventListener('change', function() {
-        var checkboxes = document.querySelectorAll('input[name="selected_ids[]"]');
-        for (var checkbox of checkboxes) {
-            checkbox.checked = this.checked;
-        }
-    });
-</script>
 @endsection
+@push('js')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const applyBulkActionBtn = document.getElementById('apply-bulk-action');
+    const bulkSelectAllCheckbox = document.getElementById('bulk-select-all');
+
+    if (applyBulkActionBtn) {
+        applyBulkActionBtn.addEventListener('click', function() {
+            var selectedAction = document.getElementById('bulk-action-select').value;
+            if (selectedAction === 'delete') {
+                var selectedIds = document.querySelectorAll('input[name="selected_ids[]"]:checked');
+                if (selectedIds.length > 0) {
+                    document.getElementById('bulk-delete-form').submit();
+                } else {
+                    alert('Please select at least one brand to delete.');
+                }
+            }
+        });
+    }
+
+    if (bulkSelectAllCheckbox) {
+        bulkSelectAllCheckbox.addEventListener('change', function() {
+            var checkboxes = document.querySelectorAll('input[name="selected_ids[]"]');
+            for (var checkbox of checkboxes) {
+                checkbox.checked = this.checked;
+            }
+        });
+    }
+
+    const tbody = document.querySelector('tbody');
+    if (tbody) {
+        Sortable.create(tbody, {
+            animation: 150,
+            onEnd: function(evt) {
+                const items = evt.from.children;
+                const categories = [];
+
+                for (let i = 0; i < items.length; i++) {
+                    const dataId = items[i].querySelector('.id').innerText.trim();
+                    categories.push({ id: dataId, order: i + 1 });
+                }
+
+                fetch(`{{ url(route('admin.categories.changeOrder')) }}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify(categories)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log('Order updated successfully.');
+                    } else {
+                        console.error('Error updating order:', data.message);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        });
+    }
+});
+</script>
+@endpush

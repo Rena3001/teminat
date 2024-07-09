@@ -25,7 +25,7 @@ Brendlərin Siyahısı
 
     <div class="card-body">
         <div class="p-4 code-to-copy">
-            <div id="tableExample3" data-list='{"valueNames":["id","title"],"page":5,"pagination":true}'>
+            <div id="tableExample3" data-list='{"valueNames":["order","id","title"],"page":5,"pagination":true}'>
                 <div class="search-box mb-3 mx-auto">
                     <form class="position-relative">
                         <input class="form-control search-input search form-control-sm" type="search" placeholder="Axtarış" aria-label="Search">

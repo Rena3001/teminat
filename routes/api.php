@@ -28,3 +28,5 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::post('brands/changeOrder', [BrandController::class, 'changeOrder'])->name('brands.changeOrder');
 
 Route::post('products/changeOrder', [ProductController::class, 'changeOrder'])->name('admin.products.changeOrder');
+
+Route::post('categories/changeOrder', [CategoryController::class, 'changeOrder'])->name('admin.categories.changeOrder');

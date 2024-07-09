@@ -134,8 +134,6 @@ Məhsulların Siyahısı
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 
-
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const applyBulkActionBtn = document.getElementById('apply-bulk-action');
@@ -198,7 +196,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
-
-
 </script>
+@endpush
