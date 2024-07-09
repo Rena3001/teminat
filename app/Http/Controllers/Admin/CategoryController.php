@@ -19,7 +19,7 @@ class CategoryController extends Controller
     }
     public function index()
     {
-        $models = Category::all();
+        $models = Category::orderBy('order')->get();
         return view('admin.categories.index', compact('models'));
     }
 
@@ -158,5 +158,14 @@ class CategoryController extends Controller
         }
 
         return redirect()->route('admin.categories.index')->with('error', 'No categories selected for deletion.');
+    }
+
+    public function changeOrder(Request $request)
+    {
+        foreach ($request->all() as $category) {
+            Category::where('id', $category['id'])->update(['order' => $category['order']]);
+        }
+
+        return response()->json(['success' => true, 'message' => 'Order updated successfully.']);
     }
 }
