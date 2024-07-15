@@ -52,7 +52,7 @@ Məhsulların Siyahısı
                                 <th class="sort border-top w-auto">Şəkil</th>
                                 <th class="sort text-end align-middle pe-0 border-top" scope="col">Fəaliyyətlər</th>
                             </tr>
-                        </thead>
+                        </thead> 
                         <tbody class="list">
                             @foreach ($products as $product)
                             <tr>

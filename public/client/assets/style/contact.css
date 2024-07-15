@@ -1,0 +1,71 @@
+.mainBox__content{
+    padding: 3rem 1.5rem 4rem;
+}
+
+.mainBox__content--heading{
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.contactForm{
+    margin: 2rem 0 0;
+}
+
+.contactForm label{
+    display: flex;
+    flex-direction: column;
+}
+
+.contactForm__inputs{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.contactForm button{
+    margin-top: 1.5rem;
+}
+
+
+section.company{
+    display: flex;
+    flex-wrap: wrap;
+}
+section.company > div{
+    flex: 1;
+    padding: 1.5rem;
+}
+
+.company__map{
+    width: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+.company__map iframe{
+    width: 100%;
+    height: 100%;
+}
+
+.company__contact{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+@media screen and (max-width: 768px) {
+    .contactForm__inputs{
+        grid-template-columns: 1fr;
+    }
+    
+    section.company{
+        flex-direction: column;
+    }
+
+    .company__map{
+        aspect-ratio: 5/4;
+    }
+
+}

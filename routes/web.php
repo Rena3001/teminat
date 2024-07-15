@@ -12,13 +12,24 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TimezoneController;
+use App\Http\Controllers\Front\AboutController;
+use App\Http\Controllers\front\CategoryController as FrontCategoryController;
+use App\Http\Controllers\Front\ContactController as AdminContactController;
+use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\ProductsController;
+use App\Http\Controllers\Front\ProductsDetailController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 // Front
-Route::get('/', function () {
-    return "Home Page Front";
-});
+Route::group(['prefix' => LaravelLocalization::setLocale() . '', 'as' => 'client.'], function(){
+    Route::get('/',[HomeController::class, 'index'])->name('home');
+    Route::get('/about',[AboutController::class, 'index'])->name('about');
+    Route::get('/contact',[AdminContactController::class, 'index'])->name('contact');
+    Route::get('/products/{id}', [ProductsDetailController::class, 'index'])->name('client.product.detail');
+    Route::get('/products',[ProductsController::class, 'index'])->name('products');
+    Route::get('/wires_and_fluxes',[FrontCategoryController::class, 'index'])->name('wires_and_fluxes');
 
+});
 // Admin
 Route::post('/set-timezone', [TimezoneController::class, 'setTimezone']);
 Route::group(['middleware' => 'auth', 'prefix' => LaravelLocalization::setLocale() . '/control', 'as' => 'admin.'], function () {
