@@ -11,9 +11,15 @@ class FrontHeaderComponent extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+   
+    public $settings;
+
+    /**
+     * Create a new component instance.
+     */
+    public function __construct($settings)
     {
-        //
+        $this->settings = $settings;
     }
 
     /**

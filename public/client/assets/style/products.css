@@ -1,0 +1,47 @@
+.panel_heading {
+  background-color: var(--color_black);
+  height: 7.1rem;
+  color: var(--color_white);
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0 15px;
+}
+
+.margin_inline {
+  margin-inline: 15px;
+}
+
+.unalloyed_electrodes {
+  flex: 1;
+  /* width: 84rem;
+  border: 1px solid var(--color_lighterGray);
+  border-radius: 1px;
+  overflow: hidden; */
+}
+
+.sub_container {
+  display: flex;
+  gap: 3rem;
+}
+
+.products_cards_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  justify-items: center;
+  gap: 3rem 1.5rem;
+  padding: 3rem 1.5rem;
+}
+
+.products_cards_grid a {
+  width: max-content;
+  height: max-content;
+}
+
+.top_padding {
+  padding-top: 15px;
+}
+
+
+
+/* ========responsive style========= */

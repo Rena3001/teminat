@@ -36,6 +36,20 @@ class SettingController extends Controller
         return view('admin.settings.index', compact('langs', 'settings'));
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
     public function edit()
     {
         $langs = Lang::all();
@@ -58,6 +72,23 @@ class SettingController extends Controller
         ];
         return view('admin.settings.edit', compact('langs', 'settings'));
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function update(SettingRequest $request)
     {
