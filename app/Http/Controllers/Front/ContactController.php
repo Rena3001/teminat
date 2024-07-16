@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 class ContactController extends Controller
 {
     public function index(){
-        $settings = Setting::first();
-        return view('client.contact.contact', compact('settings'));
+        return view('client.contact.contact');
     }
 }

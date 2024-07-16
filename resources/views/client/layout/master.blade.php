@@ -9,9 +9,10 @@
     <x-front-header-component :settings="$settings"/>
     @yield('content')
 
-    @include('client.layout.includes.foot')
 
     <x-front-footer-component />
 
+    @include('client.layout.includes.foot')
+    @stack('js')
   </body>
 </html>

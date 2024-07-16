@@ -1,5 +1,5 @@
 <footer class="footer">
-    <section class="footer__subs container">
+    {{-- <section class="footer__subs container">
         <p class="footer__subs--header">Be aware of the innovations in Gedik World.</p>
         <form class="footer__subs--form">
             <select name="subscribeSelect" id="subscribeSelect">
@@ -21,7 +21,7 @@
             <input type="text" placeholder="Your E-mail Address">
             <button class="footer__subs--btn">{{__('site.send')}}</button>
         </form>
-    </section>
+    </section> --}}
     <div class="footer__main container">
         <div>
             <h5>{{__('site.footer_corporate')}}</h5>

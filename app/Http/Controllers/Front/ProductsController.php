@@ -11,8 +11,7 @@ class ProductsController extends Controller
 {
 
     public function index(){
-        $settings=Setting::first();
         $products = Product::orderBy('order')->get();
-        return view('client.product.products',compact('products','settings'));
+        return view('client.product.products',compact('products'));
     }
 }

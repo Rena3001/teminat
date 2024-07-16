@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Lang;
+use App\Models\LanguageLine;
 use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -44,8 +45,8 @@ class DatabaseSeeder extends Seeder
                 'in' => '#',
                 'inst' => '#',
                 'yt' => '#',
-                'image_logo_light' => '#',
-                'image_logo_dark' => '#',
+                'image_logo_light' => '/client/images/logo/full_logo_light.png',
+                'image_logo_dark' => '/client/images/logo/full_logo_dark.png',
                 'home_about_title' => 'Home About Title',
                 'home_about_subtitle' => 'Home About SubTitle',
                 'home_about_desc' => 'Home About Description',
@@ -59,9 +60,11 @@ class DatabaseSeeder extends Seeder
                 'about_desc' => 'About Description',
                 'about_iframe' => '#',
                 'contact_title' => 'Contact Title',
-                'contact_image' => '#',
+                'contact_image' => '/client/images/kariyer-banner.jpg',
                 'categories_title' => 'Categories Title',
             ]);
         }
+
+     
     }
 }

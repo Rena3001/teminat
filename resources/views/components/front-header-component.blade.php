@@ -66,7 +66,7 @@
                         <a href="{{route('client.about')}}">{{__('site.about')}}</a>
                     </li>
                     <li class="navbar__products">
-                        <a href="{{route('client.wires_and_fluxes')}}">{{__('site.products')}}</i></a>
+                        <a href="{{route('client.categories')}}">{{__('site.products')}}</i></a>
                     </li>
                     <li>
                         <a href="{{route('client.contact')}}">{{__('site.contact')}}</a>

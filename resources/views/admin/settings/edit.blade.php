@@ -502,7 +502,7 @@ Saytın Ümumi Məlumatlarını Redaktə Etmə
                                 aria-labelledby="custom-tabs-four-home-tab">
                                 <div class="card-body">
                                     <div class="form-group d-block">
-                                        <label for="categories_title.{{ $lang->code }}">Welding Başlıq</label>
+                                        <label for="categories_title.{{ $lang->code }}">Kateqoriyalar Başlıq</label>
                                         <input type="text"
                                             class="form-control @error('categories_title.' . $lang->code)is-invalid @enderror"
                                             id="categories_title.{{ $lang->code }}"

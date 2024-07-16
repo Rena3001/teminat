@@ -193,7 +193,7 @@
             </section>
           </section>
           <!-- aside -->
-          <aside class="mainBox">
+          {{-- <aside class="mainBox">
             <nav>
               <ul>
                 <li>
@@ -231,7 +231,7 @@
                 </li>
               </ul>
             </nav>
-          </aside>
+          </aside> --}}
         </div>
       </div>
     </main>

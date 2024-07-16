@@ -27,7 +27,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale() . '', 'as' => 'client
     Route::get('/contact',[AdminContactController::class, 'index'])->name('contact');
     Route::get('/products/{id}', [ProductsDetailController::class, 'index'])->name('client.product.detail');
     Route::get('/products',[ProductsController::class, 'index'])->name('products');
-    Route::get('/wires_and_fluxes',[FrontCategoryController::class, 'index'])->name('wires_and_fluxes');
+    Route::get('/categories',[FrontCategoryController::class, 'index'])->name('categories');
 
 });
 // Admin

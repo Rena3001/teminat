@@ -1,5 +1,3 @@
-import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs'
-
 const homeBannerSwiper = new Swiper("#homeBanner", {
     slidesPerView: 1,
     spaceBetween: 30,
@@ -15,11 +13,12 @@ const homeBannerSwiper = new Swiper("#homeBanner", {
     autoplay: {
         delay: 3000,
     },
-}); 
+});
 
 
 const otherProducts = new Swiper(".other > .swiper", {
   slidesPerView: 'auto',
   spaceBetween: 25,
   loop: false,
-}); 
+});
+

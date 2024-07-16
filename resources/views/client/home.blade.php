@@ -1,5 +1,8 @@
 @extends('client.layout.master')
 @section('page_title', "Elektrod")
+@push('js')
+
+@endpush
 @section('content')
 <main class="main">
 
@@ -24,7 +27,7 @@
         <div class="swiper-pagination"></div>
     </div>
 
-    {{-- <section class="navBox">
+    <section class="navBox">
         <ul>
             <li class="navBox__card" style="background-image: url(https://gedik.com.tr/img/brands/kaynak.jpg);">
                 <a href="#">
@@ -42,7 +45,7 @@
                 </a>
             </li>
         </ul>
-    </section> --}}
+    </section>
 
 
 
@@ -81,7 +84,7 @@
             </div>
 
             <a href="#" class="products__loadMore">
-                Load more
+                {{__('site.load_more')}}
             </a>
 
         </div>
@@ -115,7 +118,7 @@
                         <textarea name="message"></textarea>
                     </div>
                 </label>
-                <button>Send</button>
+                <button>{{__('site.send')}}</button>
             </form>
         </section>
 
@@ -131,7 +134,7 @@
                 Soluta amet porro iste maiores nam eos? Consequuntur obcaecati, voluptatum veniam neque harum iste praesentium voluptas! Quaerat, atque nostrum. Fugiat non temporibus quasi ullam corrupti incidunt natus a consequatur excepturi!
             </p>
             <a href="#" class="about__more">
-                Continue Reading
+                {{__('site.continue')}}
             </a>
         </section>
     </section>

@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index(){
-        $settings = Setting::first();
-        return view('client.home', compact('settings'));
+        return view('client.home');
     }
 }
