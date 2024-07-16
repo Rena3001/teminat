@@ -21,6 +21,6 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Facades\View::composer('client.*', SettingsComposer::class);
+        Facades\View::composer(['client.*','components.front-footer-component'], SettingsComposer::class);
     }
 }

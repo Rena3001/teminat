@@ -24,28 +24,25 @@
     </section> --}}
     <div class="footer__main container">
         <div>
-            <h5>{{__('site.footer_corporate')}}</h5>
+            <h5>{{__('word.corporate')}}</h5>
             <nav>
                 <ul>
 
                     <li>
-                        <a href="#">{{__('site.about')}}</a>
+                        <a href="#">{{__('menu.about')}}</a>
                     </li>
 
                         <li>
-                        <a href="#">{{__('site.contact')}}</a>
-                    </li>
-                    <li>
-                        <a href="#">{{__('site.blog')}}</a>
+                        <a href="#">{{__('menu.contact')}}</a>
                     </li>
                 </ul>
             </nav>
         </div>
         <div>
-            <h5>{{__('site.contact')}}</h5>
+            <h5>{{__('menu.contact')}}</h5>
             <ul>
                 <li>
-                    <span>{{__('site.address')}} :</span>
+                    <span>{{__('word.address')}} :</span>
                     <span> Ankara Caddesi No: 306 Seyhli</span>
                 </li>
                 <li>
@@ -53,18 +50,18 @@
 
                 </li>
                 <li>
-                    <span>{{__('site.number')}} :</span>
+                    <span>{{__('word.num')}} :</span>
                     <a href="tel:+902163785000"> +90 (216) 378 50 00</a>
                 </li>
 
                 <li>
-                    <span>{{__('contact.email')}} : </span>
+                    <span>{{__('word.email')}} : </span>
                     <a href="mailto:gedik@gedik.com.tr"> gedik@gedik.com.tr</a>
                 </li>
             </ul>
         </div>
         <div>
-            <h5>{{__('site.companies')}}</h5>
+            <h5>{{__('word.companies')}}</h5>
             <ul>
 
                 <li>
@@ -81,22 +78,22 @@
             </ul>
         </div>
         <div>
-            <h5>{{__('site.social-media')}}</h5>
+            <h5>{{__('word.social')}}</h5>
             <ul>
                 <li>
-                    <a href="#">Facebook</a>
+                    <a href="{{$settings->fb}}">Facebook</a>
                 </li>
                 <li>
-                    <a href="#">Twitter</a>
+                    <a href="{{$settings->tw}}">Twitter</a>
                 </li>
                 <li>
-                    <a href="#">Linkedin</a>
+                    <a href="{{$settings->in}}">Linkedin</a>
                 </li>
                 <li>
-                    <a href="#">Instagram</a>
+                    <a href="{{$settings->inst}}">Instagram</a>
                 </li>
                 <li>
-                    <a href="#">Youtube</a>
+                    <a href="{{$settings->yt}}">Youtube</a>
                 </li>
             </ul>
         </div>

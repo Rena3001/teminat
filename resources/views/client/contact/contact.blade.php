@@ -12,10 +12,10 @@
     <nav class="breadCrump container">
         <ul>
             <li>
-                <a href="{{route('client.home')}}">Home</a>
+                <a href="{{route('client.home')}}">{{ __('menu.home') }}</a>
             </li>
             <li>
-                <a href="{{route('client.contact')}}">Contact</a>
+                <a href="{{route('client.contact')}}">{{ __('menu.contact') }}</a>
             </li>
         </ul>
     </nav>
@@ -24,7 +24,7 @@
 
         <h1 class="mainbox__heading">
             <img src="./assets/images/logo/logo dark.png" alt="">
-            {{__('site.contact')}}
+            {{__('menu.contact')}}
         </h1>
 
         <div class="mainBox__banner">
@@ -32,35 +32,35 @@
         </div>
 
         <section class="mainBox__content">
-            <h2 class="mainBox__content--heading">{{__('site.contact_us')}}</h2>
+            <h2 class="mainBox__content--heading">{{__('word.contact_us')}}</h2>
             <form action="" class="contactForm">
                 <div class="contactForm__inputs">
                     <label>
-                        {{__('contact.name')}}
+                        {{__('word.name')}}
                         <input type="text" name="name">
                     </label>
 
                     <label>
-                        {{__('contact.surname')}}
+                        {{__('word.surname')}}
 
                         <input type="text" name="surname">
                     </label>
 
                     <label>
-                        {{__('contact.phone')}}
+                        {{__('word.phone')}}
 
                         <input type="text" name="phone">
                     </label>
 
                     <label>
-                        {{__('contact.email')}}
+                        {{__('word.email')}}
 
                         <input type="text" name="email">
                     </label>
                 </div>
 
                 <label>
-                    {{__('contact.your_message')}}
+                    {{__('word.your_message')}}
 
                     <div class="textarea">
                         <textarea name="message"></textarea>
@@ -68,7 +68,7 @@
                 </label>
 
                 <button>
-                    {{__('site.send')}}
+                    {{__('word.send')}}
 
                 </button>
             </form>
@@ -83,9 +83,9 @@
 
             <div class="company__contact">
                 <!-- <div class="company__contact--content"> -->
-                    <div> <strong>{{__('site.address')}} : </strong>  {{$settings->address}} </div>
-                    <div> <strong>{{__('site.number')}} : </strong>  {{$settings->phone}} </div>
-                    <div> <strong>{{__('contact.email')}}  </strong> {{$settings->email}} </div>
+                    <div> <strong>{{__('word.address')}} : </strong>  {{$settings->address}} </div>
+                    <div> <strong>{{__('word.num')}} : </strong>  {{$settings->phone}} </div>
+                    <div> <strong>{{__('word.email')}}  </strong> {{$settings->email}} </div>
                 <!-- </div> -->
             </div>
         </section>
