@@ -24,7 +24,7 @@
         <div class="swiper-pagination"></div>
     </div>
 
-    <section class="navBox">
+    {{-- <section class="navBox">
         <ul>
             <li class="navBox__card" style="background-image: url(https://gedik.com.tr/img/brands/kaynak.jpg);">
                 <a href="#">
@@ -42,7 +42,7 @@
                 </a>
             </li>
         </ul>
-    </section>
+    </section> --}}
 
 
 
@@ -54,7 +54,7 @@
             <div class="products__list">
 
                 <!-- 10 dene product card -->
-        
+
                 <a href="#">
                     <div class="product_detail_card">
                       <div class="electrode_card_logo">
