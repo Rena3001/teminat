@@ -23,7 +23,7 @@
     <main class="mainBox container">
 
         <h1 class="mainbox__heading">
-            <img src="./assets/images/logo/logo dark.png" alt="">
+            <img src="{{$settings->logo_dark}}" alt="">
             {{__('menu.contact')}}
         </h1>
 

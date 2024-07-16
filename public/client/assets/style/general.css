@@ -15,6 +15,8 @@
   --color_lighterGray: #cccccc;
   --color_lightestGray: #f5f5f5;
   --color_white: #ffffff;
+  --logo_dark-display: none;
+  --logo_light-display: block;
 }
 
 body {
@@ -25,6 +27,13 @@ body {
   font-style: normal;
   color: var(--color_darkerGray);
   background-color: var(--color_white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main{
+    flex-grow: 1;
 }
 
 .container {
@@ -49,12 +58,17 @@ body {
     animation-timeline: view();
     animation-range-start: 100dvh;
     animation-range-end: calc(100dvh + 5rem);
+    background-color: var(--color_lightestGray);
   }
 }
 
 @keyframes headerTop {
   100% {
     top: -5rem;
+    background-color: var(--color_lightBlack);
+    color: var(--color_lightestGray);
+    --logo_dark-display: block;
+    --logo_light-display: none;
   }
 }
 
@@ -262,9 +276,11 @@ body {
   background-color: var(--color_lighterGray);
 }
 
+/* HEADER BOTTOM */
+
 .header__bottom--bcg {
-  box-shadow: 0 0.2rem 0.6rem var(--color_lighterGray);
-  background-color: var(--color_lightestGray);
+    box-shadow: 0 0.1rem 0.5rem var(--color_lighterGray), 0 0.1rem 0.6rem var(--color_lightBlack);
+  /* background-color: var(--color_lightestGray); */
 }
 .header__bottom {
   height: 6.6rem;
@@ -281,6 +297,12 @@ body {
   width: 100%;
   height: 100%;
   line-height: 0;
+}
+.header__logo a .logo_light{
+    display: var(--logo_light-display);
+}
+.header__logo a .logo_dark{
+    display: var(--logo_dark-display);
 }
 
 .navbar > ul {
@@ -674,7 +696,7 @@ body {
 }
 
 .mainbox__heading img {
-  width: 2.8rem;
+  width: 4rem;
   height: auto;
 }
 
@@ -743,7 +765,7 @@ body {
 }
 
 .search_box_input {
-  height: 11rem;
+  height: 8rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1092,4 +1114,25 @@ body {
     flex-direction: column;
     gap: 0;
   }
+}
+
+
+/* elaveler */
+
+[class^="swiper-button-"]{
+    padding: 40px 20px;
+    background-color: #ffffff50;
+    border-radius: 5px;
+    transition: all 0.4s;
+    text-shadow: 0px 1px 3px #000000cc;
+}
+
+[class^="swiper-button-"]:hover{
+    background-color: #ffffff9d;
+    text-shadow: 0px 2px 2px #000000;
+}
+
+[class^="swiper-button-"]:active{
+    background-color: #ffffffe2;
+    text-shadow: 0px 2px 2px #000000;
 }

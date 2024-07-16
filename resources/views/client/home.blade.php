@@ -87,7 +87,7 @@
                 </label>
 
                 <label>
-                    {{ __('phone_number') }}
+                    {{ __('word.phone_number') }}
                     <input name="phone" type="text">
                 </label>
 

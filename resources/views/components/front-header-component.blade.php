@@ -22,11 +22,8 @@
             <div class="header__top--right">
                 <form class="header__search">
                     <div class="header__search--input">
-                        <input type="text" placeholder="{{__('search.product')}}">
-
-
+                        <input type="text" placeholder="{{__('search.product')}}"  id="search_products" name="search_products">
                     </div>
-
                     <button class="header__search--btn">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
@@ -52,7 +49,8 @@
         <div class="header__bottom container">
             <div class="header__logo">
                 <a href="{{route('client.home')}}">
-                    <img src="{{ $settings->image_logo_light }}" alt="">
+                    <img src="{{ $settings->image_logo_light }}" class="logo_light" alt="">
+                    <img src="{{ $settings->image_logo_dark }}" class="logo_dark" alt="">
                 </a>
             </div>
             <nav class="navbar">
