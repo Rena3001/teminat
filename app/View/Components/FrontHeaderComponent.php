@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Lang;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -11,7 +12,7 @@ class FrontHeaderComponent extends Component
     /**
      * Create a new component instance.
      */
-   
+
     public $settings;
 
     /**
@@ -27,6 +28,7 @@ class FrontHeaderComponent extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.front-header-component');
+        $langs = Lang::all();
+        return view('components.front-header-component', compact('langs'));
     }
 }

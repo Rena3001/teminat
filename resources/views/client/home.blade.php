@@ -27,27 +27,6 @@
         <div class="swiper-pagination"></div>
     </div>
 
-    <section class="navBox">
-        <ul>
-            <li class="navBox__card" style="background-image: url(https://gedik.com.tr/img/brands/kaynak.jpg);">
-                <a href="#">
-                    Welding
-                </a>
-            </li>
-            <li class="navBox__card" style="background-image: url(https://gedik.com.tr/img/brands/dokum.jpg);">
-                <a href="#">
-                    Valve
-                </a>
-            </li>
-            <li class="navBox__card" style="background-image: url(	https://gedik.com.tr/img/brands/gev.jpg);">
-                <a href="#">
-                    Casting
-                </a>
-            </li>
-        </ul>
-    </section>
-
-
 
      <!--                                         PRODUCTS                                 -->
 
@@ -75,7 +54,7 @@
                       <div class="card_detail">
                         <p>ELECTRODE-ELIT</p>
                         <p>(E-6013)</p>
-                        <button>PRODUCT DETAIL</button>
+                        <button>{{ __('word.product_detail') }}</button>
                       </div>
                     </div>
                 </a>
@@ -84,7 +63,7 @@
             </div>
 
             <a href="#" class="products__loadMore">
-                {{__('site.load_more')}}
+                {{__('word.load_more')}}
             </a>
 
         </div>
@@ -98,43 +77,39 @@
             </h3>
             <form class="contactForm">
                 <label>
-                    Name, Surname
+                    {{ __('word.name') }}, {{ __('word.surname') }}
                     <input name="fullname" type="text">
                 </label>
 
                 <label>
-                    E-mail
+                    {{ __('word.email') }}
                     <input name="email" type="text">
                 </label>
 
                 <label>
-                    Phone Number
+                    {{ __('phone_number') }}
                     <input name="phone" type="text">
                 </label>
 
                 <label>
-                    Your Message
+                    {{ __('word.your_message') }}
                     <div class="textarea">
                         <textarea name="message"></textarea>
                     </div>
                 </label>
-                <button>{{__('site.send')}}</button>
+                <button>{{__('word.send')}}</button>
             </form>
         </section>
 
         <section class="about">
-            <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos exercitationem non incidunt assumenda, veniam iure rem quisquam iste id quod aliquam consequuntur ipsam fugit ex sint explicabo dolorum repellendus suscipit.
-                Ullam numquam velit minus accusamus veniam incidunt asperiores dolore ratione iusto magnam at ut voluptatem eos maiores, soluta unde, inventore deleniti? Voluptas aperiam, iure reprehenderit ullam provident perferendis voluptates consectetur!
-                Magni eveniet saepe voluptatibus dolorem, maiores obcaecati sequi sit temporibus atque nobis mollitia. Voluptates, ipsam inventore! Ipsum incidunt, officiis quidem officia eius sint excepturi veritatis. Perspiciatis at corporis nisi voluptatem!
-                Velit libero, nihil deserunt neque sint aliquid iste ipsam illum, rem totam dignissimos quod consequatur atque. Reprehenderit perferendis maiores saepe quaerat? Corporis earum omnis velit maxime voluptas veniam natus a.
-                A quis, praesentium aliquid cum, eaque dicta ipsa ullam facilis reprehenderit error expedita veritatis fugit in, natus placeat eligendi nobis quas commodi exercitationem alias quibusdam vitae quo obcaecati. Error, quo!
-                Obcaecati voluptate ducimus accusantium expedita, corporis dolore maxime molestiae ex nobis aliquid veniam quidem deserunt aliquam sit autem debitis eaque fugit tenetur rem excepturi in, placeat natus eius. Eligendi, unde.
-                Maxime necessitatibus temporibus quos nostrum corporis quod architecto nisi natus iure repellat ea dolor cupiditate pariatur numquam, eaque, fugit minima optio blanditiis! Quasi nesciunt ea ipsum ipsa amet excepturi voluptate.
-                Soluta amet porro iste maiores nam eos? Consequuntur obcaecati, voluptatum veniam neque harum iste praesentium voluptas! Quaerat, atque nostrum. Fugiat non temporibus quasi ullam corrupti incidunt natus a consequatur excepturi!
-            </p>
+            <h2>
+                {{ $settings->home_about_title }}
+            </h2>
+            <div>
+                {{ $settings->home_about_desc }}
+            </div>
             <a href="#" class="about__more">
-                {{__('site.continue')}}
+                {{__('word.continue')}}
             </a>
         </section>
     </section>

@@ -8,10 +8,10 @@
 <nav class="breadCrump container">
     <ul>
         <li>
-            <a href="{{ route('client.home') }}">{{ __('site.home') }}</a>
+            <a href="{{ route('client.home') }}">{{ __('menu.home') }}</a>
         </li>
         <li>
-            <a href="{{ route('client.categories') }}">{{ __('site.products') }}</a>
+            <a href="{{ route('client.categories') }}">{{ __('menu.products') }}</a>
         </li>
     </ul>
 </nav>
@@ -42,7 +42,7 @@
 
                     <tbody>
                         <tr>
-                            <th>{{ __('site.brand') }}:</th>
+                            <th>{{ __('word.brand') }}:</th>
                             <td>{{ $product->brand->title ?? 'N/A' }}</td>
                         </tr>
                         <tr>
@@ -53,7 +53,7 @@
                 </table>
 
                 <div class="product__button">
-                    <a href="{{ $product->datasheet }}" target="_blank">{{ __('site.datasheet') }}</a>
+                    <a href="{{ $product->datasheet }}" target="_blank">{{ __('word.datasheet') }}</a>
                 </div>
             </div>
         </div>
@@ -85,7 +85,7 @@
                                     <div class="card_detail">
                                         <p>{{ $similarProduct->title }}</p>
                                         <p>({{ $similarProduct->model }})</p>
-                                        <button>PRODUCT DETAIL</button>
+                                        <button>{{ __('word.product_detail') }}</button>
                                     </div>
                                 </div>
                             </a>
@@ -97,5 +97,4 @@
         </div>
     </section>
 </main>
-
 @endsection

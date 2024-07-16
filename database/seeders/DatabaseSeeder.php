@@ -65,6 +65,207 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-     
+        if (empty(LanguageLine::exists())) {
+            LanguageLine::factory()->create([
+                'group' => 'menu',
+                'key' => 'home',
+                'text' => [
+                    'en'=> 'Home',
+                    'az' => 'Ana səhifə'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'menu',
+                'key' => 'about',
+                'text' => [
+                    'en'=> 'About',
+                    'az' => 'Haqqımızda'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'menu',
+                'key' => 'products',
+                'text' => [
+                    'en'=> 'Products',
+                    'az' => 'Məhsullar'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'menu',
+                'key' => 'contact',
+                'text' => [
+                    'en'=> 'Contact',
+                    'az' => 'Əlaqə'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'search',
+                'key' => 'product',
+                'text' => [
+                    'en'=> 'Search Product',
+                    'az' => 'Məhsul Axtar'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'word',
+                'key' => 'product_detail',
+                'text' => [
+                    'en'=> 'Product Detail',
+                    'az' => 'Məhsulun Detalları'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'word',
+                'key' => 'send',
+                'text' => [
+                    'en'=> 'Send',
+                    'az' => 'Göndər'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'word',
+                'key' => 'contact_us',
+                'text' => [
+                    'en'=> 'Contact us',
+                    'az' => 'Bizimlə Əlaqə Saxla'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'word',
+                'key' => 'name',
+                'text' => [
+                    'en'=> 'Name',
+                    'az' => 'Ad'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'word',
+                'key' => 'surname',
+                'text' => [
+                    'en'=> 'Surname',
+                    'az' => 'Soyad'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'word',
+                'key' => 'phone',
+                'text' => [
+                    'en'=> 'Phone',
+                    'az' => 'Telefon'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'word',
+                'key' => 'email',
+                'text' => [
+                    'en'=> 'E-mail',
+                    'az' => 'E-poçt'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'word',
+                'key' => 'your_message',
+                'text' => [
+                    'en'=> 'Your message',
+                    'az' => 'Sizin mesajınız'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'word',
+                'key' => 'address',
+                'text' => [
+                    'en'=> 'Address',
+                    'az' => 'Ünvan'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'word',
+                'key' => 'num',
+                'text' => [
+                    'en'=> 'Num',
+                    'az' => 'Tel'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'word',
+                'key' => 'corporate',
+                'text' => [
+                    'en'=> 'Corporate',
+                    'az' => 'Korporativ'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'word',
+                'key' => 'companies',
+                'text' => [
+                    'en'=> 'Companies',
+                    'az' => 'Şirkətlər'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'word',
+                'key' => 'social',
+                'text' => [
+                    'en'=> 'Social Media',
+                    'az' => 'Sosial Şəbəkə'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'btn',
+                'key' => 'go_to_category',
+                'text' => [
+                    'en'=> 'Go to category',
+                    'az' => 'Kateqoriyaya keçin'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'btn',
+                'key' => 'category_detail',
+                'text' => [
+                    'en'=> 'Click for category details',
+                    'az' => 'Kateqoriya detalları üçün klikləyin'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'word',
+                'key' => 'brand',
+                'text' => [
+                    'en'=> 'Brand',
+                    'az' => 'Brend'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'work',
+                'key' => 'datasheet',
+                'text' => [
+                    'en'=> 'DATASHEET',
+                    'az' => 'MƏLUMAT VƏFƏQİ'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'word',
+                'key' => 'load_more',
+                'text' => [
+                    'en'=> 'Load more',
+                    'az' => 'Daha çox'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'word',
+                'key' => 'continue',
+                'text' => [
+                    'en'=> 'Continue Reading',
+                    'az' => 'Oxumağa davam et'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'word',
+                'key' => 'phone_number',
+                'text' => [
+                    'en'=> 'Phone Number',
+                    'az' => 'Telefon',
+                ],
+            ]);
+        }
     }
 }

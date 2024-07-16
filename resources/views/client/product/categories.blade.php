@@ -8,10 +8,10 @@
     <nav class="breadCrump container">
       <ul>
           <li>
-              <a href="{{route('client.home')}}">Home</a>
+              <a href="{{route('client.home')}}">{{ __('menu.home') }}</a>
           </li>
           <li>
-              <a href="{{route('client.categories')}}">Products</a>
+              <a href="{{route('client.categories')}}">{{ __('menu.products') }}</a>
           </li>
       </ul>
     </nav>
@@ -24,11 +24,11 @@
             <aside>
               <section class="search_box mainBox">
                 <div class="search_panel_heading">
-                  <p class="margin_inline">{{__('site.search_product')}}</p>
+                  <p class="margin_inline">{{__('word.search_product')}}</p>
                 </div>
                 <div class="search_box_input margin_inline">
                   <form class="form">
-                    <input type="text" placeholder="{{__('site.search_product')}}" />
+                    <input type="text" placeholder="{{__('word.search_product')}}" />
                     <button class="product_search_button">
                       <i class="fas fa-search"></i>
                     </button>
@@ -38,11 +38,11 @@
               <!-- ======category====== -->
               <section class="category_panel search_box mainBox">
                 <div class="category_panel_heading">
-                  <p class="margin_inline">{{__('site.category')}}</p>
+                  <p class="margin_inline">{{__('word.category')}}</p>
                 </div>
                 <div class="category_panel_body margin_inline">
                   <form class="category_form">
-                    <label>{{__('site.category')}}</label>
+                    <label>{{__('word.category')}}</label>
                     <select id="options" name="category">
                       <option value="option1">products</option>
                       <option value="option2">products</option>
@@ -58,7 +58,7 @@
                     </select>
 
                     <button class="category_button">
-                      <i class="fas fa-search"></i>{{__('site.go_to_category')}}
+                      <i class="fas fa-search"></i>{{__('btn.go_to_category')}}
                     </button>
                   </form>
                 </div>
@@ -88,22 +88,18 @@
                           <strong>{{ $model->title }}</strong>
                         </h4>
                         <p class="hover_description">
-                {{__('site.category-detail')}}...
+                {{__('btn.category_detail')}}...
 
                         </p>
                       </div>
                     </a>
                   </div>
-
                 @endforeach
-
-
               </section>
             </section>
           </div>
         </div>
       </main>
-
     @endsection
 
 
