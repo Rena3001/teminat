@@ -1,8 +1,8 @@
 :root {
   --font_primary: serif;
   --font_secondary: serif;
-  --color_primary: #970074;
-  --color_primary-hover: #8c1d5e;
+  --color_primary: #2c66ff;
+  --color_primary-hover: #275fea;
   --color_primary1: #2c66ff;
   --color_primary1-hover: #275fea;
   --color_secondary: #081248;
@@ -19,6 +19,7 @@
 
 body {
   font-size: 1.6rem;
+  font-family: "Barlow", sans-serif;
   line-height: 1.3;
   font-weight: 400;
   font-style: normal;

@@ -11,7 +11,7 @@
               <a href="{{route('client.home')}}">Home</a>
           </li>
           <li>
-              <a href="{{route('client.wires_and_fluxes')}}">Products</a>
+              <a href="{{route('client.categories')}}">Products</a>
           </li>
       </ul>
     </nav>
@@ -70,7 +70,7 @@
 
               <h1 class="mainbox__heading">
                 <img src="./assets/images/logo/logo dark.png" alt="">
-                {{__('site.wires_and_fluxes')}}
+                {{$settings->categories_title}}
               </h1>
 
               <section class="card_section">

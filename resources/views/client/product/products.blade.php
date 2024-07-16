@@ -10,7 +10,7 @@
               <a href="{{route('client.home')}}">{{__('site.home')}}</a>
           </li>
           <li>
-              <a href="{{route('client.wires_and_fluxes')}}">{{__('site.products')}}</a>
+              <a href="{{route('client.categories')}}">{{__('site.products')}}</a>
           </li>
       </ul>
     </nav>

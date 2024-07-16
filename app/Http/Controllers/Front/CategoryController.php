@@ -11,7 +11,6 @@ class CategoryController extends Controller
 {
     public function index(){
         $models = Category::orderBy('order')->get();
-        $settings = Setting::first();
-        return view('client.product.wires_and_fluxes',compact('models','settings'));
+        return view('client.product.categories',compact('models'));
     }
 }
