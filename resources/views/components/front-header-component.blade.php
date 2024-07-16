@@ -41,9 +41,9 @@
                         <li>
                             <a href="#">EN</a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="#">RU</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </div>
