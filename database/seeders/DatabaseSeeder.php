@@ -45,8 +45,8 @@ class DatabaseSeeder extends Seeder
                 'in' => '#',
                 'inst' => '#',
                 'yt' => '#',
-                'image_logo_light' => '/client/images/logo/full_logo_light.png',
-                'image_logo_dark' => '/client/images/logo/full_logo_dark.png',
+                'image_logo_light' => '/client/assets/images/logo/full_logo_light.png',
+                'image_logo_dark' => '/client/assets/images/logo/full_logo_dark.png',
                 'home_about_title' => 'Home About Title',
                 'home_about_subtitle' => 'Home About SubTitle',
                 'home_about_desc' => 'Home About Description',
@@ -60,7 +60,7 @@ class DatabaseSeeder extends Seeder
                 'about_desc' => 'About Description',
                 'about_iframe' => '#',
                 'contact_title' => 'Contact Title',
-                'contact_image' => '/client/images/kariyer-banner.jpg',
+                'contact_image' => '/client/assets/images/kariyer-banner.jpg',
                 'categories_title' => 'Categories Title',
             ]);
         }
@@ -224,6 +224,14 @@ class DatabaseSeeder extends Seeder
                 'text' => [
                     'en'=> 'Click for category details',
                     'az' => 'Kateqoriya detalları üçün klikləyin'
+                ],
+            ]);
+            LanguageLine::factory()->create([
+                'group' => 'word',
+                'key' => 'categories',
+                'text' => [
+                    'en'=> 'Categories',
+                    'az' => 'Kateqoriyalar'
                 ],
             ]);
             LanguageLine::factory()->create([

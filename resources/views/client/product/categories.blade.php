@@ -24,11 +24,11 @@
             <aside>
               <section class="search_box mainBox">
                 <div class="search_panel_heading">
-                  <p class="margin_inline">{{__('word.search_product')}}</p>
+                  <p class="margin_inline">{{__('search.product')}}</p>
                 </div>
                 <div class="search_box_input margin_inline">
                   <form class="form">
-                    <input type="text" placeholder="{{__('word.search_product')}}" />
+                    <input type="text" placeholder="{{__('search.product')}}" id="search_products_category" name="search_products_category"/>
                     <button class="product_search_button">
                       <i class="fas fa-search"></i>
                     </button>
@@ -38,12 +38,11 @@
               <!-- ======category====== -->
               <section class="category_panel search_box mainBox">
                 <div class="category_panel_heading">
-                  <p class="margin_inline">{{__('word.category')}}</p>
+                  <p class="margin_inline">{{__('word.categories')}}</p>
                 </div>
                 <div class="category_panel_body margin_inline">
                   <form class="category_form">
-                    <label>{{__('word.category')}}</label>
-                    <select id="options" name="category">
+                    <select id="category" name="category">
                       <option value="option1">products</option>
                       <option value="option2">products</option>
                       <option value="option3">products</option>
@@ -51,14 +50,14 @@
 
                     <!-- sub-category -->
 
-                    <select id="options" name="sub-category">
+                    <select id="sub-category" name="sub-category">
                       <option value="option1">products</option>
                       <option value="option2">products</option>
                       <option value="option3">products</option>
                     </select>
 
                     <button class="category_button">
-                      <i class="fas fa-search"></i>{{__('btn.go_to_category')}}
+                      {{__('btn.go_to_category')}}
                     </button>
                   </form>
                 </div>
@@ -69,7 +68,7 @@
             <section class="wires_and_fluxes mainBox">
 
               <h1 class="mainbox__heading">
-                <img src="./assets/images/logo/logo dark.png" alt="">
+                <img src="{{$settings->logo_dark}}" alt="">
                 {{$settings->categories_title}}
               </h1>
 

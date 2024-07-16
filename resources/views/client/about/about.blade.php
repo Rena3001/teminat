@@ -20,7 +20,7 @@
         <div class="container_sub">
           <section class="about_us_section mainBox">
             <h1 class="mainbox__heading">
-              <img src="{{ $settings->image_logo_dark }}" alt="">
+              <img src="{{$settings->logo_dark}}" alt="">
               {{$settings->about_title}}
             </h1>
             <section class="who_we_are">
