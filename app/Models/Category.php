@@ -46,4 +46,13 @@ class Category extends BaseModel
             return $this->hasMany(Product::class, 'category_id');
         }
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->order = Category::max('order') + 1;
+        });
+    }
 }

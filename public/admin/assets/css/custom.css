@@ -92,3 +92,7 @@ span.text-danger+.choices .choices__inner{
 .card-img-top{
     background-color: #959aaa36;
 }
+
+.bg-light-gray{
+    background-color: #88888888;
+}

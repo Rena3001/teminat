@@ -25,7 +25,7 @@ class ProductSeeder extends Seeder
             foreach ($categories as $category) {
                 $children = $category->childrenCategories;
 
-                foreach ($children as $key=>$child) {
+                foreach ($children as $child) {
                     Product::create([
                         'title' => [
                             'en' => 'Electrode - ELIT '.$child->id,
@@ -39,7 +39,7 @@ class ProductSeeder extends Seeder
                         'pdf_file' => '/client/assets/pdfs/product_1.pdf',
 
                         'category_id' => $child->id,
-                        'brand_id' => $key < 4 ? $brend->id : $brend2->id,
+                        'brand_id' => $brend->id,
                     ]);
                     Product::create([
                         'title' => [
@@ -54,7 +54,7 @@ class ProductSeeder extends Seeder
                         'pdf_file' => '/client/assets/pdfs/product_2.pdf',
 
                         'category_id' => $child->id,
-                        'brand_id' => $key < 4 ? $brend->id : $brend2->id,
+                        'brand_id' => $brend2->id,
                     ]);
                     Product::create([
                         'title' => [
@@ -69,7 +69,7 @@ class ProductSeeder extends Seeder
                         'pdf_file' => '/client/assets/pdfs/product_3.pdf',
 
                         'category_id' => $child->id,
-                        'brand_id' => $key < 4 ? $brend->id : $brend2->id,
+                        'brand_id' => $brend->id,
                     ]);
                     Product::create([
                         'title' => [
@@ -84,7 +84,7 @@ class ProductSeeder extends Seeder
                         'pdf_file' => '/client/assets/pdfs/product_4.pdf',
 
                         'category_id' => $child->id,
-                        'brand_id' => $key < 4 ? $brend->id : $brend2->id,
+                        'brand_id' => $brend2->id,
                     ]);
                     Product::create([
                         'title' => [
@@ -99,7 +99,7 @@ class ProductSeeder extends Seeder
                         'pdf_file' => '/client/assets/pdfs/product_5.pdf',
 
                         'category_id' => $child->id,
-                        'brand_id' => $key < 4 ? $brend->id : $brend2->id,
+                        'brand_id' => $brend->id,
                     ]);
                     Product::create([
                         'title' => [
@@ -114,7 +114,7 @@ class ProductSeeder extends Seeder
                         'pdf_file' => '/client/assets/pdfs/product_6.pdf',
 
                         'category_id' => $child->id,
-                        'brand_id' => $key < 4 ? $brend->id : $brend2->id,
+                        'brand_id' => $brend2->id,
                     ]);
                     Product::create([
                         'title' => [
@@ -129,7 +129,7 @@ class ProductSeeder extends Seeder
                         'pdf_file' => '/client/assets/pdfs/product_7.pdf',
 
                         'category_id' => $child->id,
-                        'brand_id' => $key < 4 ? $brend->id : $brend2->id,
+                        'brand_id' => $brend->id,
                     ]);
                     Product::create([
                         'title' => [
@@ -144,7 +144,7 @@ class ProductSeeder extends Seeder
                         'pdf_file' => '/client/assets/pdfs/product_8.pdf',
 
                         'category_id' => $child->id,
-                        'brand_id' => $key < 4 ? $brend->id : $brend2->id,
+                        'brand_id' => $brend2->id,
                     ]);
                 }
             }
