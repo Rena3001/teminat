@@ -25,7 +25,7 @@
             </h1>
             <section class="who_we_are">
               <div class="about_text">
-                {{ $settings->about_desc }}
+                {!! $settings->about_desc !!}
               </div>
             </section>
           </section>

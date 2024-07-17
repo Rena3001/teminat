@@ -32,23 +32,11 @@ class SettingController extends Controller
         $settings['about_descs'] = $settings->getTranslations('about_desc');
         $settings['contact_titles'] = $settings->getTranslations('contact_title');
         $settings['categories_titles'] = $settings->getTranslations('categories_title');
+        $settings['addresses'] = $settings->getTranslations('address');
 
         return view('admin.settings.index', compact('langs', 'settings'));
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-    
 
     public function edit()
     {
@@ -63,32 +51,19 @@ class SettingController extends Controller
         $settings['about_descs'] = $settings->getTranslations('about_desc');
         $settings['contact_titles'] = $settings->getTranslations('contact_title');
         $settings['categories_titles'] = $settings->getTranslations('categories_title');
+        $settings['addresses'] = $settings->getTranslations('address');
 
         $settings['images'] = [
             'image_logo_light' => $settings->image_logo_light,
             'image_logo_dark' => $settings->image_logo_dark,
+            'logo_light' => $settings->logo_light,
+            'logo_dark' => $settings->logo_dark,
+            'favicon' => $settings->favicon,
             'about_banner' => $settings->about_banner,
             'contact_image' => $settings->contact_image,
         ];
         return view('admin.settings.edit', compact('langs', 'settings'));
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public function update(SettingRequest $request)
     {
@@ -100,11 +75,11 @@ class SettingController extends Controller
             'in',
             'inst',
             'yt',
-            'address',
             'phone',
             'fax',
             'email',
 
+            'address',
             'home_about_title',
             'home_about_subtitle',
             'footer_title',
@@ -198,6 +173,42 @@ class SettingController extends Controller
             $data['image_logo_dark'] = '/storage/' . $imgPath;
         }
 
+        $logo_dark = $settings->logo_dark;
+
+        if ($request->file('logo_dark')) {
+            if ($logo_dark && file_exists(public_path($logo_dark))) {
+                unlink(public_path($logo_dark));
+            }
+            $fileExtension = $request->logo_dark->extension();
+            $imgName = 'logo_dark_' . $this->dataService->getNowDateStr() . '.' . $fileExtension;
+            $imgPath = $request->file('logo_dark')->storeAs('uploads/admin/settings', $imgName, 'public');
+            $data['logo_dark'] = '/storage/' . $imgPath;
+        }
+
+        $logo_light = $settings->logo_light;
+
+        if ($request->file('logo_light')) {
+            if ($logo_light && file_exists(public_path($logo_light))) {
+                unlink(public_path($logo_light));
+            }
+            $fileExtension = $request->logo_light->extension();
+            $imgName = 'logo_light_' . $this->dataService->getNowDateStr() . '.' . $fileExtension;
+            $imgPath = $request->file('logo_light')->storeAs('uploads/admin/settings', $imgName, 'public');
+            $data['logo_light'] = '/storage/' . $imgPath;
+        }
+
+        $favicon = $settings->favicon;
+
+        if ($request->file('favicon')) {
+            if ($favicon && file_exists(public_path($favicon))) {
+                unlink(public_path($favicon));
+            }
+            $fileExtension = $request->favicon->extension();
+            $imgName = 'favicon_' . $this->dataService->getNowDateStr() . '.' . $fileExtension;
+            $imgPath = $request->file('favicon')->storeAs('uploads/admin/settings', $imgName, 'public');
+            $data['favicon'] = '/storage/' . $imgPath;
+        }
+
         $about_banner = $settings->about_banner;
 
         if ($request->file('about_banner')) {
@@ -288,14 +299,4 @@ class SettingController extends Controller
         }
         return $images;
     }
-
-    // private function deleteExistingImages($directory, $prefix)
-    // {
-    //     $files = Storage::disk('public')->files($directory);
-    //     foreach ($files as $file) {
-    //         if (strpos(basename($file), $prefix) === 0) {
-    //             Storage::disk('public')->delete($file);
-    //         }
-    //     }
-    // }
 }

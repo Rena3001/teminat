@@ -156,7 +156,7 @@ Saytın Ümumi Məlumatlarını Redaktə Etmə
         <div class="card-body row mb-3">
             <div class="col-lg-4 col-md-6">
                 <div class="form-group d-block">
-                    <label for="image_logo_light">Açıq rəngli tema üçün Logo</label>
+                    <label for="image_logo_light">Açıq tema üçün yazılı Logo</label>
                     <input type="file" name="image_logo_light"
                         class="custom-file-image form-control @error('image_logo_light') is-invalid @enderror"
                         id="image_logo_light" value="{{ old('image_logo_light') }}">
@@ -175,7 +175,7 @@ Saytın Ümumi Məlumatlarını Redaktə Etmə
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="form-group d-block">
-                    <label for="image_logo_dark">Tünd rəngli tema üçün Logo</label>
+                    <label for="image_logo_dark">Tünd tema üçün yazılı Logo</label>
                     <input type="file" name="image_logo_dark"
                         class="custom-file-image form-control @error('image_logo_dark') is-invalid @enderror"
                         id="image_logo_dark" value="{{ old('image_logo_dark') }}">
@@ -192,6 +192,66 @@ Saytın Ümumi Məlumatlarını Redaktə Etmə
                     </div>
                 </div>
             </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="form-group d-block">
+                    <label for="favicon">Favicon İkon</label>
+                    <input type="file" name="favicon"
+                        class="custom-file-image form-control @error('favicon') is-invalid @enderror"
+                        id="favicon" value="{{ old('favicon') }}">
+                    @error('favicon')
+                    <span class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="image-box">
+                            <img src="{{$settings->favicon != '#' ? $settings->favicon : asset('admin/assets/img/elektrod_logo.svg')}}"
+                                alt="" class="img-fluid favicon">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="form-group d-block">
+                    <label for="logo_light">Açıq tema Logosu</label>
+                    <input type="file" name="logo_light"
+                        class="custom-file-image form-control @error('logo_light') is-invalid @enderror"
+                        id="logo_light" value="{{ old('logo_light') }}">
+                    @error('logo_light')
+                    <span class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="image-box">
+                            <img src="{{$settings->logo_light != '#' ? $settings->logo_light : asset('admin/assets/img/elektrod_logo.svg')}}"
+                                alt="" class="img-fluid logo_light">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="form-group d-block">
+                    <label for="logo_dark">Tünd tema Logosu</label>
+                    <input type="file" name="logo_dark"
+                        class="custom-file-image form-control @error('logo_dark') is-invalid @enderror"
+                        id="logo_dark" value="{{ old('logo_dark') }}">
+                    @error('logo_dark')
+                    <span class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="image-box">
+                            <img src="{{$settings->logo_dark != '#' ? $settings->logo_dark : asset('admin/assets/img/elektrod_logo.svg')}}"
+                                alt="" class="img-fluid logo_dark">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="col-lg-6 col-md-12">
                 <div class="form-group d-block">
                     <label for="about_banner">Haqqımızda Səhifəsinin Banner Şəkli</label>
