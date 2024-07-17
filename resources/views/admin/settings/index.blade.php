@@ -69,15 +69,6 @@ Saytin Statik Ümumi Məlumatları
                     <div class="w-fit">
                         <div class="card border border-success w-fit">
                             <div class="card-body">
-                                <h4 class="card-title text-warning">Ünvan</h4>
-                                <p class="card-text">{{$settings->address}}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-fit">
-                        <div class="card border border-success w-fit">
-                            <div class="card-body">
                                 <h4 class="card-title text-warning">Telefon nömrə</h4>
                                 <p class="card-text">{{$settings->phone}}
                                 </p>
@@ -102,12 +93,25 @@ Saytin Statik Ümumi Məlumatları
                             </div>
                         </div>
                     </div>
-                    <div class="w-fit">
-                        <div class="card border border-success w-fit">
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card border border-success">
+                            <div class="card-body">
+                                <h4 class="card-title text-warning">Xəritənin iframe-i</h4>
+                                <p class="card-text">{!!$settings->iframe_map!!}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card border border-success">
                             <div class="card-body">
                                 <h4 class="card-title text-warning">Haqqımızda səhifəsinin youtube linki</h4>
-                                <p class="card-text">{{$settings->about_iframe}}
-                                </p>
+                                {!!$settings->about_iframe!!}
                             </div>
                         </div>
                     </div>
@@ -140,28 +144,28 @@ Saytin Statik Ümumi Məlumatları
             </div>
 
             <div class="col-lg-2 col-md-6">
-            <div class="card">
-                        <img class="card-img-top border-bottom py-2" src="{{$settings->favicon != '#' ? $settings->favicon : asset('admin/assets/img/elektrod_logo.svg')}}" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Favicon İkon</h5>
-                        </div>
+                <div class="card">
+                    <img class="card-img-top border-bottom py-2" src="{{$settings->favicon != '#' ? $settings->favicon : asset('admin/assets/img/elektrod_logo.svg')}}" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Favicon İkon</h5>
                     </div>
+                </div>
             </div>
             <div class="col-lg-2 col-md-6">
-                    <div class="card">
-                        <img class="card-img-top border-bottom py-2" src="{{$settings->logo_light != '#' ? $settings->logo_light : asset('admin/assets/img/elektrod_logo.svg')}}" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Açıq tema Logosu</h5>
-                        </div>
+                <div class="card">
+                    <img class="card-img-top border-bottom py-2" src="{{$settings->logo_light != '#' ? $settings->logo_light : asset('admin/assets/img/elektrod_logo.svg')}}" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Açıq tema Logosu</h5>
                     </div>
+                </div>
             </div>
             <div class="col-lg-2 col-md-6">
-                    <div class="card">
-                        <img class="card-img-top border-bottom py-2" src="{{$settings->logo_dark != '#' ? $settings->logo_dark : asset('admin/assets/img/elektrod_logo.svg')}}" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Tünd tema Logosu</h5>
-                        </div>
+                <div class="card">
+                    <img class="card-img-top border-bottom py-2" src="{{$settings->logo_dark != '#' ? $settings->logo_dark : asset('admin/assets/img/elektrod_logo.svg')}}" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Tünd tema Logosu</h5>
                     </div>
+                </div>
             </div>
 
 
@@ -189,6 +193,17 @@ Saytin Statik Ümumi Məlumatları
     </div>
     <div class="card-body">
         <div class="row" style="row-gap: 20px;">
+            <div class="col-12">
+                <div class="card border border-success">
+                    <div class="card-body">
+                        <h4 class="card-title text-warning">Ünvan</h4>
+                        @foreach ($settings->addresses as $lang=>$value)
+                        <p class="card-text border-top pt-2"><strong class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
+                        </p>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
             <div class="col-md-5 col-12">
                 <div class="card border border-success">
                     <div class="card-body">
