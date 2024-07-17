@@ -26,7 +26,25 @@
         <div class="swiper-button-prev"></div>
         <div class="swiper-pagination"></div>
     </div>
-
+    <section class="navBox">
+        <ul>
+            <li class="navBox__card" style="background-image: url(https://gedik.com.tr/img/brands/kaynak.jpg);">
+                <a href="#">
+                    Welding
+                </a>
+            </li>
+            <li class="navBox__card" style="background-image: url(https://gedik.com.tr/img/brands/dokum.jpg);">
+                <a href="#">
+                    Valve
+                </a>
+            </li>
+            <li class="navBox__card" style="background-image: url(	https://gedik.com.tr/img/brands/gev.jpg);">
+                <a href="#">
+                    Casting
+                </a>
+            </li>
+        </ul>
+    </section>
 
      <!--                                         PRODUCTS                                 -->
 
@@ -106,7 +124,7 @@
                 {{ $settings->home_about_title }}
             </h2>
             <div>
-                {{ $settings->home_about_desc }}
+                {!! $settings->home_about_desc !!}
             </div>
             <a href="#" class="about__more">
                 {{__('word.continue')}}

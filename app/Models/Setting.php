@@ -30,6 +30,10 @@ class Setting extends BaseModel
         'about_desc',
         'image_logo_light',
         'image_logo_dark',
+        'logo_light',
+        'logo_dark',
+        'favicon',
+        'iframe_map',
         'about_banner',
         'contact_image',
     ];
@@ -43,5 +47,6 @@ class Setting extends BaseModel
         'about_desc',
         'contact_title',
         'categories_title',
+        'address',
     ];
 }

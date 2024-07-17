@@ -10,6 +10,7 @@ class Brand extends BaseModel
 
     protected $fillable = [
         'title',
+        'image',
         'order',
     ];
     protected static function boot()

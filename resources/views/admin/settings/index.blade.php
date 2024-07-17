@@ -121,33 +121,53 @@ Saytin Statik Ümumi Məlumatları
     <div class="card-body border-bottom">
         <div class="row" style="row-gap: 20px;">
             <!-- Images -->
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-3 col-md-6">
                 <div class="card">
-                    <img class="card-img-top border-bottom py-2"
-                        src="{{$settings->image_logo_light != '#' ? $settings->image_logo_light : asset('admin/assets/img/elektrod_logo.svg')}}"
-                        alt="...">
+                    <img class="card-img-top border-bottom py-2" src="{{$settings->image_logo_light != '#' ? $settings->image_logo_light : asset('admin/assets/img/elektrod_logo.svg')}}" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Açıq rəngli tema üçün Logo</h5>
+                        <h5 class="card-title">Açıq tema üçün yazılı Logo</h5>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-3 col-md-6">
                 <div class="card">
-                    <img class="card-img-top border-bottom py-2"
-                        src="{{$settings->image_logo_dark != '#' ? $settings->image_logo_dark : asset('admin/assets/img/elektrod_logo.svg')}}"
-                        alt="...">
+                    <img class="card-img-top border-bottom py-2" src="{{$settings->image_logo_dark != '#' ? $settings->image_logo_dark : asset('admin/assets/img/elektrod_logo.svg')}}" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Tünd rəngli tema üçün Logo</h5>
+                        <h5 class="card-title">Tünd tema üçün yazılı Logo</h5>
                     </div>
                 </div>
             </div>
+
+            <div class="col-lg-2 col-md-6">
+            <div class="card">
+                        <img class="card-img-top border-bottom py-2" src="{{$settings->favicon != '#' ? $settings->favicon : asset('admin/assets/img/elektrod_logo.svg')}}" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Favicon İkon</h5>
+                        </div>
+                    </div>
+            </div>
+            <div class="col-lg-2 col-md-6">
+                    <div class="card">
+                        <img class="card-img-top border-bottom py-2" src="{{$settings->logo_light != '#' ? $settings->logo_light : asset('admin/assets/img/elektrod_logo.svg')}}" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Açıq tema Logosu</h5>
+                        </div>
+                    </div>
+            </div>
+            <div class="col-lg-2 col-md-6">
+                    <div class="card">
+                        <img class="card-img-top border-bottom py-2" src="{{$settings->logo_dark != '#' ? $settings->logo_dark : asset('admin/assets/img/elektrod_logo.svg')}}" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Tünd tema Logosu</h5>
+                        </div>
+                    </div>
+            </div>
+
 
             <div class="col-lg-6 col-md-12">
                 <div class="card">
-                    <img class="card-img-top border-bottom py-2"
-                        src="{{$settings->about_banner != '#' ? $settings->about_banner : asset('admin/assets/img/elektrod_logo.svg')}}"
-                        alt="...">
+                    <img class="card-img-top border-bottom py-2" src="{{$settings->about_banner != '#' ? $settings->about_banner : asset('admin/assets/img/elektrod_logo.svg')}}" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Haqqımızda Səhifəsinin Banner Şəkli</h5>
                     </div>
@@ -156,9 +176,7 @@ Saytin Statik Ümumi Məlumatları
 
             <div class="col-lg-6 col-md-12">
                 <div class="card">
-                    <img class="card-img-top border-bottom py-2"
-                        src="{{$settings->contact_image != '#' ? $settings->contact_image : asset('admin/assets/img/elektrod_logo.svg')}}"
-                        alt="...">
+                    <img class="card-img-top border-bottom py-2" src="{{$settings->contact_image != '#' ? $settings->contact_image : asset('admin/assets/img/elektrod_logo.svg')}}" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Əlaqə Səhifəsinin Şəkli</h5>
                     </div>
@@ -176,8 +194,7 @@ Saytin Statik Ümumi Məlumatları
                     <div class="card-body">
                         <h4 class="card-title text-warning">Ana sehifədəki Haqqımızda Başlıq</h4>
                         @foreach ($settings->home_about_titles as $lang=>$value)
-                        <p class="card-text border-top pt-2"><strong
-                                class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
+                        <p class="card-text border-top pt-2"><strong class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
                         </p>
                         @endforeach
                     </div>
@@ -189,8 +206,7 @@ Saytin Statik Ümumi Məlumatları
                     <div class="card-body">
                         <h4 class="card-title text-warning">Ana sehifədəki Haqqımızda Alt Başlıq</h4>
                         @foreach ($settings->home_about_subtitles as $lang=>$value)
-                        <p class="card-text border-top pt-2"><strong
-                                class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
+                        <p class="card-text border-top pt-2"><strong class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
                         </p>
                         @endforeach
                     </div>
@@ -203,8 +219,7 @@ Saytin Statik Ümumi Məlumatları
                     <div class="card-body">
                         <h4 class="card-title text-warning">Ana sehifədəki Haqqımızda Təsvir</h4>
                         @foreach ($settings->home_about_descs as $lang=>$value)
-                        <p class="card-text border-top pt-2" style="clear: both;"><strong
-                                class="me-3 text-info">{{strtoupper($lang)}}</strong>
+                        <p class="card-text border-top pt-2" style="clear: both;"><strong class="me-3 text-info">{{strtoupper($lang)}}</strong>
                         </p>
                         <div class="pb-2">
                             {!!$value!!}
@@ -219,8 +234,7 @@ Saytin Statik Ümumi Məlumatları
                     <div class="card-body">
                         <h4 class="card-title text-warning">Alt hissə Başlıq</h4>
                         @foreach ($settings->footer_titles as $lang=>$value)
-                        <p class="card-text border-top pt-2"><strong
-                                class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
+                        <p class="card-text border-top pt-2"><strong class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
                         </p>
                         @endforeach
                     </div>
@@ -231,8 +245,7 @@ Saytin Statik Ümumi Məlumatları
                     <div class="card-body">
                         <h4 class="card-title text-warning">Haqqımızda Başlıq</h4>
                         @foreach ($settings->about_titles as $lang=>$value)
-                        <p class="card-text border-top pt-2"><strong
-                                class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
+                        <p class="card-text border-top pt-2"><strong class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
                         </p>
                         @endforeach
                     </div>
@@ -245,8 +258,7 @@ Saytin Statik Ümumi Məlumatları
                     <div class="card-body">
                         <h4 class="card-title text-warning">Əlaqə Başlıq</h4>
                         @foreach ($settings->contact_titles as $lang=>$value)
-                        <p class="card-text border-top pt-2"><strong
-                                class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
+                        <p class="card-text border-top pt-2"><strong class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
                         </p>
                         @endforeach
                     </div>
@@ -258,8 +270,7 @@ Saytin Statik Ümumi Məlumatları
                     <div class="card-body">
                         <h4 class="card-title text-warning">Kateqoriyalar Başlıq</h4>
                         @foreach ($settings->categories_titles as $lang=>$value)
-                        <p class="card-text border-top pt-2"><strong
-                                class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
+                        <p class="card-text border-top pt-2"><strong class="me-3 text-info">{{strtoupper($lang)}}</strong>{{$value}}
                         </p>
                         @endforeach
                     </div>
@@ -271,8 +282,7 @@ Saytin Statik Ümumi Məlumatları
                     <div class="card-body">
                         <h4 class="card-title text-warning">Haqqımızda Təsvir</h4>
                         @foreach ($settings->about_descs as $lang=>$value)
-                        <p class="card-text border-top pt-2" style="clear: both;"><strong
-                                class="me-3 text-info">{{strtoupper($lang)}}</strong>
+                        <p class="card-text border-top pt-2" style="clear: both;"><strong class="me-3 text-info">{{strtoupper($lang)}}</strong>
                         </p>
                         <div class="pb-2">
                             {!!$value!!}
