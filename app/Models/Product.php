@@ -29,4 +29,13 @@ class Product extends BaseModel
     {
         return $this->belongsTo(Brand::class, 'brand_id');
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->order = Product::max('order') + 1;
+        });
+    }
 }

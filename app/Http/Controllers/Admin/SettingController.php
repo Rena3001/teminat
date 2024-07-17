@@ -78,6 +78,7 @@ class SettingController extends Controller
             'phone',
             'fax',
             'email',
+            'iframe_map',
 
             'address',
             'home_about_title',

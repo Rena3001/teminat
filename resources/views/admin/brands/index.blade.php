@@ -45,6 +45,7 @@ Brendlərin Siyahısı
                                     <th class="sort border-top ps-3" data-sort="order">Order</th>
                                     <th class="sort border-top ps-3" data-sort="id">Id</th>
                                     <th class="sort border-top w-auto" data-sort="title">Başlıq</th>
+                                    <th class="border-top w-auto">Şəkil</th>
                                     <th class="sort text-end align-middle pe-0 border-top" scope="col">Fəaliyyətlər</th>
                                 </tr>
                             </thead>
@@ -58,6 +59,13 @@ Brendlərin Siyahısı
                                     <td class="align-middle ps-3 id">{{ $model->id }}</td>
                                     <td class="align-middle title">
                                         <p class="m-0">{{ $model->title }}</p>
+                                    </td>
+                                    <td class="align-middle title">
+                                        @if ($model->image)
+                                        <div class="image bg-light-gray">
+                                            <img src="{{ $model->image }}" alt="{{$model->title}}" class="img-fluid">
+                                        </div>
+                                        @endif
                                     </td>
                                     <td class="align-middle white-space-nowrap text-end pe-0">
                                         <div class="btn-reveal-trigger position-static">

@@ -18,11 +18,13 @@ return new class extends Migration
             $table->string('in');
             $table->string('inst');
             $table->string('yt');
-            $table->string('address');
             $table->string('phone');
             $table->string('fax');
             $table->string('email');
+            $table->text('iframe_map');
 
+
+            $table->string('address');
             $table->string('home_about_title');
             $table->string('home_about_subtitle');
             $table->string('footer_title');
@@ -36,6 +38,9 @@ return new class extends Migration
 
             $table->string('image_logo_light');
             $table->string('image_logo_dark');
+            $table->string('logo_dark');
+            $table->string('logo_light');
+            $table->string('favicon');
             $table->string('about_banner');
             $table->string('contact_image');
 

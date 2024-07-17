@@ -18,9 +18,8 @@ Brendin Ətraflı Məlumatları
         </h3>
 
     </div>
-    <div class="card-body">
-        <div class="row" style="gap: 20px;">
-            <div class="card border border-success w-fit">
+    <div class="card-body d-flex flex-wrap" style="gap: 20px;">
+        <div class="card border border-success w-fit">
                 <div class="card-body">
                     <h4 class="card-title text-warning">Başlıq</h4>
                     <p class="card-text"><strong class="me-3 text-info">{{$model->title}}</strong>
@@ -39,7 +38,14 @@ Brendin Ətraflı Məlumatları
                     <p class="card-text"><strong class="me-3 text-info">{{$model->updated_at}}</strong>
                 </div>
             </div>
-        </div>
+
+            @if ($model->image)
+                <div class="card border border-success w-fit">
+                    <div class="card-body bg-light-gray">
+                        <img src="{{$model->image}}" alt="{{$model->title}}" class="img-fluid">
+                    </div>
+                </div>
+            @endif
     </div>
 </div>
 @endsection

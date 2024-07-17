@@ -5,10 +5,17 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\BrandRequest;
 use App\Models\Brand;
+use App\Services\DataService;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
+    protected $dataService;
+
+    public function __construct(DataService $dataService)
+    {
+        $this->dataService = $dataService;
+    }
     public function index()
     {
         $models = Brand::orderBy('order')->get();
@@ -26,6 +33,15 @@ class BrandController extends Controller
         $created = Brand::create($data);
 
         if ($created) {
+
+            if ($request->hasFile('image')) {
+                $fileExtension = $request->image->extension();
+                $imgName = 'brands_' . $this->dataService->getNowDateStr() . '.' . $fileExtension;
+                $imgPath = $request->file('image')->storeAs('uploads/admin/brands', $imgName, 'public');
+                $created->image = '/storage/' . $imgPath;
+                $created->save();
+            }
+
             return redirect()->route('admin.brands.index')
                 ->with('type', 'success')
                 ->with('message', 'Brend uğurla əlavə edildi.');
@@ -63,9 +79,20 @@ class BrandController extends Controller
 
             $data = $request->only('title');
 
+            $image = $brand->image;
             $update = $brand->update($data);
 
             if ($update) {
+                if ($request->hasFile('image')) {
+                    if ($image && file_exists(public_path($image))) {
+                        unlink(public_path($image));
+                    }
+                    $fileExtension = $request->image->extension();
+                    $imgName = 'categories_' . $this->dataService->getNowDateStr() . '.' . $fileExtension;
+                    $imgPath = $request->file('image')->storeAs('uploads/admin/categories', $imgName, 'public');
+                    $brand->image = '/storage/' . $imgPath;
+                    $brand->save();
+                }
                 return redirect()->route('admin.brands.index')
                     ->with('type', 'success')
                     ->with('message', 'Brend uğurla yeniləndi.');
@@ -83,6 +110,10 @@ class BrandController extends Controller
     public function destroy(Brand $brand)
     {
         if (!empty($brand)) {
+
+            if ($brand->image && file_exists(public_path($brand->image))) {
+                unlink(public_path($brand->image));
+            }
             $deleted = $brand->delete();
 
             if ($deleted) {
