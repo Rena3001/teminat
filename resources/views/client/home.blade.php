@@ -28,21 +28,13 @@
     </div>
     <section class="navBox">
         <ul>
-            <li class="navBox__card" style="background-image: url(https://gedik.com.tr/img/brands/kaynak.jpg);">
-                <a href="#">
-                    Welding
+            @foreach ($categories as $category)
+            <li class="navBox__card" style="background-image: url({{$category->image}});">
+                <a href="{{route('client.categories')}}">
+                    {{$category->title}}
                 </a>
             </li>
-            <li class="navBox__card" style="background-image: url(https://gedik.com.tr/img/brands/dokum.jpg);">
-                <a href="#">
-                    Valve
-                </a>
-            </li>
-            <li class="navBox__card" style="background-image: url(	https://gedik.com.tr/img/brands/gev.jpg);">
-                <a href="#">
-                    Casting
-                </a>
-            </li>
+            @endforeach
         </ul>
     </section>
 
@@ -50,38 +42,37 @@
 
     <section class="products">
         <div class="container">
-            <h3>Products</h3>
+            <h3>{{__('menu.products')}}</h3>
             <div class="products__list">
 
-                <!-- 10 dene product card -->
+                @foreach ($products as $product)
 
-                <a href="#">
+                <a href="{{route('client.product.detail',$product->id)}}">
                     <div class="product_detail_card">
                       <div class="electrode_card_logo">
                         <img
-                          src="https://gedik.com.tr/img/brands/geka.png"
-                          alt="electrode logo"
+                          src="{{$product->brand->image}}"
+                          alt="{{$product->brand->title}}"
                         />
                       </div>
                       <div class="electrode_card_img">
                         <img
-                          src="https://file.gedik.com.tr/portal/approval_documents/GeKa-Elektrot-grey_60df03be2fd46.png"
-                          alt="elctrode"
+                          src="{{$product->image}}"
+                          alt="{{$product->title}}"
                         />
                       </div>
                       <div class="card_detail">
-                        <p>ELECTRODE-ELIT</p>
+                        <p>{{$product->title}}</p>
                         <p>(E-6013)</p>
                         <button>{{ __('word.product_detail') }}</button>
                       </div>
                     </div>
                 </a>
-
-
+                @endforeach
             </div>
 
-            <a href="#" class="products__loadMore">
-                {{__('word.load_more')}}
+            <a href="{{route('client.products')}}" class="products__loadMore">
+                {{__('word.all_products')}}
             </a>
 
         </div>
@@ -91,7 +82,7 @@
         <section class="contact">
             <h3>
                 <i class="fa-solid fa-paper-plane"></i>
-                CONTACT US
+                {{strtoupper(__('word.contact_us'))}}
             </h3>
             <form class="contactForm">
                 <label>
@@ -126,7 +117,7 @@
             <div>
                 {!! $settings->home_about_desc !!}
             </div>
-            <a href="#" class="about__more">
+            <a href="{{route('client.about')}}" class="about__more">
                 {{__('word.continue')}}
             </a>
         </section>

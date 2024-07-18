@@ -75,7 +75,7 @@ class LanguageLineSeeder extends Seeder
                 'key' => 'contact_us',
                 'text' => [
                     'en' => 'Contact us',
-                    'az' => 'Bizimlə Əlaqə Saxla'
+                    'az' => 'Bizimlə Əlaqə'
                 ],
             ]);
             LanguageLine::create([
@@ -191,7 +191,7 @@ class LanguageLineSeeder extends Seeder
                 ],
             ]);
             LanguageLine::create([
-                'group' => 'work',
+                'group' => 'word',
                 'key' => 'datasheet',
                 'text' => [
                     'en' => 'DATASHEET',
@@ -200,10 +200,10 @@ class LanguageLineSeeder extends Seeder
             ]);
             LanguageLine::create([
                 'group' => 'word',
-                'key' => 'load_more',
+                'key' => 'all_products',
                 'text' => [
-                    'en' => 'Load more',
-                    'az' => 'Daha çox'
+                    'en' => 'All Products',
+                    'az' => 'Bütün Məhsullar'
                 ],
             ]);
             LanguageLine::create([
@@ -220,6 +220,14 @@ class LanguageLineSeeder extends Seeder
                 'text' => [
                     'en' => 'Phone Number',
                     'az' => 'Telefon',
+                ],
+            ]);
+            LanguageLine::create([
+                'group' => 'sentence',
+                'key' => '404_category',
+                'text' => [
+                    'en' => 'Not found any category',
+                    'az' => 'Heç bir kateqoriya tapılmadı',
                 ],
             ]);
         }

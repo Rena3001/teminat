@@ -11,7 +11,11 @@ class ProductsController extends Controller
 {
 
     public function index(){
-        $products = Product::orderBy('order')->get();
+        $products = Product::query();
+        if (request()->has('category') && request()->filled('category')) {
+            $products = $products->where('category_id', request('category'));
+        }
+        $products = $products->orderBy('order')->get();
         return view('client.product.products',compact('products'));
     }
 }
