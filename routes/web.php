@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\LangController;
 use App\Http\Controllers\Admin\LanguageLineController;
+use App\Http\Controllers\Admin\ModelProductController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
@@ -47,6 +48,9 @@ Route::group(['middleware' => 'auth', 'prefix' => LaravelLocalization::setLocale
     Route::resource('products', ProductController::class);
     Route::delete('api/products/bulk-delete', [ProductController::class, 'delete_selected_products'])->name('products.bulk-delete');
     // Route::post('products/changeOrder', [ProductController::class, 'changeOrder'])->name('products.changeOrder');
+    Route::resource('model_products', ModelProductController::class);
+    Route::delete('api/model_products/bulk-delete', [ModelProductController::class, 'delete_selected_model_products'])->name('model_products.bulk-delete');
+
     Route::resource('categories', CategoryController::class);
     Route::delete('api/categories/bulk-delete', [CategoryController::class, 'delete_selected_categories'])->name('categories.bulk-delete');
 

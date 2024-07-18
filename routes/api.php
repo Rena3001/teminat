@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\LanguageLineController;
+use App\Http\Controllers\Admin\ModelProductController;
 use App\Http\Controllers\Admin\ProductController;
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -20,7 +21,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('language_line/delete_selected_language_line', [LanguageLineController::class, 'delete_selected_language_line'])->name('language_line.delete_selected_language_line');
 
     // Route::resource('products', LanguageLineController::class)->except(['create', 'edit']);
-    Route::delete('products/delete_selected_products', [LanguageLineController::class, 'delete_selected_products'])->name('products.delete_selected_products');
+    Route::delete('products/delete_selected_products', [ProductController::class, 'delete_selected_products'])->name('products.delete_selected_products');
+    Route::delete('model_products/delete_selected_model_products', [ModelProductController::class, 'delete_selected_products'])->name('products.delete_selected_model_products');
 
 
 });

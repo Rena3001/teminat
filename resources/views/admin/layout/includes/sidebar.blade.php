@@ -93,6 +93,16 @@
                                         </div>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link dropdown-indicator label-1 @if (Route::is('admin.model_products*')) active @endif"
+                                        href="{{ route('admin.model_products.index') }}">
+                                        <div class="d-flex align-items-center">
+                                            <span class="nav-link-icon me-0"><span data-feather="target"></span>
+                                            </span>
+                                            <span class="nav-link-text ps-2">Modellər</span>
+                                        </div>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
