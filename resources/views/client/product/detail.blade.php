@@ -18,7 +18,7 @@
 
 <main class="mainBox container">
     <h1 class="mainbox__heading">
-        <img src="{{ $settings->image_logo_dark }}" alt="">
+        <img src="{{ $settings->logo_dark }}" alt="">
         {{ $product->title }}
     </h1>
 
@@ -34,7 +34,7 @@
                         <tr>
                             <td colspan="2">
                                 <div class="product__brand--img">
-                                    <img src="{{ $product->brand->logo ?? 'default_logo.png' }}" alt="{{ $product->brand->title ?? 'N/A' }}">
+                                    <img src="{{ $product->brand->image ?? 'default_logo.png' }}" alt="{{ $product->brand->title ?? 'N/A' }}">
                                 </div>
                             </td>
                         </tr>
@@ -60,24 +60,24 @@
 
         <div class="product_desc">
             <div class="product_iframe">
-                <iframe src="{{ $product->datasheet }}" frameborder="0"></iframe>
+                <iframe src="{{ $product->pdf_file }}" frameborder="0"></iframe>
             </div>
 
             <div class="other">
                 <div class="other__heading">
-                    <h4>Similar Products</h4>
+                    <h4>Related Products</h4>
                     <a href="#">See All</a>
                 </div>
 
                 <div class="swiper">
                     <div class="swiper-wrapper">
                         <!-- Similar products slider items -->
-                        @foreach ($similarProducts as $similarProduct)
+                        @foreach ($relateds as $similarProduct)
                         <div class="swiper-slide">
                             <a href="{{ route('client.product.detail', $similarProduct->id) }}">
                                 <div class="product_detail_card">
                                     <div class="electrode_card_logo">
-                                        <img src="{{ $similarProduct->brand->logo ?? 'default_logo.png' }}" alt="{{ $similarProduct->brand->title ?? 'N/A' }}">
+                                        <img src="{{ $similarProduct->brand->image ?? 'default_logo.png' }}" alt="{{ $similarProduct->brand->title ?? 'N/A' }}">
                                     </div>
                                     <div class="electrode_card_img">
                                         <img src="{{ $similarProduct->image }}" alt="{{ $similarProduct->title }}">

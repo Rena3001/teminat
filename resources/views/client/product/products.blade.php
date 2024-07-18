@@ -1,6 +1,7 @@
 @extends('client.layout.master')
 @section('page_title', "Products")
 @push('styles')
+<link rel="stylesheet" href="{{ asset('client/assets/style/wiresandfluxes.css') }}" />
 <link rel="stylesheet" href="{{ asset('client/assets/style/products.css') }}" />
 @endpush
 @section('content')
@@ -33,14 +34,36 @@
                 </form>
               </div>
             </section>
-            <section class="categories_box"></section>
-            <section class="filter_box"></section>
+              <!-- ======category====== -->
+              <section class="category_panel search_box mainBox">
+                <div class="category_panel_heading">
+                  <p class="margin_inline">{{__('word.categories')}}</p>
+                </div>
+                <div class="category_panel_body margin_inline">
+                  <form class="category_form">
+                    <select id="category" name="category">
+                      <option value="option1">products</option>
+                      <option value="option2">products</option>
+                      <option value="option3">products</option>
+                    </select>
+
+                    <!-- sub-category -->
+
+                    <select id="sub-category" name="sub-category">
+                      <option value="option1">products</option>
+                      <option value="option2">products</option>
+                      <option value="option3">products</option>
+                    </select>
+
+                    <button class="category_button">
+                      {{__('btn.go_to_category')}}
+                    </button>
+                  </form>
+                </div>
+              </section>
           </aside>
           <section class="unalloyed_electrodes mainBox">
-            <!-- <div class="panel_heading">
-              <div>ICON</div>
-              <h1>Unalloyed Electrodes</h1>
-            </div> -->
+
 
             <h1 class="mainbox__heading">
               <img src="{{$settings->logo_dark}}" alt="">
@@ -54,19 +77,19 @@
             <div class="product_detail_card">
               <div class="electrode_card_logo">
                 <img
-                  src="https://gedik.com.tr/img/brands/geka.png"
-                  alt="electrode logo"
+                  src="{{$product->brand->image}}"
+                  alt="{{$product->brand->title}}"
                 />
               </div>
               <div class="electrode_card_img">
                 <img
-                  src="{{ $product->image }}"
+                  src="{{$product->image}}"
                   alt="{{$product->title}}"
                 />
               </div>
               <div class="card_detail">
                 <p>{{$product->title}}</p>
-                <p>{{$product->brand}}</p>
+                <!-- <p>{{$product->brand}}</p> -->
                 <button>{{__('word.product_detail')}}</button>
               </div>
             </div>

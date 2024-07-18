@@ -26,11 +26,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale() . '', 'as' => 'client
     Route::get('/',[HomeController::class, 'index'])->name('home');
     Route::get('/about',[AboutController::class, 'index'])->name('about');
     Route::get('/contact',[AdminContactController::class, 'index'])->name('contact');
-    Route::get('/products/{id}', [ProductsDetailController::class, 'index'])->name('product.detail');
+    Route::get('/products/{product}', [ProductsDetailController::class, 'index'])->name('product.detail');
     Route::get('/products',[ProductsController::class, 'index'])->name('products');
     Route::get('/categories',[FrontCategoryController::class, 'index'])->name('categories');
-
+    Route::get('/categories/{category}/subcategories',[FrontCategoryController::class, 'getSubCategories'])->name('subcategories');
+    Route::get('/subcategories/{category}',[FrontCategoryController::class, 'fetchSubCategories'])->name('fetch.subcategories');
 });
+
 // Admin
 Route::post('/set-timezone', [TimezoneController::class, 'setTimezone']);
 Route::group(['middleware' => 'auth', 'prefix' => LaravelLocalization::setLocale() . '/control', 'as' => 'admin.'], function () {

@@ -16,7 +16,7 @@
     font-size: 2.6rem;
     line-height: 1.2;
     font-weight: 600;
-} 
+}
 
 .blogPost__list{
     display: grid;
@@ -57,7 +57,7 @@
     font-size: 2.6rem;
     line-height: 1.2;
     font-weight: 600;
-} 
+}
 
 .products__list{
     display: grid;
@@ -116,6 +116,9 @@ section.contact{
     gap: 2rem;
     background-color: var(--color_lightBlack);
     color: var(--color_lightestGray);
+    text-transform: uppercase;
+    font-weight: 400;
+    font-family: Arial, sans-serif;
 }
 
 .contactForm{
@@ -140,7 +143,7 @@ section.contact{
 
 .contactForm button{
     margin-inline: auto;
-    margin-top: 1rem;   
+    margin-top: 1rem;
 }
 
 
@@ -183,14 +186,14 @@ section.timeLine{
     position: relative;
 }
 /* BAXX */
-/* .timeLine__slider .swiper-button-prev{   
+/* .timeLine__slider .swiper-button-prev{
     position: absolute;
     left: -4rem;
 } */
 /* Baxx */
-/*.timeLine__slider .swiper-button-next{ 
+/*.timeLine__slider .swiper-button-next{
      position: absolute;
-    right: -4rem; 
+    right: -4rem;
 } */
 
 .timeLine__slider .swiper-slide{
