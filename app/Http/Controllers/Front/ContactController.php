@@ -11,4 +11,8 @@ class ContactController extends Controller
     public function index(){
         return view('client.contact.contact');
     }
+
+    public function send(Request $request){
+
+    }
 }

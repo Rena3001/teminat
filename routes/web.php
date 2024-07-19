@@ -15,7 +15,7 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TimezoneController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\front\CategoryController as FrontCategoryController;
-use App\Http\Controllers\Front\ContactController as AdminContactController;
+use App\Http\Controllers\Front\ContactController as FrontContactController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\ProductsController;
 use App\Http\Controllers\Front\ProductsDetailController;
@@ -25,7 +25,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 Route::group(['prefix' => LaravelLocalization::setLocale() . '', 'as' => 'client.'], function(){
     Route::get('/',[HomeController::class, 'index'])->name('home');
     Route::get('/about',[AboutController::class, 'index'])->name('about');
-    Route::get('/contact',[AdminContactController::class, 'index'])->name('contact');
+    Route::get('/contact',[FrontContactController::class, 'index'])->name('contact');
     Route::get('/products/{product}', [ProductsDetailController::class, 'index'])->name('product.detail');
     Route::get('/products',[ProductsController::class, 'index'])->name('products');
     Route::get('/categories',[FrontCategoryController::class, 'index'])->name('categories');

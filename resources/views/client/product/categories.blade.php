@@ -105,11 +105,8 @@
 
 @push('js')
     <script>
-
-         // Category dropdown
     $('#parent_category').change(function () {
         let category_id = $(this).val();
-        console.log(category_id);
         if (category_id) {
             $.ajax({
             url: "{{ route('client.fetch.subcategories', '') }}/" + category_id,
