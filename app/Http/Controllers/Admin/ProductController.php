@@ -9,6 +9,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Services\DataService;
 use App\Models\Lang;
+use App\Models\ModelProduct;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -31,12 +32,13 @@ class ProductController extends Controller
         $categories = Category::where('parent_id', '!=', null)->get();
         $brands = Brand::get();
         $langs = Lang::all();
-        return view('admin.products.create', compact('langs', 'categories', 'brands'));
+        $model_products=ModelProduct::get();
+        return view('admin.products.create', compact('langs', 'categories', 'brands', 'model_products'));
     }
 
     public function store(ProductRequest $request)
     {
-        $data = $request->only('title', 'category_id', 'brand_id');
+        $data = $request->only('title', 'category_id', 'brand_id', 'model_product_id');
         $data['slug'] = $this->dataService->sluggableArray($data, 'title');
 
         $created = Product::create($data);
@@ -75,7 +77,9 @@ class ProductController extends Controller
             $product['titles'] = $product->getTranslations('title');
             $category = Category::where('id', $product->category_id)->first()->getTranslations('title');
             $brand = Brand::where('id', $product->brand_id)->first();
-            return view('admin.products.show', compact('product', 'category', 'brand'));
+            $model_product=ModelProduct::where('id', $product->model_product_id)->first();;
+
+            return view('admin.products.show', compact('product', 'category', 'brand','model_product'));
         } else {
             abort(404);
         }
@@ -90,8 +94,10 @@ class ProductController extends Controller
             $categories = Category::where('parent_id', '!=', null)->get();
             $brands = Brand::get();
             $langs = Lang::all();
+            $model_products=ModelProduct::get();
 
-            return view('admin.products.edit', compact('product', 'langs', 'categories', 'brands'));
+
+            return view('admin.products.edit', compact('product', 'langs', 'categories', 'brands', 'model_products'));
         } else {
             abort(404);
         }
@@ -100,7 +106,7 @@ class ProductController extends Controller
     public function update(ProductRequest $request, Product $product)
     {
         if (!empty($product)) {
-            $data = $request->only('title', 'category_id', 'brand_id');
+            $data = $request->only('title', 'category_id', 'brand_id','model_product_id');
             $data['slug'] = $this->dataService->sluggableArray($data, 'title');
 
             $image = $product->image;
