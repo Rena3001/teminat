@@ -82,7 +82,9 @@
                             </div>
                             <div class="card_detail">
                                 <p>{{$product->title}}</p>
-                                <!-- <p>{{$product->brand}}</p> -->
+                                @if ($product->model?->title)
+                                <p>({{$product->model?->title}})</p>
+                                @endif
                                 <button>{{__('word.product_detail')}}</button>
                             </div>
                         </div>

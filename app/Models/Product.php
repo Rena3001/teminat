@@ -16,6 +16,7 @@ class Product extends BaseModel
         'pdf_file',
         'brand_id',
         'category_id',
+        'model_id',
     ];
 
     protected $translatable = ['title', 'slug'];
@@ -28,6 +29,11 @@ class Product extends BaseModel
     public function brand()
     {
         return $this->belongsTo(Brand::class, 'brand_id');
+    }
+
+    public function model()
+    {
+        return $this->belongsTo(ModelProduct::class, 'model_id');
     }
 
     protected static function boot()

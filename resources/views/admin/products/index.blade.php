@@ -69,7 +69,8 @@ Məhsulların Siyahısı
                                 </td>
                                 <td class="align-middle ps-3 category">{{$product->category?->title}}</td>
                                 <td class="align-middle ps-3 brand">{{$product->brand?->title}}</td>
-                                <td class="align-middle ps-3 model_product">{{$product->model_product?->title}}</td>
+                                <!-- @dump($product->model) -->
+                                <td class="align-middle ps-3 model_product">{{$product->model?->title}}</td>
                                 <td class="align-middle title">
                                     @if ($product->image)
                                     <div class="image">
