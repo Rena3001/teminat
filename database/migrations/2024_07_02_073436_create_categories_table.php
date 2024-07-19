@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->unsignedBigInteger('parent_id')->nullable()->default(null);
-            $table->foreign('parent_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('image')->nullable();
             $table->timestamps();
         });

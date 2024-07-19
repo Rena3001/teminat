@@ -38,7 +38,7 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
-        $data = $request->only('title', 'category_id', 'brand_id', 'model_product_id');
+        $data = $request->only('title', 'category_id', 'brand_id', 'model_id');
         $data['slug'] = $this->dataService->sluggableArray($data, 'title');
 
         $created = Product::create($data);
@@ -77,7 +77,7 @@ class ProductController extends Controller
             $product['titles'] = $product->getTranslations('title');
             $category = Category::where('id', $product->category_id)->first()->getTranslations('title');
             $brand = Brand::where('id', $product->brand_id)->first();
-            $model_product=ModelProduct::where('id', $product->model_product_id)->first();;
+            $model_product=ModelProduct::where('id', $product->model_id)->first();;
 
             return view('admin.products.show', compact('product', 'category', 'brand','model_product'));
         } else {
@@ -106,7 +106,7 @@ class ProductController extends Controller
     public function update(ProductRequest $request, Product $product)
     {
         if (!empty($product)) {
-            $data = $request->only('title', 'category_id', 'brand_id','model_product_id');
+            $data = $request->only('title', 'category_id', 'brand_id','model_id');
             $data['slug'] = $this->dataService->sluggableArray($data, 'title');
 
             $image = $product->image;
@@ -116,7 +116,6 @@ class ProductController extends Controller
 
             if ($update) {
                 if ($request->hasFile('image')) {
-
                     if ($image && file_exists(public_path($image))) {
                         unlink(public_path($image));
                     }

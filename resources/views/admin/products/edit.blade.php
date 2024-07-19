@@ -125,14 +125,14 @@ Məhsul Redaktə Etmə
                     </select>
                 </div>
                 <div class="form-group d-block">
-                    <label for="model_product_id">Model seçin:</label>
-                    @error('model_product_id')
+                    <label for="model_id">Model seçin:</label>
+                    @error('model_id')
                     <span class="text-danger ml-2">{{$message}}</span>
                     @enderror
-                    <select class="form-select" id="model_product_id" name="model_product_id" value="{{old('model_product_id')}}" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}'>
+                    <select class="form-select" id="model_id" name="model_id" value="{{old('model_id')}}" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}'>
                         <option value="0">Modellər</option>
                         @foreach ($model_products as $model_product)
-                        <option @selected((int)old('model_product_id',$product->model_product_id)===$model_product->id)
+                        <option @selected((int)old('model_id',$product->model_id)===$model_product->id)
                             value="{{$model_product->id}}"
                             >{{$model_product->title}}</option>
                         @endforeach
