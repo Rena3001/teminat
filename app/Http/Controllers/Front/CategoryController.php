@@ -20,13 +20,14 @@ class CategoryController extends Controller
     public function getSubCategories(Category $category)
     {
         if ($category->exists) {
+            $parents = Category::where('parent_id', null)->orderBy('order')->get();
             if ($category->parent_id == null) {
                 $parents = Category::where('parent_id', null)->orderBy('order')->get();
                 $categories = Category::where('parent_id', $category->id)->orderBy('order')->get();
                 return view('client.product.categories', compact('categories', 'parents'));
             }else{
                 $products = Product::where('category_id', $category->id)->orderBy('order')->get();
-                return view('client.product.products',compact('products'));
+                return view('client.product.products',compact('products', 'parents'));
             }
         } else {
             abort(404);
