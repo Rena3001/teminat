@@ -29,7 +29,7 @@ class BrandController extends Controller
 
     public function store(BrandRequest $request)
     {
-        $data = $request->only('title');
+        $data = $request->only('title','image');
         $created = Brand::create($data);
 
         if ($created) {

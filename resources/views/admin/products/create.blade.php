@@ -121,6 +121,18 @@ Mehsul Əlavə Etmə
                             >{{$brand->title}}</option>
                         @endforeach
                     </select>
+                </div><div class="form-group d-block">
+                    <label for="model_product_id">Model seçin:</label>
+                    @error('model_product_id')
+                    <span class="text-danger ml-2">{{$message}}</span>
+                    @enderror
+                    <select class="form-select" id="model_product_id" name="model_product_id" value="{{old('model_product_id')}}" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}'>
+                        @foreach ($model_products as $model_product)
+                        <option @selected((int)old('model_product_id')===$model_product->id)
+                            value="{{$model_product->id}}"
+                            >{{$model_product->title}}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="card-footer text-right mt-3">

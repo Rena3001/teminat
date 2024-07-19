@@ -49,6 +49,7 @@ Məhsulların Siyahısı
                                 <th class="sort border-top w-auto" data-sort="title">Başlıq</th>
                                 <th class="sort border-top w-auto" data-sort="category">Kateqoriya</th>
                                 <th class="sort border-top w-auto" data-sort="brand">Brend</th>
+                                <th class="sort border-top w-auto" data-sort="model">Model</th>
                                 <th class="sort border-top w-auto">Şəkil</th>
                                 <th class="sort text-end align-middle pe-0 border-top" scope="col">Fəaliyyətlər</th>
                             </tr>
@@ -68,6 +69,7 @@ Məhsulların Siyahısı
                                 </td>
                                 <td class="align-middle ps-3 category">{{$product->category?->title}}</td>
                                 <td class="align-middle ps-3 brand">{{$product->brand?->title}}</td>
+                                <td class="align-middle ps-3 model_product">{{$product->model_product?->title}}</td>
                                 <td class="align-middle title">
                                     @if ($product->image)
                                     <div class="image">

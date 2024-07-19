@@ -69,6 +69,15 @@ Məhsulların Ətraflı Məlumatları
                     <div class="col-lg-6">
                         <div class="card border border-success w-fit">
                             <div class="card-body">
+                                <h4 class="card-title text-warning">Model</h4>
+                                <p class="card-text">{{ $model_product->title }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card border border-success w-fit">
+                            <div class="card-body">
                                 <h4 class="card-title text-warning">Yaranma tarixi</h4>
                                 <p class="card-text">{{ $product->created_at }}
                                 </p>
