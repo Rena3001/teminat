@@ -20,12 +20,11 @@ class MailController extends Controller
             'text' => 'required|string',
         ]);
 
-
+        // dd($validatedData['text']);
         // Debug the validated data
         // dd($validatedData);
-
         // Create a new contact entry
-        // Contact::create($validatedData);
+        Contact::create($validatedData);
 
         Mail::to(env('MAIL_FROM_ADDRESS'))->send(new ContactMsg($validatedData));
         $subject = "New Contact Message";

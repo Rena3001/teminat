@@ -15,4 +15,5 @@ class HomeController extends Controller
         $products = Product::take(10)->get();
         return view('client.home', compact('products', 'categories'));
     }
+    
 }

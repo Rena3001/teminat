@@ -86,29 +86,40 @@
                 <i class="fa-solid fa-paper-plane"></i>
                 {{strtoupper(__('word.contact_us'))}}
             </h3>
-            <form class="contactForm">
-                <label>
-                    {{ __('word.name') }}, {{ __('word.surname') }}
-                    <input name="fullname" type="text">
-                </label>
+            <form action="{{ route('client.contact.submit') }}" method="POST" class="contactForm">
+                @csrf
+                <div class="contactForm__inputs">
+                    <label>
+                        {{__('word.name')}}
+                        <input type="text" name="fullname" required>
+                    </label>
+
+                    <label>
+                        {{__('word.surname')}}
+                        <input type="text" name="surname" required>
+                    </label>
+
+                    <label>
+                        {{__('word.phone')}}
+                        <input type="text" name="phone" required>
+                    </label>
+
+                    <label>
+                        {{__('word.email')}}
+                        <input type="email" name="email" required>
+                    </label>
+                </div>
 
                 <label>
-                    {{ __('word.email') }}
-                    <input name="email" type="text">
-                </label>
-
-                <label>
-                    {{ __('word.phone_number') }}
-                    <input name="phone" type="text">
-                </label>
-
-                <label>
-                    {{ __('word.your_message') }}
+                    {{__('word.your_message')}}
                     <div class="textarea">
-                        <textarea name="message"></textarea>
+                        <textarea name="text" required></textarea>
                     </div>
                 </label>
-                <button>{{__('word.send')}}</button>
+
+                <button type="submit">
+                    {{__('word.send')}}
+                </button>
             </form>
         </section>
 
