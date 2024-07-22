@@ -20,25 +20,18 @@
             </ul>
 
             <div class="header__top--right">
-                <form class="header__search">
-                    <div class="header__search--input">
-                        <input type="text" placeholder="{{__('search.product')}}"  id="search_products" name="search_products">
-                    </div>
-                    <button class="header__search--btn">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </form>
+                <livewire:search-product />
                 <div class="header__lang">
                     <span>{{ Str::upper(app()->getLocale()) }}</span>
                     <i class="fa-solid fa-angle-down"></i>
                     <ul class="header__lang--menu">
                         @foreach($langs as $lang)
-                                        @if (app()->getLocale() !== $lang->code)
-                                        <li>
-                                            <a href="{{ LaravelLocalization::getLocalizedURL($lang->code, null, [], true) }}">{{ Str::upper($lang->code) }}</a>
-                                        </li>
-                                        @endif
-                                        @endforeach
+                        @if (app()->getLocale() !== $lang->code)
+                        <li>
+                            <a href="{{ LaravelLocalization::getLocalizedURL($lang->code, null, [], true) }}">{{ Str::upper($lang->code) }}</a>
+                        </li>
+                        @endif
+                        @endforeach
                     </ul>
                 </div>
             </div>
