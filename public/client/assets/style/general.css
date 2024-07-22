@@ -824,7 +824,10 @@ main {
 
 .electrode_card_logo {
     width: 15rem;
-    height: 4rem;
+    height: 6.5rem;
+}
+.electrode_card_logo img{
+    object-fit: contain;
 }
 
 .electrode_card_img {
@@ -1153,4 +1156,47 @@ main {
     font-size: 28px;
     font-weight: bold;
     color: #333;
+}
+
+
+/* serach list */
+
+.header__top--right{
+    position: relative;
+}
+
+.search_list{
+    position: absolute;
+    top: 125%;
+    border: 1px solid gray;
+    border-radius: 1rem;
+    overflow: hidden;
+    list-style: none;
+}
+.search_list li{
+    list-style: none;
+}
+.search_list li:not(:last-child){
+    border-bottom: 1px solid #cdcdcd;
+}
+.search_list li a{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 0 20px;
+    background: var(--color_white);
+    position: relative;
+    z-index: 2;
+    min-width: 215px;
+    min-height: 6rem;
+}
+.search_list li:hover a{
+    background-color: whitesmoke;
+}
+.search_list li a img{
+    width: 50px;
+}
+.search_list li:hover a p{
+    color: var(--color_lightBlack);
 }

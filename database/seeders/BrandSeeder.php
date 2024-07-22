@@ -15,6 +15,10 @@ class BrandSeeder extends Seeder
     {
         if (empty(Brand::exists())) {
             Brand::create([
+                'title' => 'ELEKTROD',
+                'image'=> '/client/assets/images/logo/full_logo_light.png',
+            ]);
+            Brand::create([
                 'title' => 'GEKA',
                 'image'=> '/client/assets/images/brand_1.png',
             ]);

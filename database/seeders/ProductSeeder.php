@@ -19,8 +19,7 @@ class ProductSeeder extends Seeder
         if (empty(Product::exists())) {
             // parent categories
             $categories = Category::all();
-            $brend = Brand::first();
-            $brend2 = Brand::where('id','!=',$brend->id)->first();
+            $brand = Brand::first();
 
             foreach ($categories as $category) {
                 $children = $category->childrenCategories;
@@ -39,7 +38,7 @@ class ProductSeeder extends Seeder
                         'pdf_file' => '/client/assets/pdfs/product_1.pdf',
 
                         'category_id' => $child->id,
-                        'brand_id' => $brend->id,
+                        'brand_id' => $brand->id,
                     ]);
                     Product::create([
                         'title' => [
@@ -54,7 +53,7 @@ class ProductSeeder extends Seeder
                         'pdf_file' => '/client/assets/pdfs/product_2.pdf',
 
                         'category_id' => $child->id,
-                        'brand_id' => $brend2->id,
+                        'brand_id' => $brand->id,
                     ]);
                     Product::create([
                         'title' => [
@@ -69,7 +68,7 @@ class ProductSeeder extends Seeder
                         'pdf_file' => '/client/assets/pdfs/product_3.pdf',
 
                         'category_id' => $child->id,
-                        'brand_id' => $brend->id,
+                        'brand_id' => $brand->id,
                     ]);
                     Product::create([
                         'title' => [
@@ -84,7 +83,7 @@ class ProductSeeder extends Seeder
                         'pdf_file' => '/client/assets/pdfs/product_4.pdf',
 
                         'category_id' => $child->id,
-                        'brand_id' => $brend2->id,
+                        'brand_id' => $brand->id,
                     ]);
                     Product::create([
                         'title' => [
@@ -99,7 +98,7 @@ class ProductSeeder extends Seeder
                         'pdf_file' => '/client/assets/pdfs/product_5.pdf',
 
                         'category_id' => $child->id,
-                        'brand_id' => $brend->id,
+                        'brand_id' => $brand->id,
                     ]);
                     Product::create([
                         'title' => [
@@ -114,7 +113,7 @@ class ProductSeeder extends Seeder
                         'pdf_file' => '/client/assets/pdfs/product_6.pdf',
 
                         'category_id' => $child->id,
-                        'brand_id' => $brend2->id,
+                        'brand_id' => $brand->id,
                     ]);
                     Product::create([
                         'title' => [
@@ -129,7 +128,7 @@ class ProductSeeder extends Seeder
                         'pdf_file' => '/client/assets/pdfs/product_7.pdf',
 
                         'category_id' => $child->id,
-                        'brand_id' => $brend->id,
+                        'brand_id' => $brand->id,
                     ]);
                     Product::create([
                         'title' => [
@@ -144,7 +143,7 @@ class ProductSeeder extends Seeder
                         'pdf_file' => '/client/assets/pdfs/product_8.pdf',
 
                         'category_id' => $child->id,
-                        'brand_id' => $brend2->id,
+                        'brand_id' => $brand->id,
                     ]);
                 }
             }
