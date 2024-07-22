@@ -33,45 +33,42 @@
 
         <section class="mainBox__content">
             <h2 class="mainBox__content--heading">{{__('word.contact_us')}}</h2>
-            <form action="" class="contactForm">
+            <form action="{{ route('client.contact.submit') }}" method="POST" class="contactForm">
+                @csrf
                 <div class="contactForm__inputs">
                     <label>
                         {{__('word.name')}}
-                        <input type="text" name="name">
+                        <input type="text" name="fullname" required>
                     </label>
 
                     <label>
                         {{__('word.surname')}}
-
-                        <input type="text" name="surname">
+                        <input type="text" name="surname" required>
                     </label>
 
                     <label>
                         {{__('word.phone')}}
-
-                        <input type="text" name="phone">
+                        <input type="text" name="phone" required>
                     </label>
 
                     <label>
                         {{__('word.email')}}
-
-                        <input type="text" name="email">
+                        <input type="email" name="email" required>
                     </label>
                 </div>
 
                 <label>
                     {{__('word.your_message')}}
-
                     <div class="textarea">
-                        <textarea name="message"></textarea>
+                        <textarea name="text" required></textarea>
                     </div>
                 </label>
 
-                <button>
+                <button type="submit">
                     {{__('word.send')}}
-
                 </button>
             </form>
+
 
 
         </section>

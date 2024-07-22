@@ -19,6 +19,7 @@ use App\Http\Controllers\Front\ContactController as FrontContactController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\ProductsController;
 use App\Http\Controllers\Front\ProductsDetailController;
+use App\Http\Controllers\MailController as ControllersMailController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 // Front
@@ -26,6 +27,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale() . '', 'as' => 'client
     Route::get('/',[HomeController::class, 'index'])->name('home');
     Route::get('/about',[AboutController::class, 'index'])->name('about');
     Route::get('/contact',[FrontContactController::class, 'index'])->name('contact');
+    Route::post('/contact-submit', [FrontContactController::class, 'submit'])->name('contact.submit');
     Route::get('/products/{product}', [ProductsDetailController::class, 'index'])->name('product.detail');
     Route::get('/products',[ProductsController::class, 'index'])->name('products');
     Route::get('/categories',[FrontCategoryController::class, 'index'])->name('categories');
@@ -73,3 +75,7 @@ Route::group(['middleware' => 'auth', 'prefix' => LaravelLocalization::setLocale
 // Admin Login
 Route::get('/control/login', [AuthController::class, 'login'])->name('login');
 Route::post('/control/login', [AuthController::class, 'login'])->name('login_login');
+
+
+
+Route::post('/client/contact/submit', [ControllersMailController::class, 'sendContactEmail'])->name('client.contact.submit');
