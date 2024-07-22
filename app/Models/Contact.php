@@ -12,6 +12,6 @@ class Contact extends BaseModel
         'fullname',
         'email',
         'phone',
-        'message',
+        'text',
     ];
 }

@@ -64,15 +64,13 @@
             </div>
 
             <div class="other">
-                <div class="other__heading">
-                    <h4>Related Products</h4>
-                    <a href="#">See All</a>
-                </div>
+
 
                 <div class="swiper">
                     <div class="swiper-wrapper">
                         <!-- Similar products slider items -->
                         @foreach ($relateds as $similarProduct)
+
                         <div class="swiper-slide">
                             <a href="{{ route('client.product.detail', $similarProduct->id) }}">
                                 <div class="product_detail_card">
@@ -84,7 +82,10 @@
                                     </div>
                                     <div class="card_detail">
                                         <p>{{ $similarProduct->title }}</p>
+                                        @if($similarProduct->model)
+
                                         <p>({{ $similarProduct->model }})</p>
+                                        @endif
                                         <button>{{ __('word.product_detail') }}</button>
                                     </div>
                                 </div>
