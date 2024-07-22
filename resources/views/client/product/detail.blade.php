@@ -64,13 +64,14 @@
             </div>
 
             <div class="other">
-
+                <div class="other__heading">
+                    <h4>Related Products</h4>
+                </div>
 
                 <div class="swiper">
                     <div class="swiper-wrapper">
                         <!-- Similar products slider items -->
                         @foreach ($relateds as $similarProduct)
-
                         <div class="swiper-slide">
                             <a href="{{ route('client.product.detail', $similarProduct->id) }}">
                                 <div class="product_detail_card">
