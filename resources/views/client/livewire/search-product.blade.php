@@ -1,5 +1,5 @@
 <div>
-    <form class="header__search">
+    <form class="header__search" action="{{route('client.products')}}">
         <div class="header__search--input">
             <input wire:model.live="search" type="text" placeholder="{{__('search.product')}}" id="search_products" name="search_products">
         </div>

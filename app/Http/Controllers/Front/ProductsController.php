@@ -17,6 +17,9 @@ class ProductsController extends Controller
         if (request()->has('category') && request()->filled('category')) {
             $products = $products->where('category_id', request('category'));
         }
+        if (request()->has('search_products') && request()->filled('search_products')) {
+            $products = $products->where('title', 'LIKE', '%' . request('search_products') . '%');
+        }
         $products = $products->orderBy('order')->get();
         return view('client.product.products',compact('products','parents'));
     }

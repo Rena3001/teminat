@@ -27,8 +27,8 @@
                         <p class="margin_inline">{{__('search.product')}}</p>
                     </div>
                     <div class="search_box_input margin_inline">
-                        <form class="form">
-                            <input type="text" placeholder="{{__('search.product')}}" id="search_products_category" name="search_products_category" />
+                        <form class="form" action="{{route('client.products')}}">
+                            <input type="text" placeholder="{{__('search.product')}}" id="search_all_products" name="search_products" />
                             <button class="product_search_button">
                                 <i class="fas fa-search"></i>
                             </button>
