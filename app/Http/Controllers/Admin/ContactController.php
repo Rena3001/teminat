@@ -38,7 +38,7 @@ class ContactController extends Controller
             $deleted = $contact->delete();
 
             if ($deleted) {
-                return redirect()->route('admin.valve_categories.index')
+                return redirect()->route('admin.contacts.index')
                     ->with('type', 'success')
                     ->with('message', 'Əlaqə uğurla silindi.');
             } else {
