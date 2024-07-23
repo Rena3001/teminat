@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const headerLangMenu = document.querySelector(".header__lang--menu");
     const iconHamburger = document.querySelector(".icon-hamburger");
     const header = document.querySelector(".header");
-    const headerSearchInput = document.querySelector('.header__search--input');
+    const headerSearchInput = document.querySelector('.header__top--right');
     const headerSearchBtn = document.querySelector('.header__search--btn');
     const headerSearchSelect = document.getElementById("headerSearchSelect");
     const headerSearchSelectedGroup = document.getElementById("headerSearchSelectedGroup");
@@ -91,6 +91,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (headerSearchBtn && !headerSearchBtn.contains(e.target) && !headerSearchInput.contains(e.target)) {
             headerSearchInput.classList.remove("active");
             headerSearchBtn.type = "button";
+            if (document.querySelector('ul.search_list')) {
+                document.querySelector('ul.search_list').style.display = "none";
+            }
         }
     });
 });
