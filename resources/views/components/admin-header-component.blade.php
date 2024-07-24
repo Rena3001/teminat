@@ -16,7 +16,7 @@
             </form>
             <div class="btn-close position-absolute end-0 top-50 translate-middle cursor-pointer shadow-none" data-bs-dismiss="search"><button class="btn btn-link p-0" aria-label="Close"></button>
             </div>
-      
+
         </div>
         <ul class="navbar-nav navbar-nav-icons flex-row">
             <li class="nav-item dropdown language-switch " data-bs-auto-close="outside">
@@ -29,7 +29,7 @@
                 <div class="dropdown-menu dropdown-menu-end navbar-dropdown-caret py-0 shadow border lang " aria-labelledby="navbarDropdownUser" data-bs-popper="static">
                     @foreach ($langs as $lang)
                     @if ($currentLang->code !== $lang->code)
-                    <a rel="alternate" hreflang="{{ $lang->code }}" href="{{ LaravelLocalization::getLocalizedURL($lang->code, null, [], true) }}" class="dropdown-item english" aria-expanded="true">
+                    <a rel="alternate" hreflang="{{ $lang->code }}" href="{{ route('locale', $lang->code) }}" class="dropdown-item english" aria-expanded="true">
                         @if ($lang->image)
                         <img src="{{ $lang->image }}" class="img-flag mr-2" alt="{{ $lang->code . '-' . $lang->country }}">
                         @endif
