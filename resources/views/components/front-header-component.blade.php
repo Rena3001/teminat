@@ -28,7 +28,7 @@
                         @foreach($langs as $lang)
                         @if (app()->getLocale() !== $lang->code)
                         <li>
-                            <a href="{{ LaravelLocalization::getLocalizedURL($lang->code, null, [], true) }}">{{ Str::upper($lang->code) }}</a>
+                            <a href="{{ route('locale', $lang->code) }}">{{ Str::upper($lang->code) }}</a>
                         </li>
                         @endif
                         @endforeach

@@ -22,8 +22,13 @@ use App\Http\Controllers\Front\ProductsDetailController;
 use App\Http\Controllers\MailController as ControllersMailController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
+// set language
+Route::get('/language/{locale}', function($locale){
+    session()->put('locale', $locale);
+    return redirect()->back();
+})->name('locale');
 // Front
-Route::group(['prefix' => LaravelLocalization::setLocale() . '', 'as' => 'client.'], function(){
+Route::group(['as' => 'client.'], function(){
     Route::get('/',[HomeController::class, 'index'])->name('home');
     Route::get('/about',[AboutController::class, 'index'])->name('about');
     Route::get('/contact',[FrontContactController::class, 'index'])->name('contact');
@@ -37,7 +42,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale() . '', 'as' => 'client
 
 // Admin
 Route::post('/set-timezone', [TimezoneController::class, 'setTimezone']);
-Route::group(['middleware' => 'auth', 'prefix' => LaravelLocalization::setLocale() . '/control', 'as' => 'admin.'], function () {
+Route::group(['middleware' => 'auth', 'prefix' => '/control', 'as' => 'admin.'], function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
