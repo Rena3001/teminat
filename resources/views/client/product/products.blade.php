@@ -44,7 +44,7 @@
                             <select id="parent_category">
                                 <option value="">Select Category</option>
                                 @foreach ($parents as $parent)
-                                <option value="{{$parent->id}}">{{$parent->title}}</option>
+                                <option value="{{$parent->slug}}">{{$parent->title}}</option>
                                 @endforeach
                             </select>
 
@@ -70,9 +70,9 @@
                 </h1>
 
                 <section class="products_cards_grid">
-                    <!-- Products Cards -->
+                    <!-- Products Cards -->@if ($products->count())
                     @foreach ($products as $product)
-                    <a href="{{ route('client.product.detail', $product->id) }}">
+                    <a href="{{ route('client.product.detail', $product->slug) }}">
                         <div class="product_detail_card">
                             <div class="electrode_card_logo">
                                 <img src="{{$product->brand->image}}" alt="{{$product->brand->title}}" />
@@ -90,6 +90,11 @@
                         </div>
                     </a>
                     @endforeach
+                    @else
+                    <div class="not_found_box">
+                        <p>{{__('sentence.404_product')}}</p>
+                    </div>
+                    @endif
                 </section>
             </section>
         </div>
@@ -114,7 +119,7 @@
 
                 if (response.categories.length > 0) {
                     $.each(response.categories, function (index, subCategory) {
-                        subCategoryDropdown.append(new Option(subCategory.title[response.lang], subCategory.id));
+                        subCategoryDropdown.append(new Option(subCategory.title[response.lang], subCategory.slug[response.lang]));
                     });
                 } else {
                     subCategoryDropdown.append(new Option('No sub-categories found', ''));

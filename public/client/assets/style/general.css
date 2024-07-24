@@ -295,7 +295,7 @@ main {
 /* HEADER BOTTOM */
 
 .header__bottom--bcg {
-    box-shadow: 0 0.1rem 0.5rem var(--color_lighterGray),
+    box-shadow: 0 0.1rem 0.5rem #cccccc42,
         0 0.1rem 0.6rem var(--color_lightBlack);
     /* background-color: var(--color_lightestGray); */
 }

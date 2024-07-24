@@ -28,11 +28,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale() . '', 'as' => 'client
     Route::get('/about',[AboutController::class, 'index'])->name('about');
     Route::get('/contact',[FrontContactController::class, 'index'])->name('contact');
     Route::post('/contact-submit', [FrontContactController::class, 'submit'])->name('contact.submit');
-    Route::get('/products/{product}', [ProductsDetailController::class, 'index'])->name('product.detail');
+    Route::get('/products/{slug}', [ProductsDetailController::class, 'index'])->name('product.detail');
     Route::get('/products',[ProductsController::class, 'index'])->name('products');
     Route::get('/categories',[FrontCategoryController::class, 'index'])->name('categories');
-    Route::get('/categories/{category}/subcategories',[FrontCategoryController::class, 'getSubCategories'])->name('subcategories');
-    Route::get('/subcategories/{category}',[FrontCategoryController::class, 'fetchSubCategories'])->name('fetch.subcategories');
+    Route::get('/categories/{slug}',[FrontCategoryController::class, 'getSubCategories'])->name('subcategories');
+    Route::get('/subcategories/{slug}',[FrontCategoryController::class, 'fetchSubCategories'])->name('fetch.subcategories');
 });
 
 // Admin

@@ -230,6 +230,14 @@ class LanguageLineSeeder extends Seeder
                     'az' => 'Heç bir kateqoriya tapılmadı',
                 ],
             ]);
+            LanguageLine::create([
+                'group' => 'sentence',
+                'key' => '404_product',
+                'text' => [
+                    'en' => 'Not found any product',
+                    'az' => 'Heç bir məhsul tapılmadı',
+                ],
+            ]);
         }
     }
 }
