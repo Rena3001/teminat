@@ -45,7 +45,7 @@
                             <select id="parent_category">
                             <option value="">Select Category</option>
                                 @foreach ($parents as $parent)
-                                <option value="{{$parent->id}}">{{$parent->title}}</option>
+                                <option value="{{$parent->slug}}">{{$parent->title}}</option>
                                 @endforeach
                             </select>
 
@@ -75,7 +75,7 @@
                     @if ($categories->count())
                     @foreach ($categories as $category)
                     <div class="category_detail_image">
-                        <a href="{{route('client.subcategories',$category->id)}}">
+                        <a href="{{route('client.subcategories',$category->slug)}}">
                             <div class="hover_effect">
                                 <img src="{{ $category->image }}" alt="{{$category->title}}" />
                             </div>
@@ -117,7 +117,7 @@
 
                 if (response.categories.length > 0) {
                     $.each(response.categories, function (index, subCategory) {
-                        subCategoryDropdown.append(new Option(subCategory.title[response.lang], subCategory.id));
+                        subCategoryDropdown.append(new Option(subCategory.title[response.lang], subCategory.slug[response.lang]));
                     });
                 } else {
                     subCategoryDropdown.append(new Option('No sub-categories found', ''));

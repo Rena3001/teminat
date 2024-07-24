@@ -73,7 +73,7 @@
                         <!-- Similar products slider items -->
                         @foreach ($relateds as $similarProduct)
                         <div class="swiper-slide">
-                            <a href="{{ route('client.product.detail', $similarProduct->id) }}">
+                            <a href="{{ route('client.product.detail', $similarProduct->slug) }}">
                                 <div class="product_detail_card">
                                     <div class="electrode_card_logo">
                                         <img src="{{ $similarProduct->brand->image ?? 'default_logo.png' }}" alt="{{ $similarProduct->brand->title ?? 'N/A' }}">

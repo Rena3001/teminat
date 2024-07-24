@@ -47,7 +47,7 @@
 
                 @foreach ($products as $product)
 
-                <a href="{{route('client.product.detail',$product->id)}}">
+                <a href="{{route('client.product.detail',$product->slug)}}">
                     <div class="product_detail_card">
                       <div class="electrode_card_logo">
                         <img

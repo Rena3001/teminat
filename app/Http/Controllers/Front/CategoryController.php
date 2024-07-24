@@ -5,7 +5,7 @@ namespace App\Http\Controllers\front;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Http\Request;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class CategoryController extends Controller
 {
@@ -17,31 +17,35 @@ class CategoryController extends Controller
     }
 
 
-    public function getSubCategories(Category $category)
+    public function getSubCategories(string $slug)
     {
-        if ($category->exists) {
+        $category = Category::where('slug->' . LaravelLocalization::getCurrentLocale(), $slug)->first();
+        $category = $category??Category::where('slug', 'LIKE', '%'.$slug.'%')->first();
+        if ($category) {
             $parents = Category::where('parent_id', null)->orderBy('order')->get();
             if ($category->parent_id == null) {
                 $parents = Category::where('parent_id', null)->orderBy('order')->get();
                 $categories = Category::where('parent_id', $category->id)->orderBy('order')->get();
                 return view('client.product.categories', compact('categories', 'parents'));
-            }else{
+            } else {
                 $products = Product::where('category_id', $category->id)->orderBy('order')->get();
-                return view('client.product.products',compact('products', 'parents'));
+                return view('client.product.products', compact('products', 'parents'));
             }
         } else {
             abort(404);
         }
     }
 
-    public function fetchSubCategories(Category $category)
+    public function fetchSubCategories(string $slug)
+
     {
         $categories = collect();
-
+        $category = Category::where('slug->' . LaravelLocalization::getCurrentLocale(), $slug)->first();
+        $category = $category??Category::where('slug', 'LIKE', '%'.$slug.'%')->first();
         if ($category && $category->parent_id == null) {
             $categories = Category::where('parent_id', $category->id)->orderBy('order')->get();
         }
 
-        return response()->json(['categories'=>$categories, 'lang'=>app()->getLocale()]);
+        return response()->json(['categories' => $categories, 'lang' => app()->getLocale()]);
     }
 }
