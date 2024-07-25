@@ -37,7 +37,7 @@ class ModelProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductModelRequest $request)
     {
         $data = $request->only('title', 'parent_id');
         $created = ModelProduct::create($data);

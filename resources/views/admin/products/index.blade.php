@@ -69,7 +69,6 @@ Məhsulların Siyahısı
                                 </td>
                                 <td class="align-middle ps-3 category">{{$product->category?->title}}</td>
                                 <td class="align-middle ps-3 brand">{{$product->brand?->title}}</td>
-                                <!-- @dump($product->model) -->
                                 <td class="align-middle ps-3 model_product">{{$product->model?->title}}</td>
                                 <td class="align-middle title">
                                     @if ($product->image)
@@ -95,11 +94,10 @@ Məhsulların Siyahısı
                                                 href="{{ route('admin.products.edit', $product->id) }}"><span
                                                     data-feather="edit">Redakte et</span></a>
                                             <div class="dropdown-divider"></div>
-                                            <form action="{{ route('admin.products.destroy', $product->id) }}"
-                                                onclick="return confirm('Əminsiniz?')" method="post">
-
-                                                @method('delete')
+                                            <form action="{{ route('admin.products.destroy', $product->id) }}"  method="post"
+                                                onclick="return confirm('Əminsiniz?','Bəli','Xeyir')">
                                                 @csrf
+                                                @method('delete')
                                                 <button type="submit" style="width: fit-content;"
                                                     class="dropdown-item text-danger">
                                                     <span data-feather="delete">Sil</span></button>
@@ -132,7 +130,7 @@ Məhsulların Siyahısı
 
 @endsection
 
-@push('scripts')
+@push('js')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 
