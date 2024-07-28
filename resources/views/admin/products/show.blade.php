@@ -26,8 +26,7 @@ Məhsulların Ətraflı Məlumatları
                             <div class="card-body">
                                 <h4 class="card-title text-warning">Başlıq</h4>
                                 @foreach ($product->titles as $lang => $value)
-                                <p class="card-text"><strong
-                                        class="me-3 text-info">{{ strtoupper($lang) }}</strong>{{ $value }}
+                                <p class="card-text"><strong class="me-3 text-info">{{ strtoupper($lang) }}</strong>{{ $value }}
                                 </p>
                                 @endforeach
                             </div>
@@ -38,8 +37,7 @@ Məhsulların Ətraflı Məlumatları
                             <div class="card-body">
                                 <h4 class="card-title text-warning">Kateqoriya</h4>
                                 @foreach ($category as $lang => $value)
-                                <p class="card-text"><strong
-                                        class="me-3 text-info">{{ strtoupper($lang) }}</strong>{{ $value }}
+                                <p class="card-text"><strong class="me-3 text-info">{{ strtoupper($lang) }}</strong>{{ $value }}
                                 </p>
                                 @endforeach
                             </div>
@@ -50,8 +48,7 @@ Məhsulların Ətraflı Məlumatları
                             <div class="card-body">
                                 <h4 class="card-title text-warning">Slaq</h4>
                                 @foreach ($product->slugs as $lang => $value)
-                                <p class="card-text"><strong
-                                        class="me-3 text-info">{{ strtoupper($lang) }}</strong>{{ $value }}
+                                <p class="card-text"><strong class="me-3 text-info">{{ strtoupper($lang) }}</strong>{{ $value }}
                                 </p>
                                 @endforeach
                             </div>
@@ -66,15 +63,17 @@ Məhsulların Ətraflı Məlumatları
                             </div>
                         </div>
                     </div>
+                    @if ($model_product)
                     <div class="col-lg-6">
                         <div class="card border border-success w-fit">
                             <div class="card-body">
                                 <h4 class="card-title text-warning">Model</h4>
-                                <p class="card-text">{{ $model_product->title }}
+                                <p class="card-text">{{ $model_product?->title }}
                                 </p>
                             </div>
                         </div>
                     </div>
+                    @endif
                     <div class="col-lg-6">
                         <div class="card border border-success w-fit">
                             <div class="card-body">

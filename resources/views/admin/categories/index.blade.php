@@ -84,13 +84,18 @@ Kateqoriya Siyahısı
                                                 <span class="fas fa-ellipsis-h fs-10"></span>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-end py-2">
-                                                <a class="dropdown-item" href="{{ route('admin.categories.show', $model->id) }}"><span data-feather="info"></span></a>
-                                                <a class="dropdown-item" href="{{ route('admin.categories.edit', $model->id) }}"><span data-feather="edit"></span></a>
+                                                <a class="dropdown-item" href="{{ route('admin.categories.show', $model->id) }}">
+                                                    <span data-feather="info"></span>
+                                                </a>
+                                                <a class="dropdown-item" href="{{ route('admin.categories.edit', $model->id) }}">
+                                                    <span data-feather="edit"></span>
+                                                </a>
                                                 <div class="dropdown-divider"></div>
                                                 <form action="{{ route('admin.categories.destroy', $model->id) }}" method="post" onclick="return confirm('Əminsiniz?','Bəli','Xeyir')">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="dropdown-item text-danger"><span data-feather="delete"></span></button>
+                                                    <button type="submit" class="dropdown-item text-danger"><span data-feather="delete"></span>
+                                                </button>
                                                 </form>
                                             </div>
                                         </div>

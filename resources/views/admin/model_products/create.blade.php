@@ -1,43 +1,5 @@
 @extends('admin.layout.master')
 
-@push('css')
-<link href="{{asset('admin/assets/vendors/choices/choices.min.css')}}" rel="stylesheet">
-@endpush
-@push('js')
-<script src="{{asset('admin/assets/vendors/choices/choices.min.js')}}"></script>
-<script>
-    window.addEventListener('load', function() {
-        const boxImage = document.querySelector('.image-box');
-        boxImage.classList.add('d-none');
-
-        document.querySelector('.custom-file-image').addEventListener('change', function(event) {
-            if (event.target.files[0]) {
-                var tmppath = URL.createObjectURL(event.target.files[0]);
-                document.querySelector('.image-box img').setAttribute("src", tmppath);
-                boxImage.classList.remove('d-none');
-            } else {
-                document.querySelector('.image-box img').setAttribute("src", '');
-                boxImage.classList.add('d-none');
-            }
-        });
-
-        const boxPdf = document.querySelector('.pdf-box');
-        boxPdf.classList.add('d-none');
-
-        document.querySelector('.custom-file-pdf').addEventListener('change', function(event) {
-            if (event.target.files[0]) {
-                var tmppath = URL.createObjectURL(event.target.files[0]);
-                document.querySelector('.pdf-box embed').setAttribute("src", tmppath);
-                boxPdf.classList.remove('d-none');
-            } else {
-                document.querySelector('.pdf-box embed').setAttribute("src", '');
-                boxPdf.classList.add('d-none');
-            }
-        });
-    });
-</script>
-@endpush
-
 @push('page_title')
 Yeni Model
 @endpush
@@ -64,8 +26,8 @@ Model Əlavə Etmə
                     <div class="form-group">
                         <label for="title" class="m-0">Başlıq
                             </label>
-                        <input type="text" class="form-control @error('title.') is-invalid @enderror" id="title" name="title" value="{{ old('title.' ) }}">
-                        @error('title.' )
+                        <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title' ) }}">
+                        @error('title')
                         <span class="error invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
@@ -78,9 +40,6 @@ Model Əlavə Etmə
     <div class="col-lg-7">
         <div class="card">
             <div class="card-body">
-
-
-
                 <div class="card-footer text-right mt-3">
                     <button type="submit" class="btn btn-success">Əlavə et</button>
                     <a href="{{route('admin.model_products.index')}}" class="btn btn-warning">Ləğv et</a>

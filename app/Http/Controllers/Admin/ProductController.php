@@ -181,7 +181,7 @@ class ProductController extends Controller
     {
         $ids = $request->input('selected_ids');
         if ($ids && is_array($ids)) {
-            Category::whereIn('id', $ids)->delete();
+            Product::whereIn('id', $ids)->delete();
             return redirect()->route('admin.products.index')->with('success', 'Selected products deleted successfully.');
         }
 

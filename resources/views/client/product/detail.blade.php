@@ -60,7 +60,11 @@
 
         <div class="product_desc">
             <div class="product_iframe">
-                <iframe src="{{ $product->pdf_file }}" frameborder="0"></iframe>
+                <!-- <iframe src="{{ $product->pdf_file }}" frameborder="0"></iframe> -->
+                <!-- <embed src="{{ $product->pdf_file }}" type="application/pdf" style="width: 100%; height:100%;"> -->
+                <object data="mypdf.pdf" type="application/pdf" frameborder="0" width="100%" height="100%" style="padding: 20px;">
+                    <embed src="{{ $product->pdf_file }}" width="100%" height="100%" />
+                </object>
             </div>
 
             <div class="other">

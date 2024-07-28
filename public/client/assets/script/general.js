@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         iconHamburger.addEventListener("click", () => {
             iconHamburger.classList.toggle("active");
             header.classList.toggle("active");
+            document.body.classList.toggle("overflow-y-hidden");
         });
     }
 

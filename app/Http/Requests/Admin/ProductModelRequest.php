@@ -25,4 +25,12 @@ class ProductModelRequest extends FormRequest
         ];
 
     }
+
+    public function messages(): array
+    {
+        return [
+            'title.required' => 'Başlıq hissəsi boş buraxıla bilməz!',
+            'title.unique' => 'Başlıq unikal olmalıdır',
+        ];
+    }
 }
