@@ -44,7 +44,7 @@ Məhsulların Siyahısı
                     </thead>
                     <tbody class="list" id="bulk-select-body">
                         @foreach ($products as $product)
-                        <tr>
+                        <tr data-id='{{$product->id}}'>
                             <td class="fs-9 align-middle">
                                 <div class="form-check mb-0 fs-8">
                                     <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":{{$product->order}},"id":{{$product->id}}}'>
@@ -101,8 +101,6 @@ Məhsulların Siyahısı
                     </button>
                 </div>
             </div>
-            <p class="mb-2">Click the button to get selected rows</p><button class="btn btn-warning" data-selected-rows="data-selected-rows">Get Selected Rows</button>
-            <pre id="selectedRows"></pre>
             <form id="bulk-delete-form" method="post" action="{{ route('admin.products.bulk-delete') }}" class="d-none">
                 @csrf
                 @method('delete')
@@ -124,7 +122,7 @@ Məhsulların Siyahısı
         const allItems = JSON.parse('{!! json_encode($products, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}');
         // console.log(allItems);
         let orderedProducts;
-        if (allItems && allItems.length>0) {
+        if (allItems && allItems.length > 0) {
             orderedProducts = allItems.map((value, index, array) => {
                 return {
                     order: value.order,
@@ -169,13 +167,21 @@ Məhsulların Siyahısı
                 onEnd: function(evt) {
                     const items = evt.from.children;
                     const products = [];
-                    console.log(items);
+                    let ids = [], orders = [];
 
                     for (let i = 0; i < items.length; i++) {
                         const dataId = items[i].querySelector('.id').innerText.trim();
+                        const dataOrder = items[i].querySelector('.order').innerText.trim();
+                        ids = [...ids, dataId];
+                        orders = [...orders, dataOrder];
+                    }
+
+                    orders = orders.sort((a, b) => a - b);
+
+                    for (let j = 0; j < ids.length; j++) {
                         products.push({
-                            id: dataId,
-                            order: i + 1
+                            id: ids[j],
+                            order: orders[j],
                         });
                     }
 
@@ -190,7 +196,15 @@ Məhsulların Siyahısı
                         .then(response => response.json())
                         .then(data => {
                             if (data.success) {
-                                console.log('Order updated successfully.');
+                                // console.log('Order updated successfully.');
+                                if (data.req && data.req.length > 0) {
+                                    data.req.forEach(item => {
+                                        const row = document.querySelector(`tr[data-id="${item.id}"]`);
+                                        if (row) {
+                                            row.querySelector('.order').innerText = item.order;
+                                        }
+                                    });
+                                }
                             } else {
                                 console.error('Error updating order:', data.message);
                             }

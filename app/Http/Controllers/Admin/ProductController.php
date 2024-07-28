@@ -195,6 +195,6 @@ class ProductController extends Controller
             Product::where('id', $product['id'])->update(['order' => $product['order']]);
         }
 
-        return response()->json(['success' => true]);
+        return response()->json(['success' => true, 'req'=>$request->all()]);
     }
 }

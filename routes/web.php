@@ -56,7 +56,7 @@ Route::group(['middleware' => 'auth', 'prefix' => '/control', 'as' => 'admin.'],
     Route::delete('api/brands/bulk-delete', [BrandController::class, 'delete_selected_brands'])->name('brands.bulk-delete');
     Route::resource('products', ProductController::class);
     Route::delete('api/products/bulk-delete', [ProductController::class, 'delete_selected_products'])->name('products.bulk-delete');
-    // Route::post('products/changeOrder', [ProductController::class, 'changeOrder'])->name('products.changeOrder');
+    Route::post('products/changeOrder', [ProductController::class, 'changeOrder'])->name('products.changeOrder');
     Route::resource('model_products', ModelProductController::class);
     Route::delete('api/model_products/bulk-delete', [ModelProductController::class, 'delete_selected_model_products'])->name('model_products.bulk-delete');
 
