@@ -22,12 +22,23 @@ Məhsulların Siyahısı
         </div>
     </div>
     <div class="card-body">
-        <div id="tableExample" data-list='{" valueNames":["order","id","title","category","brand"],"page":5,"pagination":true}'>
+        <div id="tableExample" data-list='{"valueNames":["order","id","title","category","brand","model"],"page":5,"pagination":true}'>
+            <div class="d-flex align-items-center mb-3 ">
+                <div class="search-box mx-auto">
+                    <form class="position-relative">
+                        <input class="form-control search-input search form-control-sm" type="search" placeholder="Axtarış" aria-label="Search">
+                        <span class="fas fa-search search-box-icon"></span>
+                    </form>
+                </div>
+                <div class="reordered-box">
+                    <a href="{{ route('admin.products.reorder') }}" class="btn btn-phoenix-warning btn-sm ms-2">Yeniden Sırala</a>
+                </div>
+            </div>
             <div class="table-responsive mx-n1 px-1">
                 <table class="table table-sm border-top border-translucent fs-9 mb-0">
                     <thead>
                         <tr>
-                            <th class="white-space-nowrap fs-9 align-middle ps-0" style="max-width:20px; width:18px;">
+                            <th class="white-space-nowrap fs-9 align-middle ps-0 border-top" style="max-width:20px; width:18px;">
                                 <div class="form-check mb-0 fs-8">
                                     <input class="form-check-input" id="bulk-select-example" type="checkbox" data-bulk-select='{"body":"bulk-select-body","actions":"bulk-select-actions","replacedElement":"bulk-select-replace-element"}' indeterminate="indeterminate">
                                 </div>
@@ -130,7 +141,6 @@ Məhsulların Siyahısı
                 };
             });
         }
-        // console.log(orderedProducts);
 
         if (applyBulkActionBtn) {
             applyBulkActionBtn.addEventListener('click', function() {
@@ -167,7 +177,8 @@ Məhsulların Siyahısı
                 onEnd: function(evt) {
                     const items = evt.from.children;
                     const products = [];
-                    let ids = [], orders = [];
+                    let ids = [],
+                        orders = [];
 
                     for (let i = 0; i < items.length; i++) {
                         const dataId = items[i].querySelector('.id').innerText.trim();
