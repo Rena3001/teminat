@@ -188,13 +188,23 @@ class ProductController extends Controller
         return redirect()->route('admin.products.index')->with('error', 'No products selected for deletion.');
     }
 
-
     public function changeOrder(Request $request)
     {
         foreach ($request->all()  as $product) {
             Product::where('id', $product['id'])->update(['order' => $product['order']]);
         }
 
-        return response()->json(['success' => true]);
+        return response()->json(['success' => true, 'req'=>$request->all()]);
+    }
+
+    public function reorder(){
+        $products = Product::orderBy('order')->get();
+        $i = 1;
+        foreach ($products as $product){
+            $product->order = $i;
+            $product->save();
+            $i++;
+        }
+        return redirect()->route('admin.products.index')->with('success', 'Products reordered successfully.');
     }
 }

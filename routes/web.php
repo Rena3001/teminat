@@ -32,7 +32,6 @@ Route::group(['as' => 'client.'], function(){
     Route::get('/',[HomeController::class, 'index'])->name('home');
     Route::get('/about',[AboutController::class, 'index'])->name('about');
     Route::get('/contact',[FrontContactController::class, 'index'])->name('contact');
-    Route::post('/contact-submit', [FrontContactController::class, 'submit'])->name('contact.submit');
     Route::get('/products/{slug}', [ProductsDetailController::class, 'index'])->name('product.detail');
     Route::get('/products',[ProductsController::class, 'index'])->name('products');
     Route::get('/categories',[FrontCategoryController::class, 'index'])->name('categories');
@@ -49,14 +48,19 @@ Route::group(['middleware' => 'auth', 'prefix' => '/control', 'as' => 'admin.'],
     // Resource
     Route::resource('language_line', LanguageLineController::class);
     Route::delete('api/language_line/bulk-delete', [LanguageLineController::class, 'delete_selected_language_line'])->name('language_line.bulk-delete');
+
     Route::resource('langs', LangController::class);
     Route::resource('sliders', SliderController::class);
+
     Route::resource('brands', BrandController::class);
     // Route::post('brands/changeOrder', [BrandController::class, 'changeOrder'])->name('brands.changeOrder');
     Route::delete('api/brands/bulk-delete', [BrandController::class, 'delete_selected_brands'])->name('brands.bulk-delete');
+
+    Route::get('products/reorder', [ProductController::class, 'reorder'])->name('products.reorder');
     Route::resource('products', ProductController::class);
     Route::delete('api/products/bulk-delete', [ProductController::class, 'delete_selected_products'])->name('products.bulk-delete');
-    // Route::post('products/changeOrder', [ProductController::class, 'changeOrder'])->name('products.changeOrder');
+    Route::post('products/changeOrder', [ProductController::class, 'changeOrder'])->name('products.changeOrder');
+
     Route::resource('model_products', ModelProductController::class);
     Route::delete('api/model_products/bulk-delete', [ModelProductController::class, 'delete_selected_model_products'])->name('model_products.bulk-delete');
 

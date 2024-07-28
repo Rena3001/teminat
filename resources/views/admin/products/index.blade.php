@@ -22,12 +22,23 @@ Məhsulların Siyahısı
         </div>
     </div>
     <div class="card-body">
-        <div id="tableExample" data-list='{" valueNames":["order","id","title","category","brand"],"page":5,"pagination":true}'>
+        <div id="tableExample" data-list='{"valueNames":["order","id","title","category","brand","model"],"page":5,"pagination":true}'>
+            <div class="d-flex align-items-center mb-3 ">
+                <div class="search-box mx-auto">
+                    <form class="position-relative">
+                        <input class="form-control search-input search form-control-sm" type="search" placeholder="Axtarış" aria-label="Search">
+                        <span class="fas fa-search search-box-icon"></span>
+                    </form>
+                </div>
+                <div class="reordered-box">
+                    <a href="{{ route('admin.products.reorder') }}" class="btn btn-phoenix-warning btn-sm ms-2">Yeniden Sırala</a>
+                </div>
+            </div>
             <div class="table-responsive mx-n1 px-1">
                 <table class="table table-sm border-top border-translucent fs-9 mb-0">
                     <thead>
                         <tr>
-                            <th class="white-space-nowrap fs-9 align-middle ps-0" style="max-width:20px; width:18px;">
+                            <th class="white-space-nowrap fs-9 align-middle ps-0 border-top" style="max-width:20px; width:18px;">
                                 <div class="form-check mb-0 fs-8">
                                     <input class="form-check-input" id="bulk-select-example" type="checkbox" data-bulk-select='{"body":"bulk-select-body","actions":"bulk-select-actions","replacedElement":"bulk-select-replace-element"}' indeterminate="indeterminate">
                                 </div>
@@ -44,7 +55,7 @@ Məhsulların Siyahısı
                     </thead>
                     <tbody class="list" id="bulk-select-body">
                         @foreach ($products as $product)
-                        <tr>
+                        <tr data-id='{{$product->id}}'>
                             <td class="fs-9 align-middle">
                                 <div class="form-check mb-0 fs-8">
                                     <input class="form-check-input" type="checkbox" data-bulk-select-row='{"order":{{$product->order}},"id":{{$product->id}}}'>
@@ -101,8 +112,6 @@ Məhsulların Siyahısı
                     </button>
                 </div>
             </div>
-            <p class="mb-2">Click the button to get selected rows</p><button class="btn btn-warning" data-selected-rows="data-selected-rows">Get Selected Rows</button>
-            <pre id="selectedRows"></pre>
             <form id="bulk-delete-form" method="post" action="{{ route('admin.products.bulk-delete') }}" class="d-none">
                 @csrf
                 @method('delete')
@@ -124,7 +133,7 @@ Məhsulların Siyahısı
         const allItems = JSON.parse('{!! json_encode($products, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}');
         // console.log(allItems);
         let orderedProducts;
-        if (allItems && allItems.length>0) {
+        if (allItems && allItems.length > 0) {
             orderedProducts = allItems.map((value, index, array) => {
                 return {
                     order: value.order,
@@ -132,7 +141,6 @@ Məhsulların Siyahısı
                 };
             });
         }
-        // console.log(orderedProducts);
 
         if (applyBulkActionBtn) {
             applyBulkActionBtn.addEventListener('click', function() {
@@ -169,13 +177,22 @@ Məhsulların Siyahısı
                 onEnd: function(evt) {
                     const items = evt.from.children;
                     const products = [];
-                    console.log(items);
+                    let ids = [],
+                        orders = [];
 
                     for (let i = 0; i < items.length; i++) {
                         const dataId = items[i].querySelector('.id').innerText.trim();
+                        const dataOrder = items[i].querySelector('.order').innerText.trim();
+                        ids = [...ids, dataId];
+                        orders = [...orders, dataOrder];
+                    }
+
+                    orders = orders.sort((a, b) => a - b);
+
+                    for (let j = 0; j < ids.length; j++) {
                         products.push({
-                            id: dataId,
-                            order: i + 1
+                            id: ids[j],
+                            order: orders[j],
                         });
                     }
 
@@ -190,7 +207,15 @@ Məhsulların Siyahısı
                         .then(response => response.json())
                         .then(data => {
                             if (data.success) {
-                                console.log('Order updated successfully.');
+                                // console.log('Order updated successfully.');
+                                if (data.req && data.req.length > 0) {
+                                    data.req.forEach(item => {
+                                        const row = document.querySelector(`tr[data-id="${item.id}"]`);
+                                        if (row) {
+                                            row.querySelector('.order').innerText = item.order;
+                                        }
+                                    });
+                                }
                             } else {
                                 console.error('Error updating order:', data.message);
                             }
