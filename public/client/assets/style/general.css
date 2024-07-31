@@ -775,6 +775,9 @@ main {
 .search_box {
     width: 29rem;
 }
+.search_box.mainBox{
+    overflow:unset;
+}
 .search_panel_heading {
     width: 100%;
     height: 4rem;
