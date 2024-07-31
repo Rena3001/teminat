@@ -40,24 +40,36 @@
                         <p class="margin_inline">{{__('word.categories')}}</p>
                     </div>
                     <div class="category_panel_body margin_inline">
-                        <form class="category_form" action="{{route('client.products')}}">
-                            <select id="parent_category">
-                                <option value="">Select Category</option>
-                                @foreach ($parents as $parent)
-                                <option value="{{$parent->slug}}">{{$parent->title}}</option>
-                                @endforeach
-                            </select>
+                                   <form class="category_form" action="{{ route('client.products') }}" method="GET">
+                            <label>Category</label>
+                            <div class="custom_select_wrapper">
+                              <div class="custom_select" tabindex="0">
+                                  <span class="custom_select_text" id="parent_category_text">Select Category</span>
+                                  <ul class="custom_options">
+                                     @foreach ($parents as $parent)
+                                       <li data-value="{{ $parent->slug }}">{{ $parent->title }}</li>
+                                   @endforeach
+                                 </ul>
+                              </div>
+                                <input type="hidden" name="parent_category" id="parent_category_input" value="{{$selectedParent ? $selectedParent->slug : ''}}" />
+                         </div>
 
-                            <!-- sub-category -->
+    <!--------- sub-category ------->
+                        <div class="custom_select_wrapper">
+                            <div class="custom_select" tabindex="0">
+                               <span class="custom_select_text" id="child_category_text">Select Sub Category</span>
+                                <ul class="custom_options" id="subcategory_options">
+                                 <li data-value="">Select Sub Category</li>
+                <!-- Sub-category options will be dynamically populated based on selected category -->
+                              </ul>
+                         </div>
+                            <input type="hidden" name="category" id="category_input" value="{{$selectedChild ? $selectedChild->slug : ''}}" />
+                         </div>
 
-                            <select id="category" name="category">
-                                <option value="">Select Sub Category</option>
-                            </select>
-
-                            <button class="category_button">
-                                {{__('btn.go_to_category')}}
-                            </button>
-                        </form>
+                 <button class="category_button" type="submit">
+                    <i class="fas fa-search"></i> {{ __('btn.go_to_category') }}
+                </button>
+                  </form>
                     </div>
                 </section>
             </aside>
@@ -70,7 +82,8 @@
                 </h1>
 
                 <section class="products_cards_grid">
-                    <!-- Products Cards -->@if ($products->count())
+                    <!-- Products Cards -->
+                    @if ($products->count())
                     @foreach ($products as $product)
                     <a href="{{ route('client.product.detail', $product->slug) }}">
                         <div class="product_detail_card">
@@ -107,29 +120,78 @@
 
 @push('js')
     <script>
-    $('#parent_category').change(function () {
-        let category_id = $(this).val();
-        if (category_id) {
-            $.ajax({
-            url: "{{ route('client.fetch.subcategories', '') }}/" + category_id,
-            type: 'GET',
-            success: function (response) {
-                let subCategoryDropdown = $('#category');
-                subCategoryDropdown.empty();
+     $(document).ready(function() {
 
-                if (response.categories.length > 0) {
-                    $.each(response.categories, function (index, subCategory) {
-                        subCategoryDropdown.append(new Option(subCategory.title[response.lang], subCategory.slug[response.lang]));
-                    });
-                } else {
-                    subCategoryDropdown.append(new Option('No sub-categories found', ''));
-                }
-            },
-            error: function () {
-                alert('Failed to fetch sub-categories. Please try again.');
+        if ($('#parent_category_input').val()) {
+            const parentSlug = $('#parent_category_input').val();
+            $('#parent_category_text').text('{{$selectedParent?->title}}');
+            $.ajax({
+                    url: "{{ route('client.fetch.subcategories', '') }}/" + parentSlug,
+                    type: 'GET',
+                    success: function(response) {
+                        let subCategoryOptions = $('#subcategory_options');
+                        subCategoryOptions.empty();
+                        if (response.categories.length > 0) {
+                            subCategoryOptions.append('<li data-value="">Select Sub Category</li>');
+                            $.each(response.categories, function(index, subCategory) {
+                                subCategoryOptions.append('<li data-value="' + subCategory.slug[response.lang] + '">' + subCategory.title[response.lang] + '</li>');
+                            });
+                        } else {
+                            subCategoryOptions.append('<li data-value="">No sub-categories found</li>');
+                        }
+                    },
+                    error: function() {
+                        alert('Failed to fetch sub-categories. Please try again.');
+                    }
+                });
+        }
+
+        if($('#category_input').val()){
+            $('#parent_category_text').text('{{$selectedParent?->title}}');
+            $('#child_category_text').text('{{$selectedChild?->title}}');
+        }
+
+        $('.custom_select').on('click', 'li', function() {
+            const value = $(this).data('value');
+            const text = $(this).text();
+            const input = $(this).closest('.custom_select_wrapper').find('input[type="hidden"]');
+            const span = $(this).closest('.custom_select').find('.custom_select_text');
+
+            span.text(text);
+            input.val(value);
+
+            if (input.attr('name') === 'parent_category') {
+                fetchSubCategories(value);
             }
         });
+
+        function fetchSubCategories(parentSlug) {
+            if (parentSlug) {
+                $.ajax({
+                    url: "{{ route('client.fetch.subcategories', '') }}/" + parentSlug,
+                    type: 'GET',
+                    success: function(response) {
+                        let subCategoryOptions = $('#subcategory_options');
+                        subCategoryOptions.empty();
+                        if (response.categories.length > 0) {
+                            subCategoryOptions.append('<li data-value="">Select Sub Category</li>');
+                            $.each(response.categories, function(index, subCategory) {
+                                subCategoryOptions.append('<li data-value="' + subCategory.slug[response.lang] + '">' + subCategory.title[response.lang] + '</li>');
+                            });
+                        } else {
+                            subCategoryOptions.append('<li data-value="">No sub-categories found</li>');
+                        }
+                    },
+                    error: function() {
+                        alert('Failed to fetch sub-categories. Please try again.');
+                    }
+                });
+            } else {
+                $('#subcategory_options').empty().append('<li data-value="">Select Sub Category</li>');
+            }
         }
     });
     </script>
+    <script src="{{ asset('client/assets/script/select.js') }}"></script>
+
 @endpush
