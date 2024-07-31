@@ -6,6 +6,8 @@ use Illuminate\Support\Str;
 
 class DataService
 {
+ 
+
 
     public function sluggable($str)
     {

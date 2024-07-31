@@ -47,7 +47,6 @@ Kateqoriya Siyahısı
                                     <th class="sort border-top ps-3" data-sort="id">İd</th>
                                     <th class="sort border-top" data-sort="slug">Slag</th>
                                     <th class="sort border-top w-auto" data-sort="title">Başlıq</th>
-                                    <th class="sort border-top w-auto" data-sort="parent">Valideyn</th>
                                     <th class="sort border-top w-auto">Şəkil</th>
                                     <th class="sort text-end align-middle pe-0 border-top" scope="col">Fəaliyyətlər</th>
                                 </tr>
@@ -66,11 +65,7 @@ Kateqoriya Siyahısı
                                     <td class="align-middle title">
                                         <p class="m-0">{{ $model->title }}</p>
                                     </td>
-                                    <td class="align-middle parent">
-                                        <p class="m-0">
-                                            {{ $model->parentCategory?->count() > 0 ? $model->parentCategory->title : 'Valideyn' }}
-                                        </p>
-                                    </td>
+                                    
                                     <td class="align-middle title">
                                         @if ($model->image)
                                         <div class="image">

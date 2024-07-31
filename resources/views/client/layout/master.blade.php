@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     @include('client.layout.includes.head')
-    <title>Elektrod</title>
+    <title>Təminat</title>
   </head>
 <body>
     <x-front-header-component :settings="$settings"/>

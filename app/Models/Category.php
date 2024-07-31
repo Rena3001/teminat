@@ -14,45 +14,13 @@ class Category extends BaseModel
     protected $fillable = [
         'title',
         'slug',
+        'description',
         'image',
-        'parent_id',
     ];
 
-    protected $translatable = ['title', 'slug'];
-
-    protected $attributes = [
-        'parent_id' => null,
-    ];
+    protected $translatable = ['title', 'slug','description'];
 
 
-    public function parentCategory(): BelongsTo
-    {
-        return $this->belongsTo(Category::class, 'parent_id');
-    }
 
-    public function childrenCategories(): HasMany
-    {
-        return $this->hasMany(Category::class, 'parent_id');
-    }
 
-    public function products()
-    {
-        if (!$this->parent_id) {
-            $childrenCategories = $this->childrenCategories();
-            if ($childrenCategories) {
-                return $this->hasMany(Product::class, 'category_id')->whereIn('category_id', $childrenCategories->pluck('id'));
-            }
-        } else {
-            return $this->hasMany(Product::class, 'category_id');
-        }
-    }
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($model) {
-            $model->order = Category::max('order') + 1;
-        });
-    }
 }

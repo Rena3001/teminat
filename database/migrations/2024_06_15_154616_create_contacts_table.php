@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('fullname');
             $table->string('email');
+            $table->string('proffesion');
             $table->string('phone');
-            $table->text('message');
+            $table->string('file');
+            $table->text('text');
             $table->timestamps();
         });
     }

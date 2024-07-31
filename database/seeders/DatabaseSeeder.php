@@ -18,9 +18,7 @@ class DatabaseSeeder extends Seeder
             LangSeeder::class,
             LanguageLineSeeder::class,
             SliderSeeder::class,
-            CategorySeeder::class,
-            BrandSeeder::class,
-            ProductSeeder::class,
+            
         ]);
     }
 }

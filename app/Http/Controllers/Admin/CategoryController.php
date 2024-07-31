@@ -19,22 +19,21 @@ class CategoryController extends Controller
     }
     public function index()
     {
-        $models = Category::orderBy('order')->get();
+        $models = Category::get();
         return view('admin.categories.index', compact('models'));
     }
 
     public function create()
     {
         $langs = Lang::all();
-        $select_items = Category::where('parent_id', null)->get();
+        $select_items = Category::get();
         return view('admin.categories.create', compact('langs', 'select_items'));
     }
 
     public function store(CategoryRequest $request)
     {
-        $data = $request->only('title', 'image', 'parent_id');
+        $data = $request->only('title', 'image', 'parent_id', 'description');
         $data['slug'] = $this->dataService->sluggableArray($data, 'title');
-        $data['parent_id'] = isset($data['parent_id']) && $data['parent_id'] != 0 ? (int)$data['parent_id'] : null;
         $created = Category::create($data);
 
         if ($created) {
@@ -149,7 +148,7 @@ class CategoryController extends Controller
             abort(404);
         }
     }
-    public function delete_selected_categories(Request $request)
+    public function delete_selected_category(Request $request)
     {
         $ids = $request->input('selected_ids');
         if ($ids && is_array($ids)) {

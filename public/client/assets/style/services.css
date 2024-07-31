@@ -1,0 +1,215 @@
+header nav ul.nav_menu li:nth-child(2) a {
+  color: var(--color-orange);
+}
+
+section.services {
+  display: flex;
+  gap: min(7%, 10rem);
+  align-items: stretch;
+  padding-left: 4rem;
+  margin-block: 13rem 25rem;
+}
+
+aside.servicesNav {
+  width: min(100%, 48rem);
+  min-width: 22.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--gradient);
+  border-radius: 1rem;
+  box-shadow: 0 0.8rem 1.2rem rgba(106, 106, 106, 0.837);
+}
+
+.servicesNav .swiper-button-prev,
+.servicesNav .swiper-button-next {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  font-weight: 300;
+  opacity: unset;
+  position: static;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  margin-top: unset;
+  z-index: unset;
+  color: var(--color-black);
+}
+.servicesNav .swiper-button-prev::after,
+.servicesNav .swiper-button-next::after {
+  content: unset;
+}
+.servicesNav .swiper-button-disabled {
+  color: var(--color-grey);
+}
+
+.servicesNav .swiper-pagination {
+  width: max-content;
+  position: static;
+  transform: unset;
+  transition: unset;
+  text-align: initial;
+  z-index: unset;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  padding-block: 2rem;
+}
+.servicesNav .swiper-pagination-bullet {
+  color: var(--color-white);
+  width: 100%;
+  height: auto;
+  border-radius: unset;
+  background: unset;
+  opacity: unset;
+  margin: unset;
+  transition: 0.3s;
+}
+.servicesNav
+  .swiper-pagination-bullet:not(.swiper-pagination-bullet-active):hover {
+  color: #ffb282;
+}
+.servicesNav .swiper-pagination-bullet-active {
+  color: var(--color-orange);
+  opacity: unset;
+  background: unset;
+}
+
+.services_content {
+  width: 100%;
+}
+
+.services_content .swiper-slide {
+  max-width: 66.3rem;
+}
+
+.serviceCard {
+  width: min(100%, 66.3rem);
+  padding: 5rem 1.5rem 1.5rem;
+}
+
+.serviceCard__title {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 400;
+}
+.serviceCard__img {
+  width: 80%;
+  margin-block: 4rem 6rem;
+  border-radius: 0.6rem;
+  overflow: hidden;
+}
+.serviceCard__desc,
+.serviceCard__desc * {
+  font-weight: 500;
+  line-height: 3.2rem;
+  letter-spacing: 0.16px;
+  text-align: justify;
+  color: var(--color-brown);
+}
+
+@media screen and (max-width: 992px) {
+  section.services {
+    gap: 2rem;
+    padding-left: 2rem;
+    margin-block: 12rem 7rem;
+  }
+
+  .servicesNav .swiper-pagination {
+    gap: 3rem;
+  }
+
+  .serviceCard {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+  .serviceCard__img {
+    margin-block: 2.3rem 2.5rem;
+  }
+  .serviceCard__desc,
+  .serviceCard__desc * {
+    font-size: 1.6rem;
+    line-height: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  section.services {
+    flex-direction: column;
+    gap: 3.2rem;
+    padding-left: unset;
+    margin-block: 10rem;
+  }
+
+  aside.servicesNav {
+    width: 100%;
+    min-width: unset;
+    padding: 0.4rem 1.5rem;
+    justify-content: space-between;
+    gap: 1.2rem;
+    background: var(--color-mobile-nav);
+    border-radius: 1.8rem;
+    box-shadow: 0px 26px 7px 0px rgba(36, 35, 35, 0),
+      0px 16px 7px 0px rgba(36, 35, 35, 0.01),
+      0px 9px 6px 0px rgba(36, 35, 35, 0.03),
+      0px 4px 4px 0px rgba(36, 35, 35, 0.04),
+      0px 1px 2px 0px rgba(36, 35, 35, 0.05);
+  }
+
+  .servicesNav .swiper-button-prev,
+  .servicesNav .swiper-button-next {
+    display: flex;
+  }
+
+  .servicesNav .swiper-pagination {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(2.8rem, 1fr));
+    justify-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding-block: 0;
+  }
+  .servicesNav .swiper-pagination-bullet {
+    color: var(--color-black);
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    background: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: unset !important;
+  }
+  .servicesNav .swiper-pagination-bullet-active {
+    color: var(--color-white);
+    background: var(--color-orange);
+  }
+
+  .serviceCard {
+    padding: 5rem 1.2rem 4rem;
+  }
+
+  .services_content {
+    background: var(--gradient);
+    color: var(--color-white);
+    border-radius: 1rem;
+  }
+  .serviceCard__img {
+    width: 100%;
+    margin-block: 3rem;
+    padding-inline: 1.5rem;
+    border-radius: unset;
+  }
+  .serviceCard__img img {
+    border-radius: 0.6rem;
+  }
+
+  .serviceCard__title {
+    text-align: center;
+  }
+  .serviceCard__desc,
+  .serviceCard__desc * {
+    color: var(--color-white);
+  }
+}

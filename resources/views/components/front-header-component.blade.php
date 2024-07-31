@@ -1,68 +1,44 @@
-<header class="header">
-    <div class="header__top--bcg">
-        <div class="header__top container">
-            <ul class="header__socials">
-                <li>
-                    <a href="{{$settings->fb}}"><i class="fa-brands fa-facebook-f"></i></a>
-                </li>
-                <li>
-                    <a href="{{$settings->tw}}"><i class="fa-brands fa-twitter"></i></a>
-                </li>
-                <li>
-                    <a href="{{$settings->in}}"><i class="fa-brands fa-linkedin-in"></i></a>
-                </li>
-                <li>
-                    <a href="{{$settings->inst}}"><i class="fa-brands fa-instagram"></i></a>
-                </li>
-                <li>
-                    <a href="{{$settings->yt}}"><i class="fa-brands fa-youtube"></i></a>
-                </li>
+<header>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <a href="index.html"
+            ><img src="./assets/images/logo.png" alt=""
+          /></a>
+        </div>
+        <ul class="nav_menu">
+          <li><a href="about.html">Haqqımızda</a></li>
+          <li><a href="services.html">Xidmətlər</a></li>
+          <li><a href="products.html">Məhsul kateqoriyaları</a></li>
+          <li><a href="blog.html">Bloq</a></li>
+          <li><a href="contact.html">Əlaqə</a></li>
+        </ul>
+        <button id="openMobNav" class="open_mobile_nav">
+          <img src="./assets/images/open-nav.svg" alt="" />
+        </button>
+      </nav>
+
+      <nav id="mobileNav" class="mobile_nav">
+        <ul class="nav_menu">
+          <li><a href="about.html">Haqqımızda</a></li>
+          <li><a href="services.html">Xidmətlər</a></li>
+          <li><a href="products.html">Məhsul kateqoriyaları</a></li>
+          <li><a href="blog.html">Bloq</a></li>
+          <li><a href="contact.html">Əlaqə</a></li>
+          <li>
+            <ul class="social_icons">
+              <li>
+                <button><i class="fa-brands fa-whatsapp"></i></button>
+              </li>
+              <li>
+                <button><i class="fa-brands fa-instagram"></i></button>
+              </li>
+              <li>
+                <button><i class="fa-brands fa-facebook-f"></i></button>
+              </li>
             </ul>
-
-            <div class="header__top--right">
-                <livewire:search-product />
-                <div class="header__lang">
-                    <span>{{ Str::upper(app()->getLocale()) }}</span>
-                    <i class="fa-solid fa-angle-down"></i>
-                    <ul class="header__lang--menu">
-                        @foreach($langs as $lang)
-                        @if (app()->getLocale() !== $lang->code)
-                        <li>
-                            <a href="{{ route('locale', $lang->code) }}">{{ Str::upper($lang->code) }}</a>
-                        </li>
-                        @endif
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        </div>
+          </li>
+        </ul>
+      </nav>
     </div>
-
-    <div class="header__bottom--bcg">
-        <div class="header__bottom container">
-            <div class="header__logo">
-                <a href="{{route('client.home')}}">
-                    <img src="{{ $settings->image_logo_light }}" class="logo_light" alt="">
-                    <img src="{{ $settings->image_logo_dark }}" class="logo_dark" alt="">
-                </a>
-            </div>
-            <nav class="navbar">
-                <ul>
-                    <li>
-                        <a href="{{route('client.home')}}">{{__('menu.home')}}</a>
-                    </li>
-                    <li>
-                        <a href="{{route('client.about')}}">{{__('menu.about')}}</a>
-                    </li>
-                    <li class="navbar__products">
-                        <a href="{{route('client.categories')}}">{{__('menu.products')}}</i></a>
-                    </li>
-                    <li>
-                        <a href="{{route('client.contact')}}">{{__('menu.contact')}}</a>
-                    </li>
-                </ul>
-            </nav>
-            <button class="icon-hamburger"></button>
-        </div>
-    </div>
-</header>
+  </header>

@@ -62,7 +62,15 @@ window.addEventListener('load', function() {
                                 @error('title.' . $lang->code)
                                 <span class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
-                            </div>
+                        </div>
+                        <div class="form-group m-0 mt-3">
+                            <label class="m-0" for="description_{{ $lang->code }}">Description {{ strtoupper($lang->code) }}</label>
+                            <textarea class="form-control m-0 @error('description.' . $lang->code)is-invalid @enderror"
+                                id="description_{{ $lang->code }}" name="description[{{ $lang->code }}]">{{ old('description.' . $lang->code) }}</textarea>
+                            @error('description.' . $lang->code)
+                            <span class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
                     @endforeach
                 </div>
@@ -70,25 +78,7 @@ window.addEventListener('load', function() {
         </div>
     </div>
     <div class="col-lg-6">
-        <div class="card mb-2">
-            <div class="card-body">
-                <div class="form-group d-block">
-                    <label class="m-0 mb-2" for="parent_id">Valideyn Kateqoriyasını seçin:</label>
-                    <select class="form-select" id="parent_id" name="parent_id" value="{{old('parent_id')}}"
-                        data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}'>
-                        <option value="0" selected>Valideyn</option>
-                        @foreach ($select_items as $item)
-                        <option @selected((int)old('parent_id')===$item->id)
-                            value="{{$item->id}}"
-                            >{{$item->title}}</option>
-                        @endforeach
-                    </select>
-                    @error('parent_id')
-                    <span class="text-danger ml-2">{{$message}}</span>
-                    @enderror
-                </div>
-            </div>
-        </div>
+
         <div class="card">
             <div class="card-body">
                 <div class="form-group d-flex">

@@ -1,100 +1,26 @@
-"use strict";
+const openMobNavBtn = document.getElementById("openMobNav");
+const mobileNavbar = document.getElementById("mobileNav");
+const scroll_top = document.querySelector("#scroll_top");
 
-document.addEventListener('DOMContentLoaded', function() {
-    const headerGroups = document.querySelector('.header__search--groups');
-    const headerGroupDropdown = document.querySelector('.header__groups--dropdown');
-    const footerGroups = document.querySelector('.footer__subs--country');
-    const footerGroupDropdown = document.querySelector('.footer__subs--dropdown');
-    const headerLang = document.querySelector(".header__lang");
-    const headerLangMenu = document.querySelector(".header__lang--menu");
-    const iconHamburger = document.querySelector(".icon-hamburger");
-    const header = document.querySelector(".header");
-    const headerSearchInput = document.querySelector('.header__top--right');
-    const headerSearchBtn = document.querySelector('.header__search--btn');
-    const headerSearchSelect = document.getElementById("headerSearchSelect");
-    const headerSearchSelectedGroup = document.getElementById("headerSearchSelectedGroup");
-    const headerSearchWelding = document.getElementById("headerSearchWelding");
-    const headerSearchValve = document.getElementById("headerSearchValve");
+function openMobileNav() {
+  mobileNavbar.classList.toggle("active_mobile_nav");
+}
 
-    if (headerGroups) {
-        headerGroups.addEventListener("click", () => {
-            headerGroupDropdown.classList.toggle("active");
-        });
-    }
+openMobNavBtn.onclick = openMobileNav;
 
-    if (footerGroups) {
-        footerGroups.addEventListener("click", () => {
-            footerGroupDropdown.classList.toggle("active");
-        });
-    }
+window.addEventListener("scroll", () => {
+  if (window.scrollY < 120) {
+    scroll_top.style.display = "none";
+  } else {
+    scroll_top.style.display = "inline-block";
+  }
+});
 
-    if (headerLang) {
-        headerLang.addEventListener("click", () => {
-            headerSearchInput.classList.contains("active") ?
-                setTimeout(() => headerLangMenu.classList.toggle("active"), 300) :
-                headerLangMenu.classList.toggle("active");
-        });
-    }
-
-    if (iconHamburger) {
-        iconHamburger.addEventListener("click", () => {
-            iconHamburger.classList.toggle("active");
-            header.classList.toggle("active");
-            document.body.classList.toggle("overflow-y-hidden");
-        });
-    }
-
-    function handleHeaderSearchBtn() {
-        const viewportWidth = window.innerWidth;
-        if (viewportWidth <= 768) {
-            headerSearchBtn.type = "button";
-        } else {
-            headerSearchBtn.type = "submit";
-        }
-    }
-
-    document.addEventListener("DOMContentLoaded", handleHeaderSearchBtn);
-    window.addEventListener("resize", handleHeaderSearchBtn);
-
-    if (headerSearchBtn) {
-        headerSearchBtn.addEventListener("click", () => {
-            headerLangMenu.classList.contains("active") ?
-                setTimeout(() => headerSearchInput.classList.add("active"), 300) :
-                headerSearchInput.classList.add("active");
-
-            setTimeout(() => headerSearchBtn.type = "submit", 300);
-        });
-    }
-
-    if (headerSearchWelding) {
-        headerSearchWelding.addEventListener("click", () => {
-            headerSearchSelect.value = "welding";
-            headerSearchSelectedGroup.innerHTML = "Welding";
-        });
-    }
-
-    if (headerSearchValve) {
-        headerSearchValve.addEventListener("click", () => {
-            headerSearchSelect.value = "valve";
-            headerSearchSelectedGroup.innerHTML = "Valve";
-        });
-    }
-
-    document.addEventListener("click", (e) => {
-        if (headerGroups && !headerGroups.contains(e.target)) {
-            headerGroupDropdown.classList.remove("active");
-        }
-
-        if (headerLang && !headerLang.contains(e.target)) {
-            headerLangMenu.classList.remove("active");
-        }
-
-        if (headerSearchBtn && !headerSearchBtn.contains(e.target) && !headerSearchInput.contains(e.target)) {
-            headerSearchInput.classList.remove("active");
-            headerSearchBtn.type = "button";
-            if (document.querySelector('ul.search_list')) {
-                document.querySelector('ul.search_list').style.display = "none";
-            }
-        }
-    });
+scroll_top.addEventListener("click", (event) => {
+  event.preventDefault();
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
 });
