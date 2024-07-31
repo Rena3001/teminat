@@ -131,7 +131,6 @@ Məhsulların Siyahısı
     document.addEventListener('DOMContentLoaded', function() {
         const applyBulkActionBtn = document.getElementById('apply-bulk-action');
         const allItems = JSON.parse('{!! json_encode($products, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}');
-        // console.log(allItems);
         let orderedProducts;
         if (allItems && allItems.length > 0) {
             orderedProducts = allItems.map((value, index, array) => {
@@ -144,15 +143,11 @@ Məhsulların Siyahısı
 
         if (applyBulkActionBtn) {
             applyBulkActionBtn.addEventListener('click', function() {
-                console.log(applyBulkActionBtn);
                 let selectedAction = document.getElementById('bulk-action-select').value;
-                console.log(selectedAction);
                 if (selectedAction === 'delete') {
                     const e = document.getElementById("bulk-select-example"),
                         i = window.phoenix.BulkSelect.getInstance(e);
-                    console.log(i.getSelectedRows());
                     let selectedIds = Array.from(i.getSelectedRows()).map(row => row.id);
-                    console.log(selectedIds);
                     if (selectedIds.length > 0) {
                         const formDelete = document.getElementById('bulk-delete-form');
                         selectedIds.forEach(id => {
