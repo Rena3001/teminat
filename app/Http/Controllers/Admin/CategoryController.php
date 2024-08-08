@@ -1,11 +1,11 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryRequest;
 use App\Models\Category;
 use App\Models\Lang;
+use App\Models\Tag;
 use App\Services\DataService;
 use Illuminate\Http\Request;
 
@@ -17,26 +17,30 @@ class CategoryController extends Controller
     {
         $this->dataService = $dataService;
     }
+
     public function index()
     {
-        $models = Category::get();
-        return view('admin.categories.index', compact('models'));
+        $models = Category::with('tags')->get();
+        $tags = Tag::all(); // Fetch all tags instead of categories
+        return view('admin.categories.index', compact('models', 'tags'));
     }
 
     public function create()
     {
         $langs = Lang::all();
-        $select_items = Category::get();
-        return view('admin.categories.create', compact('langs', 'select_items'));
+        $tags = Tag::all(); // Fetch all tags instead of categories
+
+        return view('admin.categories.create', compact('langs', 'tags'));
     }
 
     public function store(CategoryRequest $request)
     {
-        $data = $request->only('title', 'image', 'parent_id', 'description');
+        $data = $request->only('title', 'image', 'description');
         $data['slug'] = $this->dataService->sluggableArray($data, 'title');
         $created = Category::create($data);
 
         if ($created) {
+            // Handle image upload
             if ($request->hasFile('image')) {
                 $fileExtension = $request->image->extension();
                 $imgName = 'categories_' . $this->dataService->getNowDateStr() . '.' . $fileExtension;
@@ -44,6 +48,12 @@ class CategoryController extends Controller
                 $created->image = '/storage/' . $imgPath;
                 $created->save();
             }
+
+            // Attach tags
+            if ($request->has('tag_ids')) {
+                $created->tags()->attach($request->tag_ids);
+            }
+
             return redirect()->route('admin.categories.index')
                 ->with('type', 'success')
                 ->with('message', 'Kateqoriya uğurla əlavə edildi.');
@@ -55,44 +65,16 @@ class CategoryController extends Controller
         }
     }
 
-    public function show(Category $category)
-    {
-        if (!empty($category)) {
-            $model = $category;
-            $model['slugs'] = $model->getTranslations('slug');
-            $model['titles'] = $model->getTranslations('title');
-            return view('admin.categories.show', compact('model'));
-        } else {
-            abort(404);
-        }
-    }
-
-    public function edit(Category $category)
-    {
-        if (!empty($category)) {
-            $model = $category;
-            $model['json_field'] = $model->getTranslations('title');
-            $langs = Lang::all();
-            $select_items =null;
-            if(empty($category->childrenCategories->count())){
-                $select_items = Category::where('parent_id', null)->where('id', '!=', $category->id)->get();
-            }
-
-            return view('admin.categories.edit', compact('model', 'langs', 'select_items'));
-        } else {
-            abort(404);
-        }
-    }
-
     public function update(CategoryRequest $request, Category $category)
     {
+
         if (!empty($category)) {
             $model = $category;
 
-            $data = $request->only('title', 'image', 'parent_id');
+            $data = $request->only('title', 'image', 'description', 'tag');
             $data['slug'] = $this->dataService->sluggableArray($data, 'title');
-            $data['parent_id'] = isset($data['parent_id']) && $data['parent_id'] != 0 ? (int)$data['parent_id'] : null;
             $image = $model->image;
+            dd($data);
             $update = $category->update($data);
             if ($update) {
                 if ($request->hasFile('image')) {
@@ -105,6 +87,14 @@ class CategoryController extends Controller
                     $model->image = '/storage/' . $imgPath;
                     $model->save();
                 }
+
+                // Sync tags
+                if ($request->has('tag_ids')) {
+                    $category->tags()->sync($request->tag_ids);
+                } else {
+                    $category->tags()->detach();
+                }
+
                 return redirect()->route('admin.categories.index')
                     ->with('type', 'success')
                     ->with('message', 'Kateqoriya uğurla yeniləndi.');
@@ -119,6 +109,46 @@ class CategoryController extends Controller
         }
     }
 
+
+    public function show(Category $category)
+    {
+        if (!empty($category)) {
+            $model = $category;
+            $model['slugs'] = $model->getTranslations('slug');
+            $model['titles'] = $model->getTranslations('title');
+            $model['descriptions'] = $model->getTranslations('description');
+            $model->load('tags');
+
+    // Count tags associated with this model
+            $tagCount = $model->tags->count();
+            return view('admin.categories.show', compact('model','tagCount'));
+        } else {
+            abort(404);
+        }
+    }
+
+    public function edit(Category $category)
+    {
+        if (!empty($category)) {
+            $model = $category;
+            $model['title_translations'] = $model->getTranslations('title');
+            $model['description_translations'] = $model->getTranslations('description');
+            $langs = Lang::all();
+            $tags = Tag::all(); // Fetch all tags for selection
+            dump($category->tags);
+            dump($tags);
+            foreach ($tags as $key => $tag) {
+                dump($tag->id);
+            }
+            die();
+
+            return view('admin.categories.edit', compact('model', 'langs', 'tags'));
+        } else {
+            abort(404);
+        }
+    }
+
+
     public function destroy(Category $category)
     {
         if (!empty($category)) {
@@ -126,28 +156,23 @@ class CategoryController extends Controller
             if ($category->image && file_exists(public_path($category->image))) {
                 unlink(public_path($category->image));
             }
-            if (!$category->parent_id) {
-                foreach ($category->childrenCategories as $child) {
-                    if ($child->image && file_exists(public_path($child->image))) {
-                        unlink(public_path($child->image));
-                    }
-                }
-            }
+
             $deleted = $category->delete();
 
             if ($deleted) {
                 return redirect()->route('admin.categories.index')
                     ->with('type', 'success')
-                    ->with('message', 'Valve kateqoriya uğurla silindi.');
+                    ->with('message', 'Kateqoriya uğurla silindi.');
             } else {
                 return redirect()->back()
                     ->with('type', 'danger')
-                    ->with('message', 'Valve kateqoriyanı silmək mümkün olmadı!');
+                    ->with('message', 'Kateqoriyanı silmək mümkün olmadı!');
             }
         } else {
             abort(404);
         }
     }
+
     public function delete_selected_category(Request $request)
     {
         $ids = $request->input('selected_ids');
@@ -166,5 +191,38 @@ class CategoryController extends Controller
         }
 
         return response()->json(['success' => true, 'message' => 'Order updated successfully.']);
+    }
+
+    // Add Tags to Category
+    public function attachTag(Request $request, Category $category)
+    {
+        $request->validate([
+            'tag_ids' => 'required|array',
+            'tag_ids.*' => 'exists:tags,id',
+        ]);
+
+        $category->tags()->attach($request->tag_ids);
+
+        return response()->json(['message' => 'Tags attached successfully'], 200);
+    }
+
+    // Remove Tags from Category
+    public function detachTag(Request $request, Category $category)
+    {
+        $request->validate([
+            'tag_ids' => 'required|array',
+            'tag_ids.*' => 'exists:tags,id',
+        ]);
+
+        $category->tags()->detach($request->tag_ids);
+
+        return response()->json(['message' => 'Tags detached successfully'], 200);
+    }
+
+    // Get Tags of a Category
+    public function getTags(Category $category)
+    {
+        $tags = $category->tags;
+        return response()->json($tags, 200);
     }
 }

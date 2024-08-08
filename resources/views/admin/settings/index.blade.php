@@ -133,7 +133,6 @@ Saytin Statik Ümumi Məlumatları
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-3 col-md-6">
                 <div class="card">
                     <img class="card-img-top border-bottom py-2" src="{{$settings->image_logo_dark != '#' ? $settings->image_logo_dark : asset('admin/assets/img/elektrod_logo.svg')}}" alt="...">
@@ -142,12 +141,19 @@ Saytin Statik Ümumi Məlumatları
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-2 col-md-6">
                 <div class="card">
                     <img class="card-img-top border-bottom py-2" src="{{$settings->favicon != '#' ? $settings->favicon : asset('admin/assets/img/elektrod_logo.svg')}}" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Favicon İkon</h5>
+                        <h5 class="card-title">Servisler logo</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6">
+                <div class="card">
+                    <img class="card-img-top border-bottom py-2" src="{{$settings->category != '#' ? $settings->category : asset('admin/assets/img/elektrod_logo.svg')}}" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Kateqorilər logo</h5>
                     </div>
                 </div>
             </div>
@@ -155,7 +161,7 @@ Saytin Statik Ümumi Məlumatları
                 <div class="card">
                     <img class="card-img-top border-bottom py-2" src="{{$settings->logo_light != '#' ? $settings->logo_light : asset('admin/assets/img/elektrod_logo.svg')}}" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Açıq tema Logosu</h5>
+                        <h5 class="card-title">Kategori Logosu</h5>
                     </div>
                 </div>
             </div>
@@ -177,6 +183,18 @@ Saytin Statik Ümumi Məlumatları
                     </div>
                 </div>
             </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <img class="card-img-top border-bottom py-2"
+                         src="{{ $settings->home_banner != '#' ? $settings->home_banner : asset('client/assets/images/presentation3.jpg') }}"
+                         alt="Ana Səhifəsinin Banner Şəkli"
+                         onerror="this.onerror=null; this.src='{{ asset('client/assets/images/presentation3.jpg') }}';">
+                    <div class="card-body">
+                        <h5 class="card-title">Ana Səhifəsinin Banner Şəkli 1</h5>
+                    </div>
+                </div>
+            </div>
+
 
             <div class="col-lg-6 col-md-12">
                 <div class="card">

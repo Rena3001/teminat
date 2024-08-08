@@ -64,8 +64,19 @@ window.addEventListener('load', function() {
                                 <input type="text"
                                     class="form-control @error('title.' . $lang->code)is-invalid @enderror"
                                     id="title_{{ $lang->code }}" name="title[{{ $lang->code }}]"
-                                    value="{{ old('title' . '.' . $lang->code, isset($model->json_field[$lang->code]) ? $model->json_field[$lang->code] : '') }}">
+                                    value="{{ old('title.' . $lang->code, $model['title_translations'][$lang->code] ?? '') }}">
                                 @error('title.' . $lang->code)
+                                <span class="error invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label class="m-0" for="description_{{ $lang->code }}">Açıqlama
+                                    {{ strtoupper($lang->code) }}</label>
+                                <input type="text"
+                                    class="form-control @error('description.' . $lang->code)is-invalid @enderror"
+                                    id="description_{{ $lang->code }}" name="description[{{ $lang->code }}]"
+                                    value="{{ old('description.' . $lang->code, $model['description_translations'][$lang->code] ?? '') }}">
+                                @error('description.' . $lang->code)
                                 <span class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -77,28 +88,26 @@ window.addEventListener('load', function() {
         </div>
     </div>
     <div class="col-lg-6">
-        @if($select_items!=null)
         <div class="card mb-2">
             <div class="card-body">
                 <div class="form-group d-block">
-                    <label class="m-0 mb-2" for="parent_id">Valideyn Kateqoriyasını seçin:</label>
-                    <select class="form-select" id="parent_id" name="parent_id"
-                        value="{{old('parent_id', $model->parent_id)}}" data-choices="data-choices"
-                        data-options='{"removeItemButton":true,"placeholder":true}'>
-                        <option value="0" selected>Valideyn</option>
-                        @foreach ($select_items as $item)
-                        <option @selected((int)old('parent_id', $model->parent_id)===$item->id)
-                            value="{{$item->id}}"
-                            >{{$item->title}}</option>
+                    <label class="m-0 mb-2" for="tag">Tagı seçin:</label>
+                    <select class="form-select" id="tag" name="tag" value="{{old('tag')}}"
+                    data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}'>
+                    <option value="0" selected>Tag</option>
+                    @foreach ($tags as $tag)
+
+                        <option @selected((int)old('tag')===$tag->id)
+                            value="{{$tag->id}}"
+                            >{{$tag->title}} - @dump($tag->id)</option>
                         @endforeach
                     </select>
-                    @error('parent_id')
+                    @error('tag')
                     <span class="text-danger ml-2">{{$message}}</span>
                     @enderror
                 </div>
             </div>
         </div>
-        @endif
         <div class="card">
             <div class="card-body">
                 <div class="form-group d-flex">
@@ -120,7 +129,7 @@ window.addEventListener('load', function() {
     </div>
     <div class="col-lg-12 mt-4">
         <div class="card-footer text-right">
-            <button type="submit" class="btn btn-success">Əlavə et</button>
+            <button type="submit" class="btn btn-success">Yeniləyin</button>
             <a href="{{route('admin.categories.index')}}" class="btn btn-warning">Ləğv et</a>
         </div>
     </div>

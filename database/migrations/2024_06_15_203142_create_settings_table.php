@@ -26,6 +26,7 @@ return new class extends Migration
 
             $table->string('address');
             $table->string('home_about_title');
+            $table->string('home_banner');
             $table->string('home_about_subtitle');
             $table->string('footer_title');
             $table->string('about_title');

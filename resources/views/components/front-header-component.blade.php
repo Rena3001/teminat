@@ -2,16 +2,16 @@
     <div class="container">
       <nav>
         <div class="logo">
-          <a href="index.html"
-            ><img src="./assets/images/logo.png" alt=""
-          /></a>
+          <a href="{{route('client.home')}}"
+            ><img class="card-img-top border-bottom py-2" src="{{$settings->image_logo_light != '#' ? $settings->image_logo_light : asset('admin/assets/img/elektrod_logo.svg')}}" alt="...">
+        </a>
         </div>
         <ul class="nav_menu">
-          <li><a href="about.html">Haqqımızda</a></li>
-          <li><a href="services.html">Xidmətlər</a></li>
-          <li><a href="products.html">Məhsul kateqoriyaları</a></li>
-          <li><a href="blog.html">Bloq</a></li>
-          <li><a href="contact.html">Əlaqə</a></li>
+          <li><a href="{{route('client.about')}}">{{__('menu.about')}}</a></li>
+          <li><a href="{{route('client.services')}}">{{__('menu.services')}}</a></li>
+          <li><a href="{{route('client.categories')}}">{{__('menu.categories')}}</a></li>
+          <li><a href="{{route('client.blogs')}}">{{__('menu.blogs')}}</a></li>
+          <li><a href="{{route('client.contact')}}">{{__('menu.contact')}}</a></li>
         </ul>
         <button id="openMobNav" class="open_mobile_nav">
           <img src="./assets/images/open-nav.svg" alt="" />
@@ -20,11 +20,11 @@
 
       <nav id="mobileNav" class="mobile_nav">
         <ul class="nav_menu">
-          <li><a href="about.html">Haqqımızda</a></li>
-          <li><a href="services.html">Xidmətlər</a></li>
-          <li><a href="products.html">Məhsul kateqoriyaları</a></li>
-          <li><a href="blog.html">Bloq</a></li>
-          <li><a href="contact.html">Əlaqə</a></li>
+          <li><a href="{{route('client.about')}}">{{__('menu.about')}}</a></li>
+          <li><a href="{{route('client.services')}}">{{__('menu.services')}}</a></li>
+          <li><a href="{{route('client.categories')}}">{{__('menu.categories')}}</a></li>
+          <li><a href="{{route('client.blogs')}}">{{__('menu.blogs')}}</a></li>
+          <li><a href="{{route('client.contact')}}">{{__('menu.contact')}}</a></li>
           <li>
             <ul class="social_icons">
               <li>

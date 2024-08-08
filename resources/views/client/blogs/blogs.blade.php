@@ -10,167 +10,32 @@
       <section class="blog">
         <div class="container">
           <div class="blog_block">
+            @foreach ($blogs as $blog)
             <div class="blog_item">
               <a href="#">
                 <div class="blog_img">
-                  <img src="./assets/images/blog.jpg" alt="blog" />
+                  <img src="{{ $blog->image }}" alt="blog" />
                 </div>
                 <div class="overlay">
                   <div href="#">
-                    <img src="./assets/images/blog_icon.png" />
+                    <img src="{{ asset('client/assets/images/blog_icon.png') }}" />
                   </div>
                 </div>
                 <div class="blog_about">
                   <h6>Müştərilərin ehtiyacları</h6>
                   <h3>
-                    Ehtiyac olanın tapılması və düzgün şəkildə hazırlanması
+                    {{ $blog->title }}
                   </h3>
                   <div class="blog_text">
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco
+                      {{$blog->description}}
                     </p>
                   </div>
                 </div>
               </a>
             </div>
 
-            <div class="blog_item">
-              <a href="#">
-                <div class="blog_img">
-                  <img src="./assets/images/blog.jpg" alt="blog" />
-                </div>
-                <div class="overlay">
-                  <div href="#">
-                    <img src="./assets/images/blog_icon.png" />
-                  </div>
-                </div>
-                <div class="blog_about">
-                  <h6>Müştərilərin ehtiyacları</h6>
-                  <h3>
-                    Ehtiyac olanın tapılması və düzgün şəkildə hazırlanması
-                  </h3>
-                  <div class="blog_text">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco
-                    </p>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="blog_item">
-              <a href="#">
-                <div class="blog_img">
-                  <img src="./assets/images/blog.jpg" alt="blog" />
-                </div>
-                <div class="overlay">
-                  <div href="#">
-                    <img src="./assets/images/blog_icon.png" />
-                  </div>
-                </div>
-                <div class="blog_about">
-                  <h6>Müştərilərin ehtiyacları</h6>
-                  <h3>
-                    Ehtiyac olanın tapılması və düzgün şəkildə hazırlanması
-                  </h3>
-                  <div class="blog_text">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco
-                    </p>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="blog_item">
-              <a href="#">
-                <div class="blog_img">
-                  <img src="./assets/images/blog.jpg" alt="blog" />
-                </div>
-                <div class="overlay">
-                  <div href="#">
-                    <img src="./assets/images/blog_icon.png" />
-                  </div>
-                </div>
-                <div class="blog_about">
-                  <h6>Müştərilərin ehtiyacları</h6>
-                  <h3>
-                    Ehtiyac olanın tapılması və düzgün şəkildə hazırlanması
-                  </h3>
-                  <div class="blog_text">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco
-                    </p>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="blog_item">
-              <a href="#">
-                <div class="blog_img">
-                  <img src="./assets/images/blog.jpg" alt="blog" />
-                </div>
-                <div class="overlay">
-                  <div href="#">
-                    <img src="./assets/images/blog_icon.png" />
-                  </div>
-                </div>
-                <div class="blog_about">
-                  <h6>Müştərilərin ehtiyacları</h6>
-                  <h3>
-                    Ehtiyac olanın tapılması və düzgün şəkildə hazırlanması
-                  </h3>
-                  <div class="blog_text">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco
-                    </p>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="blog_item">
-              <a href="#">
-                <div class="blog_img">
-                  <img src="./assets/images/blog.jpg" alt="blog" />
-                </div>
-                <div class="overlay">
-                  <div href="#">
-                    <img src="./assets/images/blog_icon.png" />
-                  </div>
-                </div>
-                <div class="blog_about">
-                  <h6>Müştərilərin ehtiyacları</h6>
-                  <h3>
-                    Ehtiyac olanın tapılması və düzgün şəkildə hazırlanması
-                  </h3>
-                  <div class="blog_text">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco
-                    </p>
-                  </div>
-                </div>
-              </a>
-            </div>
+            @endforeach
           </div>
           <div class="page_slider">
             <ul>

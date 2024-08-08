@@ -8,31 +8,38 @@ use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
+
 {
     public function index(){
         return view('client.contact.contact');
     }
-
     public function submit(Request $request)
     {
-        // Validate the form data
+        // Validate request
         $request->validate([
-            'name' => 'required|string|max:255',
-            'surname' => 'required|string|max:255',
-            'phone' => 'required|string|max:20',
+            'fname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
-            'message' => 'required|string|max:5000',
+            'proffession' => 'nullable|string|max:255',
+            'number' => 'required|string|max:20',
+            'file' => 'nullable|file|mimes:jpg,png,pdf,doc,docx|max:2048',
+            'note' => 'nullable|string',
         ]);
 
-        // Create a new contact entry in the database
-        Contact::create([
-            'name' => $request->name . ' ' . $request->surname,
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'message' => $request->message,
-        ]);
+        // Save contact
+        $contact = new Contact();
+        $contact->fname = $request->fname;
+        $contact->email = $request->email;
+        $contact->proffession = $request->proffession;
+        $contact->number = $request->number;
+        if ($request->hasFile('file')) {
+            $contact->file = $request->file('file')->store('files');
+        }
+        $contact->note = $request->note;
+        $contact->save();
+        // dd($contact);
 
-        // Redirect back with success message
-        return redirect()->back()->with('success', 'Your message has been sent successfully!');
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Contact information submitted successfully!');
     }
 }

@@ -16,11 +16,14 @@ class Category extends BaseModel
         'slug',
         'description',
         'image',
+        'tag'
     ];
 
     protected $translatable = ['title', 'slug','description'];
 
 
-
-
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'category_tag');
+    }
 }

@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-// phpinfo();
-
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SettingRequest;
 use App\Models\Lang;
@@ -19,10 +17,16 @@ class SettingController extends Controller
     {
         $this->dataService = $dataService;
     }
+
     public function index()
     {
         $langs = Lang::all();
         $settings = Setting::first();
+
+        // Check if settings exist
+        if ($settings === null) {
+            return redirect()->back()->withErrors(['msg' => 'Settings record not found. Please seed the database with default settings.']);
+        }
 
         $settings['home_about_titles'] = $settings->getTranslations('home_about_title');
         $settings['home_about_subtitles'] = $settings->getTranslations('home_about_subtitle');
@@ -37,11 +41,15 @@ class SettingController extends Controller
         return view('admin.settings.index', compact('langs', 'settings'));
     }
 
-
     public function edit()
     {
         $langs = Lang::all();
         $settings = Setting::first();
+
+        // Check if settings exist
+        if ($settings === null) {
+            return redirect()->back()->withErrors(['msg' => 'Settings record not found. Please seed the database with default settings.']);
+        }
 
         $settings['home_about_titles'] = $settings->getTranslations('home_about_title');
         $settings['home_about_subtitles'] = $settings->getTranslations('home_about_subtitle');
@@ -61,13 +69,20 @@ class SettingController extends Controller
             'favicon' => $settings->favicon,
             'about_banner' => $settings->about_banner,
             'contact_image' => $settings->contact_image,
+            'category' => $settings->category
         ];
+
         return view('admin.settings.edit', compact('langs', 'settings'));
     }
 
     public function update(SettingRequest $request)
     {
         $settings = Setting::first();
+
+        // Check if settings exist
+        if ($settings === null) {
+            return redirect()->back()->withErrors(['msg' => 'Settings record not found. Please seed the database with default settings.']);
+        }
 
         $data = $request->only(
             'fb',
@@ -79,7 +94,6 @@ class SettingController extends Controller
             'fax',
             'email',
             'iframe_map',
-
             'address',
             'home_about_title',
             'home_about_subtitle',
@@ -91,25 +105,20 @@ class SettingController extends Controller
         );
 
         // Descriptions
-
         $home_about_desc = $request->get('home_about_desc');
-
         $this->deleteUnusedImages('uploads/admin/settings', 'home_about_desc', $home_about_desc);
 
         if (is_array($home_about_desc) && count($home_about_desc) > 0) {
-
             foreach ($home_about_desc as $lang => $value) {
                 if ($value) {
                     $decoded = $this->extractBase64Info($value);
                     if ($decoded) {
-
                         foreach ($decoded as $match) {
                             $image = base64_decode($match['base64Data']);
                             $imgName = 'home_about_desc_' . $lang . '_' . $this->dataService->getNowDateStr() . '.' . $match['extension'];
                             $imgPath = 'uploads/admin/settings/' . $imgName;
                             Storage::disk('public')->put($imgPath, $image);
                             $imgDbPath = '/storage/' . $imgPath;
-
                             $home_about_desc[$lang] = str_replace($match['fullMatch'], $imgDbPath, $home_about_desc[$lang]);
                         }
                     }
@@ -120,23 +129,19 @@ class SettingController extends Controller
         $data['home_about_desc'] = $home_about_desc;
 
         $about_desc = $request->get('about_desc');
-
         $this->deleteUnusedImages('uploads/admin/settings', 'about_desc', $about_desc);
 
         if (is_array($about_desc) && count($about_desc) > 0) {
-
             foreach ($about_desc as $lang => $value) {
                 if ($value) {
                     $decoded = $this->extractBase64Info($value);
                     if ($decoded) {
-
                         foreach ($decoded as $match) {
                             $image = base64_decode($match['base64Data']);
                             $imgName = 'about_desc_' . $lang . '_' . $this->dataService->getNowDateStr() . '.' . $match['extension'];
                             $imgPath = 'uploads/admin/settings/' . $imgName;
                             Storage::disk('public')->put($imgPath, $image);
                             $imgDbPath = '/storage/' . $imgPath;
-
                             $about_desc[$lang] = str_replace($match['fullMatch'], $imgDbPath, $about_desc[$lang]);
                         }
                     }
@@ -145,11 +150,9 @@ class SettingController extends Controller
         }
 
         $data['about_desc'] = $about_desc;
-
         $this->deleteUnusedImages('uploads/admin/settings', 'about_desc', $about_desc);
 
         // Pictures
-
         $image_logo_light = $settings->image_logo_light;
 
         if ($request->file('image_logo_light')) {
@@ -234,6 +237,18 @@ class SettingController extends Controller
             $data['contact_image'] = '/storage/' . $imgPath;
         }
 
+        $category = $settings->category;
+
+        if ($request->file('category')) {
+            if ($category && file_exists(public_path($category))) {
+                unlink(public_path($category));
+            }
+            $fileExtension = $request->category->extension();
+            $imgName = 'category_' . $this->dataService->getNowDateStr() . '.' . $fileExtension;
+            $imgPath = $request->file('category')->storeAs('uploads/admin/settings', $imgName, 'public');
+            $data['category'] = '/storage/' . $imgPath;
+        }
+
         $updated = $settings->update($data);
 
         if ($updated) {
@@ -273,7 +288,6 @@ class SettingController extends Controller
         }
         return $arr;
     }
-
 
     private function deleteUnusedImages($directory, $prefix, $descArray)
     {

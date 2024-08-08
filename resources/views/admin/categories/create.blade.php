@@ -77,8 +77,26 @@ window.addEventListener('load', function() {
             </div>
         </div>
     </div>
-    <div class="col-lg-6">
 
+    <div class="col-lg-6">
+        <div class="card mb-2">
+            <div class="card-body">
+                <div class="form-group d-block">
+                    <label class="m-0 mb-2" for="tag_ids">Tag seçin:</label>
+                    <select class="form-select" id="tag_ids" name="tag_ids[]" multiple
+                        data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}'>
+                        @foreach ($tags as $tag)
+                        <option value="{{$tag->id}}"
+                            @if(is_array(old('tag_ids')) && in_array($tag->id, old('tag_ids'))) selected @endif
+                        >{{$tag->name}}</option>
+                        @endforeach
+                    </select>
+                    @error('tag_ids')
+                    <span class="text-danger ml-2">{{$message}}</span>
+                    @enderror
+                </div>
+            </div>
+        </div>
         <div class="card">
             <div class="card-body">
                 <div class="form-group d-flex">
@@ -107,3 +125,4 @@ window.addEventListener('load', function() {
 </form>
 
 @endsection
+    
