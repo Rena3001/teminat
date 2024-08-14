@@ -1,0 +1,220 @@
+/* ================== aside/category =============== */
+
+.category_panel_heading {
+  width: 100%;
+  height: 4rem;
+  font-size: 14px;
+  color: var(--color_darkerGray);
+  background-color: var(--color_lightestGray);
+  display: flex;
+  align-items: center;
+}
+
+.category_form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.category_form label {
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+  color: var(--color_darkerGray);
+}
+
+.category_form select {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid var(--color_lighterGray);
+  background-color: var(--color_white);
+  color: var(--color_darkerGray);
+}
+
+
+.custom_select_wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .custom_select {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--color_lighterGray);
+    background-color: var(--color_white);
+    color: var(--color_darkerGray);
+    cursor: pointer;
+  }
+
+  .custom_options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--color_white);
+    border: 1px solid var(--color_lighterGray);
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+  }
+
+  .custom_options li {
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .custom_options li:hover {
+    background-color: var(--color_lighterGray);
+  }
+
+  .custom_select.open .custom_options {
+    max-height: max-content;
+    opacity: 1;
+  }
+
+.category_button {
+  width: 23rem;
+  height: 3.4rem;
+  background-color: var(--color_primary-hover);
+  color: var(--color_white);
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.category_panel_body button:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.category_button:hover {
+  background-color: var(--color_primary);
+}
+
+/*  =================== sections =================== */
+
+.panel_heading {
+  background-color: var(--color_black);
+  height: 7.1rem;
+  color: var(--color_white);
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0 15px;
+}
+
+.wires_and_fluxes {
+  flex: 1;
+  /* width: 84rem; */
+  /* border: 1px solid var(--color_lighterGray);
+  border-radius: 1px;
+  overflow: hidden;
+  margin: 0 auto; */
+}
+
+.sub_container {
+  display: flex;
+  gap: 3rem;
+}
+
+.margin_inline {
+  margin-inline: 15px;
+}
+
+/* ===== content section === */
+.card_section {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.4rem 1rem;
+  padding: 2rem 1.5rem 3rem;
+  box-sizing: border-box;
+}
+
+.category_detail_image {
+  position: relative;
+  height: 23rem;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--color_Gray);
+  border-radius: 1px;
+}
+.category_detail_image a{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hover_effect {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.category_detail_image img {
+  filter: brightness(0.7);
+  object-position: 50% 50%;
+  transition: 0.3s;
+}
+
+.category_detail_image:hover .hover_effect img {
+  object-position: 60% 50%;
+}
+
+
+.hover_content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  color: var(--color_black);
+  position: absolute;
+  bottom: 5rem;
+  left: 1rem;
+  transition: all 0.3s ease;
+  z-index: 1;
+  color: var(--color_white);
+}
+
+/* .hover_title {
+
+} */
+
+.hover_description {
+  height: 0;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.category_detail_image:hover .hover_description {
+  height: calc(16px * 1.3);
+}
+
+.category_detail_image:hover .hover_content {
+  /* color: var(--color_white); */
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .wires_and_fluxes{
+    width: 100%;
+  }
+  .card_section{
+    grid-template-columns: repeat(auto-fit, minmax(24.6rem, 1fr));
+  }
+}

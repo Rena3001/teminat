@@ -465,6 +465,170 @@ footer .footer_copyright p {
   header nav.mobile_nav ul.nav_menu ul.social_icons {
     display: flex;
     align-items: center;
+<<<<<<< HEAD
+=======
+    gap: 0.8rem;
+    margin: 1.6rem 2rem 1rem;
+}
+.blogCard:hover .blogCard__time {
+    color: var(--color_primary-hover);
+}
+.blogCard p {
+    font-size: 1.4rem;
+    margin: 0 2rem 1.6rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.breadCrump {
+    background-color: var(--color_lightestGray);
+    padding: 0.8rem 1.5rem;
+    margin-top: 1.5rem;
+}
+.breadCrump ul {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+.breadCrump ul li:not(li:last-child)::after {
+    content: "/";
+    padding-inline: 0.6rem;
+}
+.breadCrump a:hover {
+    text-decoration: underline;
+}
+
+.mainBox {
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 0.5rem 1rem var(--color_lightGray);
+    margin-block: 6rem;
+}
+
+.mainbox__heading {
+    width: 100%;
+    background-color: var(--color_lightBlack);
+    color: var(--color_lightestGray);
+    border-bottom: 1px solid var(--color_lightestGray);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.mainbox__heading img {
+    width: 4rem;
+    height: auto;
+}
+
+.mainBox__banner {
+    width: 100%;
+    height: 18rem;
+}
+
+/*   CONTACT FORM   */
+
+.contactForm input {
+    padding: 0.6rem 1.2rem;
+}
+.contactForm textarea {
+    resize: vertical;
+    width: 100%;
+    min-height: 5rem;
+    max-height: 18rem;
+    padding: 0.6rem 1.2rem;
+}
+.contactForm .textarea {
+    line-height: 0;
+}
+.contactForm input,
+.contactForm .textarea {
+    border: 1px solid var(--color_lighterGray);
+    box-shadow: 0 0 0.4rem -0.2rem var(--color_lighterGray);
+    border-radius: 0.4rem;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.contactForm input:hover,
+.contactForm .textarea:hover {
+    box-shadow: 0 0 0.4rem -0rem var(--color_lighterGray);
+}
+.contactForm input:focus,
+.contactForm .textarea:has(textarea:focus) {
+    border: 1px solid var(--color_primary);
+    box-shadow: 0 0 0.4rem -0rem var(--color_lighterGray);
+}
+
+.contactForm button {
+    width: 21rem;
+    padding: 0.8rem 1.2rem;
+    border-radius: 0.4rem;
+    background-color: var(--color_primary);
+    color: var(--color_lightestGray);
+    display: grid;
+    place-items: center;
+}
+
+/* ================== aside =============== */
+
+.search_box {
+    width: 29rem;
+}
+.search_box.mainBox{
+    overflow:unset;
+}
+.search_panel_heading {
+    width: 100%;
+    height: 4rem;
+    font-size: 14px;
+    color: var(--color_darkerGray);
+    background-color: var(--color_lightestGray);
+    display: flex;
+    align-items: center;
+}
+
+.search_box_input {
+    height: 8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    form {
+        display: flex;
+        input {
+            width: 21rem;
+            padding-left: 15px;
+            border-radius: 4px 0 0 4px;
+            border: 1px solid var(--color_lighterGray);
+            outline: none;
+        }
+    }
+    form button {
+        width: 4rem;
+        height: 3.4rem;
+        color: var(--color_white);
+        background-color: var(--color_primary-hover);
+        border-radius: 0 4px 4px 0;
+    }
+    form button:hover {
+        background-color: var(--color_primary);
+        transition: 0.3s;
+    }
+}
+
+/*    C A R D    */
+
+.product_detail_card {
+    width: 19rem;
+    height: 35rem;
+    border: 1px solid var(--color_lighterGray);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+>>>>>>> 3e72f0a2d9edb3b611b3db2ccf253d4200f5f07d
     justify-content: space-around;
   }
 
