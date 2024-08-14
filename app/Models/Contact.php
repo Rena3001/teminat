@@ -9,11 +9,11 @@ class Contact extends BaseModel
     use HasFactory;
 
     protected $fillable = [
-        'fullname',
+        'fname',
         'email',
-        'proffesion',
-        'phone',
+        'proffession',
+        'number',
         'file',
-        'text',
+        'note',
     ];
 }

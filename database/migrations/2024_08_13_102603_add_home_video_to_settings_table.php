@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->unsignedBigInteger('tag')->nullable()->after('id');
+        Schema::table('settings', function (Blueprint $table) {
+            $table->string('home_video');
+
         });
     }
 
@@ -21,7 +22,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('categories', function (Blueprint $table) {
+        Schema::table('settings', function (Blueprint $table) {
             //
         });
     }

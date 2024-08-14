@@ -26,4 +26,7 @@ class Category extends BaseModel
     {
         return $this->belongsToMany(Tag::class, 'category_tag');
     }
+    public function category_tags(){
+        return $this->hasMany(CategoryTag::class);
+    }
 }

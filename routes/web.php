@@ -34,6 +34,7 @@ Route::group(['as' => 'client.'], function() {
     Route::get('/about', [AboutController::class, 'index'])->name('about');
     Route::get('/blogs', [FrontBlogsController::class, 'index'])->name('blogs');
     Route::get('/categories', [FrontCategoryController::class, 'index'])->name('categories');
+    Route::post('/categories', [FrontCategoryController::class, 'index'])->name('categories.post');
     Route::get('/services', [FrontServicesController::class, 'index'])->name('services');
     Route::get('/contact', [FrontContactController::class, 'index'])->name('contact');
 

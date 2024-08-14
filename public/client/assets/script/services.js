@@ -1,27 +1,29 @@
 let viewportWidth = window.innerWidth;
-const servicesSection = document.querySelector(".services")
+const servicesSection = document.querySelector(".services");
+
+// Backend-dən gələn başlıqların siyahısı (title sahəsini obyektlərdən çıxarırıq)
+const serviceTitles = JSON.parse(document.querySelector(".servicesNav").dataset.titles);
 
 function setContainer() {
     viewportWidth = window.innerWidth;
     setServiceNav();
 
     if (viewportWidth <= 768) {
-        servicesSection.classList.add("container")
+        servicesSection.classList.add("container");
     } else {
-        servicesSection.classList.remove("container")
+        servicesSection.classList.remove("container");
     }
 }
 setContainer();
-
-const serviceTitles = document.querySelector(".servicesNav").dataset.titles;  /* change this with the following */
 
 function setServiceNav() {
     let servicesNav = document.querySelectorAll(".swiper-pagination-bullet");
 
     servicesNav.forEach((e, i) => {
-        e.textContent = viewportWidth <= 768 ? i+1 : `${i+1}. Xidmətlər sahə və sair`  /* will change */ 
-    })
+        // Başlıq kimi obyektin title sahəsini istifadə edin
+        e.textContent = viewportWidth <= 768 ? i + 1 : `${i + 1}. ${serviceTitles[i]}`;
+    });
 }
 
-document.addEventListener("DOMContentLoaded", setServiceNav)
-window.addEventListener("resize", setContainer)
+document.addEventListener("DOMContentLoaded", setServiceNav);
+window.addEventListener("resize", setContainer);

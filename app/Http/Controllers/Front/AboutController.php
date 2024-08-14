@@ -11,6 +11,7 @@ class AboutController extends Controller
 {
     public function index(){
         $contacts=Contact::all();
-        return view('client.about.about' , compact('contacts'));
+        $settings = Setting::first();
+        return view('client.about.about' , compact('contacts','settings'));
     }
 }

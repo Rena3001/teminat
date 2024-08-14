@@ -1,67 +1,65 @@
 @extends('client.layout.master')
-@section('page_title', "Services")
+@section('page_title', 'Services')
 @push('styles')
-<link rel="stylesheet" href="{{ asset('client/assets/style/services.css') }}" />
-
+    <link rel="stylesheet" href="{{ asset('client/assets/style/services.css') }}" />
 @endpush
 @section('content')
 
     <main>
-      <section class="services">
-        <aside class="servicesNav" data-titles="">
-          <!-- serviceCard__titles in data-titles -->
-          <div class="swiper-button-prev">
-            <i class="fa-solid fa-chevron-left"></i>
-          </div>
-          @foreach ($models as $model)
-          <div class="swiper-pagination">
-            <span class="swiper-pagination-bullet" tabindex="">{{ $model->title }}</span>
-        </div>
-        @endforeach
-          <div class="swiper-button-next">
-            <i class="fa-solid fa-chevron-right"></i>
-          </div>
-        </aside>
+        <section class="services">
+            <aside class="servicesNav" data-titles="@json($models->pluck('title'))">
+                <div class="swiper-button-prev">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </div>
+                <div class="swiper-pagination"></div> <!-- pagination bura dolacaq -->
+                <div class="swiper-button-next">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </aside>
 
-        <div class="swiper services_content">
-          <div class="swiper-wrapper">
-            @foreach ($models as $model)
-            <div class="swiper-slide">
-              <div class="serviceCard">
-                <h4 class="serviceCard__title">{{ $model->title }}</h4>
-                @if ($model->image)
-                <div class="serviceCard__img">
-                  <img
-                    src="{{ $model->image }}"
-                    alt="{{ $model->title }}"
-                  />
+            <div class="swiper services_content">
+                <div class="swiper-wrapper">
+                    @foreach ($models as $model)
+                        <div class="swiper-slide">
+                            <div class="serviceCard">
+                                <h4 class="serviceCard__title">{{ $model->title }}</h4>
+                                @if ($model->image)
+                                    <div class="serviceCard__img">
+                                        <img src="{{ $model->image }}" alt="{{ $model->title }}" />
+                                    </div>
+                                @endif
+                                <div class="serviceCard__desc">
+                                    <p>{{ $model->description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
-                @endif
-                <div class="serviceCard__desc">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur.Lorem ipsum
-                    dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua.
-                  </p>
-                </div>
-              </div>
             </div>
-            @endforeach
-
-
-          </div>
-        </div>
-      </section>
+        </section>
     </main>
-
 
 @endsection
 @push('js')
-<script src="{{ asset('client/assets/script/services.js') }}"></script>
+    <script>
+        let models = @json($models->pluck('title'));
 
+        const swiper = new Swiper(".services_content", {
+            slidesPerView: "auto",
+            spaceBetween: 80,
+            pagination: {
+                el: ".servicesNav .swiper-pagination",
+                clickable: true,
+                renderBullet: function(index, className) {
+                    return '<span class="' + className + '">' + models[index] + '</span>';
+                },
+            },
+            navigation: {
+                nextEl: ".servicesNav .swiper-button-next",
+                prevEl: ".servicesNav .swiper-button-prev",
+            },
+        });
+    </script>
+    
+    <script src="{{ asset('client/assets/script/services.js') }}"></script>
 @endpush

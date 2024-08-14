@@ -232,8 +232,8 @@
                     <div class="form-group d-block">
                         <label for="category">Kateqori logosu</label>
                         <input type="file" name="category"
-                            class="custom-file-image form-control @error('category') is-invalid @enderror"
-                            id="category" value="{{ old('category') }}">
+                            class="custom-file-image form-control @error('category') is-invalid @enderror" id="category"
+                            value="{{ old('category') }}">
                         @error('category')
                             <span class="error invalid-feedback">{{ $message }}</span>
                         @enderror
@@ -326,6 +326,140 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="card">
+                        <div class="card-img-top border-bottom py-2">
+                            <img src="{{ $settings->home_banner2 != '#' ? $settings->home_banner2 : asset('admin/assets/images/presentation4.jpg') }}"
+                                alt="Ana Səhifəsinin Banner Şəkli" class="img-fluid">
+                        </div>
+                        <div class="card-body">
+                            <label class="card-title">Ana Səhifəsinin Banner Şəkli 2</label>
+                            <div class="form-group d-block mt-3">
+                                <label for="home_banner2">Banner Şəkli Yüklə</label>
+                                <input type="file" name="home_banner2"
+                                    class="custom-file-image form-control @error('home_banner2') is-invalid @enderror"
+                                    id="home_banner2" value="{{ old('home_banner2') }}">
+                                @error('home_banner2')
+                                    <span class="error invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="card">
+                        <div class="card-img-top border-bottom py-2">
+                            <img src="{{ $settings->home_banner3 != '#' ? $settings->home_banner3 : asset('admin/assets/images/presentation5.jpg') }}"
+                                alt="Ana Səhifəsinin Banner Şəkli" class="img-fluid">
+                        </div>
+                        <div class="card-body">
+                            <label class="card-title">Ana Səhifəsinin Banner Şəkli 3</label>
+                            <div class="form-group d-block mt-3">
+                                <label for="home_banner3">Banner Şəkli Yüklə</label>
+                                <input type="file" name="home_banner3"
+                                    class="custom-file-image form-control @error('home_banner3') is-invalid @enderror"
+                                    id="home_banner3" value="{{ old('home_banner3') }}">
+                                @error('home_banner3')
+                                    <span class="error invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="card">
+                        <div class="card-img-top border-bottom py-2">
+                            <img src="{{ $settings->home_banner4 != '#' ? $settings->home_banner4 : asset('admin/assets/images/presentation6.jpg') }}"
+                                alt="Ana Səhifəsinin Banner Şəkli" class="img-fluid">
+                        </div>
+                        <div class="card-body">
+                            <label class="card-title">Ana Səhifəsinin Banner Şəkli 4</label>
+                            <div class="form-group d-block mt-3">
+                                <label for="home_banner4">Banner Şəkli Yüklə</label>
+                                <input type="file" name="home_banner4"
+                                    class="custom-file-image form-control @error('home_banner4') is-invalid @enderror"
+                                    id="home_banner4" value="{{ old('home_banner4') }}">
+                                @error('home_banner4')
+                                    <span class="error invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="card">
+                        <div class="card-img-top border-bottom py-2">
+                            <img src="{{ $settings->home_banner5 != '#' ? $settings->home_banner5 : asset('admin/assets/images/presentation7.jpg') }}"
+                                alt="Ana Səhifəsinin Banner Şəkli 5" class="img-fluid">
+                        </div>
+                        <div class="card-body">
+                            <label class="card-title">Ana Səhifəsinin Banner Şəkli 5</label>
+                            <div class="form-group d-block mt-3">
+                                <label for="home_banner5">Banner Şəkli Yüklə</label>
+                                <input type="file" name="home_banner5"
+                                    class="custom-file-image form-control @error('home_banner5') is-invalid @enderror"
+                                    id="home_banner5" value="{{ old('home_banner5') }}">
+                                @error('home_banner5')
+                                    <span class="error invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="card">
+                        <!-- Video Display -->
+                        <video autoplay loop muted plays-inline class="back_video">
+                            <source
+                                src="{{ $settings->home_video != '#' ? asset($settings->home_video) : asset('client/assets/images/about.mp4') }}"
+                                type="video/mp4" />
+                        </video>
+                        <div class="card-body">
+                            <h5 class="card-title">Ana Səhifəsinin Videosu</h5>
+
+                            <!-- Video Upload Section -->
+                            <div class="form-group">
+                                <label for="home_video">Video Yüklə</label>
+                                <input type="file" name="home_video" accept="video/*"
+                                    class="form-control @error('home_video') is-invalid @enderror" id="home_video">
+                                @error('home_video')
+                                    <span class="invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="card">
+                        <!-- Video Display -->
+                        <video autoplay loop muted plays-inline class="back_video">
+                            <source
+                                src="{{ $settings->about_video != '#' ? asset($settings->about_video) : asset('client/assets/images/about-page-video.mp4') }}"
+                                type="video/mp4" />
+                        </video>
+                        <div class="card-body">
+                            <h5 class="card-title">Haqqimizda Videosu</h5>
+
+                            <!-- Video Upload Section -->
+                            <div class="form-group">
+                                <label for="about_video">Haqqimizda Video Yüklə</label>
+                                <input type="file" name="about_video" accept="video/*"
+                                    class="form-control @error('about_video') is-invalid @enderror" id="about_video">
+                                @error('about_video')
+                                    <span class="invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
 
                 <div class="col-lg-6 col-md-12">
                     <div class="form-group d-block">
@@ -499,7 +633,8 @@
                                         aria-labelledby="custom-tabs-four-home-tab">
                                         <div class="card-body">
                                             <div class="form-group d-block">
-                                                <label for="home_about_desc.{{ $lang->code }}">Ana sehifədəki Haqqımızda
+                                                <label for="home_about_desc.{{ $lang->code }}">Ana sehifədəki
+                                                    Haqqımızda
                                                     Təsvir</label>
                                                 <textarea type="text" class="form-control @error('home_about_desc.' . $lang->code)is-invalid @enderror"
                                                     name="home_about_desc[{{ $lang->code }}]" id="home_about_desc.{{ $lang->code }}">{{ old('home_about_desc' . '.' . $lang->code, isset($settings->home_about_descs[$lang->code]) ? $settings->home_about_descs[$lang->code] : '') }}</textarea>

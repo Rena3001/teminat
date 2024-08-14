@@ -83,8 +83,7 @@ window.addEventListener('load', function() {
             <div class="card-body">
                 <div class="form-group d-block">
                     <label class="m-0 mb-2" for="tag_ids">Tag seçin:</label>
-                    <select class="form-select" id="tag_ids" name="tag_ids[]" multiple
-                        data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}'>
+                    <select name="tag_ids[]" class="form-select" id="organizerMultiple" data-choices="data-choices" multiple="multiple" data-options='{"removeItemButton":true,"placeholder":true}'>
                         @foreach ($tags as $tag)
                         <option value="{{$tag->id}}"
                             @if(is_array(old('tag_ids')) && in_array($tag->id, old('tag_ids'))) selected @endif
@@ -125,4 +124,3 @@ window.addEventListener('load', function() {
 </form>
 
 @endsection
-    

@@ -186,11 +186,80 @@ Saytin Statik Ümumi Məlumatları
             <div class="col-lg-6 col-md-12">
                 <div class="card">
                     <img class="card-img-top border-bottom py-2"
-                         src="{{ $settings->home_banner != '#' ? $settings->home_banner : asset('client/assets/images/presentation3.jpg') }}"
-                         alt="Ana Səhifəsinin Banner Şəkli"
+                         src="{{ $settings->home_banner != '#' ? $settings->home_banner : asset('client/assets/images/presentation1.jpg') }}"
+                         alt="Ana Səhifəsinin Banner Şəkli 1"
                          onerror="this.onerror=null; this.src='{{ asset('client/assets/images/presentation3.jpg') }}';">
                     <div class="card-body">
                         <h5 class="card-title">Ana Səhifəsinin Banner Şəkli 1</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <img class="card-img-top border-bottom py-2"
+                         src="{{ $settings->home_banner2 != '#' ? $settings->home_banner2 : asset('client/assets/images/presentation2.jpg') }}"
+                         alt="Ana Səhifəsinin Banner Şəkli 2"
+                         onerror="this.onerror=null; this.src='{{ asset('client/assets/images/presentation4.jpg') }}';">
+                    <div class="card-body">
+                        <h5 class="card-title">Ana Səhifəsinin Banner Şəkli 2</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <img class="card-img-top border-bottom py-2"
+                         src="{{ $settings->home_banner3 != '#' ? $settings->home_banner3 : asset('client/assets/images/presentation3.jpg') }}"
+                         alt="Ana Səhifəsinin Banner Şəkli 3"
+                         onerror="this.onerror=null; this.src='{{ asset('client/assets/images/presentation5.jpg') }}';">
+                    <div class="card-body">
+                        <h5 class="card-title">Ana Səhifəsinin Banner Şəkli 3</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <img class="card-img-top border-bottom py-2"
+                         src="{{ $settings->home_banner4 != '#' ? $settings->home_banner4 : asset('client/assets/images/presentation4.jpg') }}"
+                         alt="Ana Səhifəsinin Banner Şəkli 4"
+                         onerror="this.onerror=null; this.src='{{ asset('client/assets/images/presentation6.jpg') }}';">
+                    <div class="card-body">
+                        <h5 class="card-title">Ana Səhifəsinin Banner Şəkli 4</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <img class="card-img-top border-bottom py-2"
+                         src="{{ $settings->home_banner5 != '#' ? $settings->home_banner5 : asset('client/assets/images/presentation5.jpg') }}"
+                         alt="Ana Səhifəsinin Banner Şəkli 5"
+                         onerror="this.onerror=null; this.src='{{ asset('client/assets/images/presentation7.jpg') }}';">
+                    <div class="card-body">
+                        <h5 class="card-title">Ana Səhifəsinin Banner Şəkli 5</h5>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <video autoplay loop muted plays-inline class="back_video">
+                        <source src="{{ $settings->home_video != '#' ? $settings->home_video : asset('client/assets/images/about.mp4') }}" type="video/mp4" />
+                    </video>
+                    <div class="card-body">
+                        <h5 class="card-title">Ana Səhifəsinin Videosu</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <video autoplay loop muted plays-inline class="back_video">
+                        <source src="{{ $settings->about_video != '#' ? $settings->about_video : asset('client/assets/images/about-page-video.mp4') }}" type="video/mp4" />
+                    </video>
+                    <div class="card-body">
+                        <h5 class="card-title">Haqqimizda Videosu</h5>
                     </div>
                 </div>
             </div>

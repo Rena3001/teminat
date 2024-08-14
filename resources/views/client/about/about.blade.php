@@ -23,7 +23,7 @@
               loop
               muted
               plays-inline
-              src="./assets/images/about-page-video.mp4"
+              src="{{ $settings->about_video }}"
             ></video>
           </div>
         </div>
@@ -31,60 +31,58 @@
 
       <section class="testimonials">
         <div class="container">
-          <div class="testimonials_heading">
-            <h2>{{ __('word.customers_comment') }}</h2>
-            <div class="slider_nav">
-              <button class="prev_testimonial">
-                <i class="fa-solid fa-angle-left"></i>
-              </button>
-              <button class="next_testimonial">
-                <i class="fa-solid fa-angle-right"></i>
-              </button>
+            <div class="testimonials_heading">
+                <h2>{{ __('word.customers_comment') }}</h2>
+                <div class="slider_nav">
+                    <button class="prev_testimonial">
+                        <i class="fa-solid fa-angle-left"></i>
+                    </button>
+                    <button class="next_testimonial">
+                        <i class="fa-solid fa-angle-right"></i>
+                    </button>
+                </div>
             </div>
-          </div>
-          <div class="testimonials_content">
-            @foreach($contacts as $contact)
-            <div class="swiper testimonials_swiper">
-
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="testimonial_card">
-                            <div class="card_heading">
-                                <img src="./assets/images/testimonials-icon.png" alt="" />
-                                <p>{{ $contact->proffession }}</p>
-                            </div>
-                            <div class="card_content">
-                                <p>
-                                    {{$contact->note}}
-                                </p>
-                            </div>
-                            <div class="card_footer">
-                                <img src="./assets/images/testimonial.png" alt="" />
-                                <div class="card_info">
-                                    <p>{{ $contact->fname }}</p>
-                                    <p>{{ $contact->proffession }}</p>
+            <div class="testimonials_content">
+                @foreach ($contacts as $contact)
+                    <div class="swiper testimonials_swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="testimonial_card">
+                                    <div class="card_heading">
+                                        <img src="{{ asset('client/assets/images/testimonials-icon.png') }}" alt="" />
+                                        <p>{{ $contact->proffession }}</p>
+                                    </div>
+                                    <div class="card_content">
+                                        <p>
+                                            {{ $contact->note }}
+                                        </p>
+                                    </div>
+                                    <div class="card_footer">
+                                        <img src="{{ asset('client/assets/images/user.png') }}" alt="" />
+                                        <div class="card_info">
+                                            <p>{{ $contact->fname }}</p>
+                                            <p>{{ $contact->proffession }}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
-
+                @endforeach
+            </div>
+            <div class="testimonials-footer">
+                <div class="slider_nav">
+                    <button class="prev_testimonial">
+                        <i class="fa-solid fa-angle-left"></i>
+                    </button>
+                    <button class="next_testimonial">
+                        <i class="fa-solid fa-angle-right"></i>
+                    </button>
                 </div>
-
             </div>
-            @endforeach
-          </div>
-          <div class="testimonials-footer">
-            <div class="slider_nav">
-              <button class="prev_testimonial">
-                <i class="fa-solid fa-angle-left"></i>
-              </button>
-              <button class="next_testimonial">
-                <i class="fa-solid fa-angle-right"></i>
-              </button>
-            </div>
-          </div>
         </div>
-      </section>
+    </section>
     </main>
 
 

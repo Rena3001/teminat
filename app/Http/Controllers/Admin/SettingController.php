@@ -102,6 +102,8 @@ class SettingController extends Controller
             'about_iframe',
             'contact_title',
             'categories_title',
+            'home_video',
+            'about_video'
         );
 
         // Descriptions
@@ -259,6 +261,30 @@ class SettingController extends Controller
             return redirect()->route('admin.settings')
                 ->with('type', 'danger')
                 ->with('message', 'Parametrlərin yenilənməsi mümkün olmadı.');
+        };
+
+        $home_video = $settings->home_video;
+
+        if ($request->file('home_video')) {
+            if ($home_video && file_exists(public_path($home_video))) {
+                unlink(public_path($home_video));
+            }
+            $fileExtension = $request->home_video->extension();
+            $videoName = 'home_video_' . $this->dataService->getNowDateStr() . '.' . $fileExtension;
+            $videoPath = $request->file('home_video')->storeAs('uploads/admin/settings', $videoName, 'public');
+            $data['home_video'] = '/storage/' . $videoPath;
+        }
+        
+        $about_video = $settings->about_video;
+
+        if ($request->file('about_video')) {
+            if ($about_video && file_exists(public_path($about_video))) {
+                unlink(public_path($about_video));
+            }
+            $fileExtension = $request->about_video->extension();
+            $videoName = 'about_video_' . $this->dataService->getNowDateStr() . '.' . $fileExtension;
+            $videoPath = $request->file('about_video')->storeAs('uploads/admin/settings', $videoName, 'public');
+            $data['about_video'] = '/storage/' . $videoPath;
         }
     }
 
@@ -270,6 +296,7 @@ class SettingController extends Controller
             'gif' => 'gif',
             'bmp' => 'bmp',
             'svg+xml' => 'svg',
+            'mp4' => 'mp4'
         ];
 
         $pattern = '/(data:image\/(\w+);base64,[^"]+)/';

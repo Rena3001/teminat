@@ -71,10 +71,13 @@ class CategoryController extends Controller
         if (!empty($category)) {
             $model = $category;
 
-            $data = $request->only('title', 'image', 'description', 'tag');
+            $data = $request->only('title', 'image', 'description', 'tag_ids');
             $data['slug'] = $this->dataService->sluggableArray($data, 'title');
             $image = $model->image;
-            dd($data);
+            // dd($data);
+            foreach ($data['tag_ids'] as  $tag_id) {
+                $model->tags()->attach($tag_id);
+            }
             $update = $category->update($data);
             if ($update) {
                 if ($request->hasFile('image')) {
@@ -135,14 +138,9 @@ class CategoryController extends Controller
             $model['description_translations'] = $model->getTranslations('description');
             $langs = Lang::all();
             $tags = Tag::all(); // Fetch all tags for selection
-            dump($category->tags);
-            dump($tags);
-            foreach ($tags as $key => $tag) {
-                dump($tag->id);
-            }
-            die();
-
-            return view('admin.categories.edit', compact('model', 'langs', 'tags'));
+            $selected_tags=$category->tags->all();
+            $tag_ids=array_column($selected_tags, 'id');
+            return view('admin.categories.edit', compact('model', 'langs', 'tags','tag_ids'));
         } else {
             abort(404);
         }

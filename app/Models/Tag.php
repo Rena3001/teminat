@@ -18,4 +18,7 @@ class Tag extends Model
     {
         return $this->belongsToMany(Category::class, 'category_tag');
     }
+    public function category_tags(){
+        return $this->hasMany(CategoryTag::class);
+    }
 }
